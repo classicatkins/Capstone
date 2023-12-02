@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 10px; /* Adjust the gap between boxes */
+  margin-right: 10px; /* Space between the grid and the menu */
+}
+
+
+.graph-box {
+  background-color: #f0f0f0; /* Graph background color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Space inside the boxes */
+  text-align: center; /* Centering text or content */
+  /* Add more styling as needed */
+  height: 15rem;
+  width: 30rem;
+}
+
+.menu-box {
+  flex-grow: 1;
+  background-color: #e7e7e7; /* Menu background color */
+  border-radius: 10px;
+  padding: 20px;
+  /* Add more styling as needed */
+}
+
+.menu-box h3 {
+  /* Existing styles for your headers */
+  position: relative; /* Required for positioning the pseudo-element */
+  display: inline-block; /* Adjust as needed to fit your design */
+}
+
+.menu-box h3::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Adjust the position of the underline */
+  left: 0;
+  width: 75%; /* Underline width is 75% of the header */
+  height: 2px; /* Height of the underline */
+  background-color: #000; /* Color of the underline */
+  /* Additional styling as needed */
+}
+
+.menu-box ul {
+  list-style-type: none; /* Removes bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.menu-box li {
+  padding: 10px; /* Add padding for visual comfort */
+  border-bottom: 1px solid #ccc; /* Creates a line between items */
+}
+
+.menu-box li:last-child {
+  border-bottom: none; /* Remove border from the last item */
+}
+
+.menu-box li:hover {
+  transform: scale(1.1); /* Enlarge list item on hover */
+  /* Optionally, change other properties like background-color or color */
+}
+
+
+@media (max-width: 600px) {
+  .container {
+        flex-direction: column; /* change to column layout */
+    }
+  .grid {
+    grid-template-columns: 1fr; /* 1 column, making boxes stack vertically */
+}
+.menu-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* Distribute space evenly */
+}
+
+.header-container {
+  flex: 1; /* Each container takes equal width */
+  /* Optional: Add some padding or margin for spacing */
+}
+}
+
