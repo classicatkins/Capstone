@@ -4,34 +4,31 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px; /* Adjust the gap between boxes */
   margin-right: 10px; /* Space between the grid and the menu */
 }
 
 
 .graph-box {
-  background-color: #f0f0f0; /* Graph background color */
-  border-radius: 10px; /* Rounded corners */
-  padding: 20px; /* Space inside the boxes */
-  text-align: center; /* Centering text or content */
-  /* Add more styling as needed */
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
   height: 15rem;
   width: 30rem;
 }
 
 .menu-box {
   flex-grow: 1;
-  background-color: #e7e7e7; /* Menu background color */
+  background-color: #e7e7e7;
   border-radius: 10px;
   padding: 20px;
-  /* Add more styling as needed */
 }
 
 .menu-box h3 {
-  /* Existing styles for your headers */
-  position: relative; /* Required for positioning the pseudo-element */
-  display: inline-block; /* Adjust as needed to fit your design */
+  position: relative;
+  display: inline-block;
 }
 
 .menu-box h3::after {
@@ -39,10 +36,9 @@
   position: absolute;
   bottom: -5px; /* Adjust the position of the underline */
   left: 0;
-  width: 75%; /* Underline width is 75% of the header */
+  width: 75%; /* Underline width*/
   height: 2px; /* Height of the underline */
   background-color: #000; /* Color of the underline */
-  /* Additional styling as needed */
 }
 
 .menu-box ul {
@@ -52,7 +48,7 @@
 }
 
 .menu-box li {
-  padding: 10px; /* Add padding for visual comfort */
+  padding: 10px;
   border-bottom: 1px solid #ccc; /* Creates a line between items */
 }
 
@@ -62,7 +58,6 @@
 
 .menu-box li:hover {
   transform: scale(1.1); /* Enlarge list item on hover */
-  /* Optionally, change other properties like background-color or color */
 }
 
 
@@ -81,7 +76,6 @@
 
 .header-container {
   flex: 1; /* Each container takes equal width */
-  /* Optional: Add some padding or margin for spacing */
 }
 }
 
