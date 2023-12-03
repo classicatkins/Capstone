@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Website</title>
+    <!-- Include SVG using the img tag -->
+    <!-- <img src="img/Perpetua Logo.svg" alt="Description of SVG"> -->
+    <title>Perpetua</title>
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg"/> -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="style.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>Welcome to Habit Horizon</h1>
-    </header>
+    <!-- <header>
+        <h1>Welcome to Perpetua</h1>
+    </header> -->
 
     <!-- //todo: add menubar in moble view
     <i class="fa-solid fa-bars"></i> -->
 
     <nav>
         <ul>
-            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#home" class="headimg">
+                <img src="img/perpetua-cropped.png" alt="logo">
+            </a></li>
+            <!-- <li><a href="#home" class="nav-link">Home</a></li> -->
+            <li><a href="#habits" class="nav-link">Today</a></li>
             <li><a href="#habits" class="nav-link">Habits</a></li>
             <li><a href="stats.html" class="nav-link">Stats</a></li>
             <li><a href="contact.html" class="nav-link">Contact</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="#settings" class="nav-link">Settings</a></li>
-            <i class="fa-solid fa-gear" class="nav-link"></i>
+            <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-gear"></i>
+            </a>
         </ul>
     </nav>
 
@@ -44,7 +53,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 Habit Horizon</p>
+        <p>&copy; 2023 Perpetua</p>
     </footer>
     <script src="script.js"></script>
 </body>
