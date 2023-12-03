@@ -1,7 +1,8 @@
 :root {
   /* --font-family: "Onest", sans-serif;
   --font-family-headline: "Onest", san-serif; */
-  --font-family: "Ostende Sans";
+  font-family: 'Agrandir', sans-serif;
+  font-family: 'Now', sans-serif;
   --font-size-1: clamp(10px, 1.2vw, 12px);
   --font-size-2: clamp(12px, 1.2vw, 14px);
   --font-size-3: clamp(14px, 1.2vw, 16px);
