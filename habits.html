@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habits</title>
+    <style>
+        .shared-board {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.shared-column {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin: 10px;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+}
+
+.shared-column-cards {
+    overflow: auto;
+    max-height: 600px;
+}
+
+.habit-card {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 10px;
+    outline: none;
+    padding: 12px 20px;
+    position: relative;
+    box-shadow: 0 0 0 1px hsla(0,0%,6%,.1), 0 2px 4px hsla(0,0%,6%,.1);
+}
+
+.column-title {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.add-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.add-label {
+    margin-right: 10px;
+}
+
+.circle-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #FF5757;
+    background-color: #fff;
+    color: #FF5757;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+}
+
+.circle-button:hover {
+    background-color: #DD4141;
+    color: #fff;
+}
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 800px) {
+    .shared-column {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+    </style>
+</head>
+<body class="theme--default">
+    <div class="shared-board">
+        <!-- Column 1: Categories -->
+        <div class="shared-column">
+            <div class="column-title">Categories</div>
+            <div class="add-container">
+              <div class="add-label">Add Catagory</div>
+              <button class="circle-button">+</button>
+          </div>
+            <div class="shared-column-cards">
+                <div class="habit-card">Individual Catagory</div>
+                <!-- More cards... -->
+            </div>
+        </div>
+
+        <!-- Column 2: Habits -->
+        <div class="shared-column">
+            <div class="column-title">Habits</div>
+            <div class="add-container">
+              <div class="add-label">Add Habit</div>
+              <button class="circle-button">+</button>
+          </div>
+            <div class="shared-column-cards">
+                <div class="habit-card">Individual Habit</div>
+                <!-- More cards... -->
+            </div>
+        </div>
+
+        <!-- Column 3: Routines -->
+        <div class="shared-column">
+            <div class="column-title">Routines</div>
+            <div class="add-container">
+              <div class="add-label">Add Routine</div>
+              <button class="circle-button">+</button>
+          </div>
+            <div class="shared-column-cards">
+                <div class="habit-card">Individual Routine</div>
+                <!-- More cards... -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
