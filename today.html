@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Today</title>
     <style>
+
+.circle-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.circle {
+  width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    margin-right: 10px;
+    position: relative;
+}
+
+.circle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 2px;
+    height: 20px;
+    background-color: #ddd;
+    z-index: -1;
+}
+
+.circle-card:last-child .circle::after {
+    display: none;
+}
+
+.circle-card.active .circle {
+    background-color: #007bff;
+}
+
+.circle-card.active .circle::after {
+    background-color: #007bff;
+}
+
+.column-banner {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.column-title {
+    margin: 0;
+}
+
         .shared-board {
     display: flex;
     justify-content: center;
@@ -19,17 +72,25 @@
     min-height: 100%;
     margin: 10px;
     overflow: hidden;
-    padding: 20px;
+    /* padding: 20px; */
     position: relative;
-    border: #DD4141;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
 }
 
 .shared-column-cards {
-    overflow: auto;
+    overflow: hidden;
     max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* overflow: auto;
+    max-height: 600px; */
 }
 
 .habit-card {
+    font-size: 0.9em;
     border: 1px solid transparent;
     border-radius: 8px;
     cursor: pointer;
@@ -39,6 +100,20 @@
     padding: 12px 20px;
     position: relative;
     box-shadow: 0 0 0 1px hsla(0,0%,6%,.1), 0 2px 4px hsla(0,0%,6%,.1);
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; Smooth transition for pop effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+    position: relative; /* Needed for z-index to work */
+    z-index: 0;
+
+    width: 40%;
+    max-width: 250px;
+    text-align: center;
+}
+
+.habit-card:hover {
+  transform: scale(1.05);
+    box-shadow: 0 4px 8px hsla(0,0%,6%,.2);
+    z-index: 1; /* Bring it above other elements */
 }
 
 .column-title {
@@ -137,33 +212,56 @@
     <div class="shared-board">
         <!-- Column 1: Categories -->
         <div class="shared-column">
-            <div class="column-title">Morning</div>
+          <div class="column-banner"> <!-- Banner -->
+            <div class="column-title">Morning Routine</div>
+        </div>
+            <!-- <div class="column-title">Morning</div> -->
             <div class="add-container">
               <div class="add-label">Add Catagory</div>
               <button class="circle-button">+</button>
           </div>
             <div class="shared-column-cards">
-                <div class="habit-card">Individual Catagory</div>
+              <div class="circle-card">
+                <div class="circle"></div>
+                <div class="circle-card-text">Category Item 1</div>
+            </div>
+            <div class="circle-card">
+                <div class="circle"></div>
+                <div class="circle-card-text">Category Item 1</div>
+            </div>
+            <div class="circle-card">
+              <div class="circle"></div>
+              <div class="circle-card-text">Category Item 1</div>
+          </div>
+          <div class="circle-card">
+            <div class="circle"></div>
+            <div class="circle-card-text">Category Item 1</div>
+        </div>
                 <!-- More cards... -->
             </div>
         </div>
 
         <!-- Column 2: Habits -->
         <div class="shared-column">
-            <div class="column-title">Habits</div>
+          <div class="column-banner"> <!-- Banner -->
+            <div class="column-title">Today's Habits</div>
+        </div>
             <div class="add-container">
               <div class="add-label">Add Habit</div>
               <button class="circle-button">+</button>
           </div>
             <div class="shared-column-cards">
                 <div class="habit-card">Individual Habit</div>
+                <div class="habit-card">Habit</div>
                 <!-- More cards... -->
             </div>
         </div>
 
         <!-- Column 3: Routines -->
         <div class="shared-column">
-            <div class="column-title">Evening</div>
+          <div class="column-banner"> <!-- Banner -->
+            <div class="column-title">Evening Routing</div>
+        </div>
             <div class="add-container">
               <div class="add-label">Add Routine</div>
               <button class="circle-button">+</button>
@@ -174,5 +272,12 @@
             </div>
         </div>
     </div>
+    <script>
+      document.querySelectorAll('.circle-card').forEach(card => {
+          card.addEventListener('click', () => {
+              card.classList.toggle('active');
+          });
+      });
+  </script>
 </body>
 </html>
