@@ -18,7 +18,7 @@
   width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 2px solid #007bff;
+    border: 2px solid #ddd;
     margin-right: 10px;
     position: relative;
 }
@@ -26,10 +26,10 @@
 .circle::after {
     content: '';
     position: absolute;
-    left: 50%;
-    bottom: -10px;
-    width: 2px;
-    height: 20px;
+    left: 35.5%;
+    bottom: -14px;
+    width: 3.5px;
+    height: 12.5px;
     background-color: #ddd;
     z-index: -1;
 }
@@ -271,14 +271,29 @@ svg {
         <!-- Column 3: Routines -->
         <div class="shared-column">
           <div class="column-banner"> <!-- Banner -->
-            <div class="column-title">Evening Routing</div>
+            <div class="column-title">Evening Routine</div>
         </div>
             <div class="add-container">
               <div class="add-label">Add Routine</div>
               <button class="circle-button">+</button>
           </div>
             <div class="shared-column-cards">
-                <div class="habit-card">Individual Routine</div>
+              <div class="circle-card">
+                <div class="circle"></div>
+                <div class="circle-card-text">Category Item 1</div>
+            </div>
+            <div class="circle-card">
+                <div class="circle"></div>
+                <div class="circle-card-text">Category Item 1</div>
+            </div>
+            <div class="circle-card">
+              <div class="circle"></div>
+              <div class="circle-card-text">Category Item 1</div>
+          </div>
+          <div class="circle-card">
+            <div class="circle"></div>
+            <div class="circle-card-text">Category Item 1</div>
+        </div>
                 <!-- More cards... -->
             </div>
         </div>
