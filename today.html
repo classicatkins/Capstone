@@ -6,6 +6,50 @@
     <title>Today</title>
     <style>
 
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.month-display {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 10rem;
+}
+
+.week-display {
+    display: flex;
+}
+
+.day {
+    text-align: center;
+    margin-right: 10px;
+}
+
+.weekday {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.date {
+    font-size: 1.2em;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.week-navigation {
+    margin-top: 10px;
+}
+
+.week-navigation button {
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+
 .circle-card {
     position: relative;
     display: flex;
@@ -40,6 +84,7 @@
 
 .circle-card.active .circle {
     background-color: #007bff;
+    border: 2px solid #007bff;
 }
 
 .circle-card.active .circle::after {
@@ -212,7 +257,49 @@ svg {
 </head>
 <body class="theme--default">
   <div class="flex-row">
-    <div class="flex-box">function to calculate time + name</div>
+    <div class="flex-box">
+      <p>function to calculate time + name</p>
+      <div class="calendar-container">
+        <div class="month-display">Month</div>
+        <div class="week-display">
+          <div class="day">
+            <div class="weekday">Sun</div>
+            <div class="date">1</div>
+        </div>
+        <div class="day">
+          <div class="weekday">Mon</div>
+          <div class="date">1</div>
+      </div>
+      <div class="day">
+        <div class="weekday">Tue</div>
+        <div class="date">1</div>
+    </div>
+    <div class="day">
+      <div class="weekday">Wen</div>
+      <div class="date">1</div>
+  </div>
+  <div class="day">
+    <div class="weekday">Thur</div>
+    <div class="date">1</div>
+</div>
+<div class="day">
+  <div class="weekday">Fri</div>
+  <div class="date">1</div>
+</div>
+<div class="day">
+  <div class="weekday">Sat</div>
+  <div class="date">1</div>
+</div>
+
+            <!-- Weekdays (Sun, Mon, etc.) and Dates (1, 2, etc.) -->
+            <!-- ... -->
+        </div>
+        <div class="week-navigation">
+            <button id="prevWeek">Previous Week</button>
+            <button id="nextWeek">Next Week</button>
+        </div>
+    </div>
+    </div>
     <div class="flex-box">Alerts</div>
     <div class="flex-box">Streaks
       <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -310,6 +397,42 @@ svg {
 }
 
 updateStreakNumber(5);
+
+let currentDate = new Date();
+
+function updateCalendar() {
+    const startOfWeek = getStartOfWeek(currentDate);
+    const options = { month: 'long' };
+    const month = startOfWeek.toLocaleDateString('en-US', options);
+    document.querySelector('.month-display').textContent = month;
+
+    const days = document.querySelectorAll('.week-display .day .date');
+    days.forEach((day, index) => {
+        const date = new Date(startOfWeek);
+        date.setDate(date.getDate() + index);
+        day.textContent = date.getDate();
+        day.classList.toggle('bold', date.getDate() === currentDate.getDate() && date.getMonth() === currentDate.getMonth());
+    });
+}
+
+function getStartOfWeek(date) {
+    const day = date.getDay();
+    const start = new Date(date);
+    start.setDate(date.getDate() - day);
+    return start;
+}
+
+document.getElementById('prevWeek').addEventListener('click', function() {
+    currentDate.setDate(currentDate.getDate() - 7);
+    updateCalendar();
+});
+
+document.getElementById('nextWeek').addEventListener('click', function() {
+    currentDate.setDate(currentDate.getDate() + 7);
+    updateCalendar();
+});
+
+updateCalendar();
   </script>
 </body>
 </html>
