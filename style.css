@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Agrandir:wght@300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap"');
 
 :root {
   /* --font-family: "Onest", sans-serif;
@@ -40,18 +40,8 @@ nav ul li a .fa-bars {
 }
 
 @media screen and (max-width: 600px) {
-  .nav-links ul li:not(.dropdown) {
-    display: none;
-  }
-
-  .dropdown {
-    display: inline-block;
-  }
-}
-
-  .nav-links {
-    display: flex;
-    justify-content: flex-end;
+  nav > ul > li:not(.dropdown) {
+      display: none;
   }
 
   .dropdown > a .fa-bars {
@@ -63,9 +53,10 @@ nav ul li a .fa-bars {
   .dropdown-content.show {
       display: block;
   }
+}
 
 .dropdown {
-  position: relative;
+  position: relative; /* Needed for absolute positioning of child elements */
 }
 
 .dropdown-content {
@@ -89,7 +80,8 @@ nav ul li a .fa-bars {
 }
 
 .dropdown-content li:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  /* background-color: #f1f1f1; */
+  background-color: rgba(255, 255, 255, 0.2); /* Slightly lighter on hover */
 }
 
 .dropdown:hover .dropdown-content {
@@ -128,69 +120,26 @@ text-align: center;
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
   background-color: var(--color-purple);
+  color: #fff;
+  text-align: right;
+  padding: 10px 0;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
 }
 
-.nav-links ul {
+nav ul {
   list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
 }
 
-.nav-links ul li {
+nav ul li {
   display: inline;
   margin: 0 15px;
 }
 
-.nav-links ul li a {
+nav ul li a {
   color: #fff;
   text-decoration: none;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .nav-links ul {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links ul li {
-    margin-bottom: 10px;
-  }
-}
-
-@media (max-width: 600px) {
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-logo {
-    order: -1;
-    margin-bottom: 20px;
-  }
-
-  .nav-links ul {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .nav-links ul li {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .nav-links ul li a {
-    display: block;
-  }
 }
 
 .active-link {
@@ -214,5 +163,6 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  font-family: 'Quicksand', sans-serif;
 }
 

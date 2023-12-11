@@ -6,219 +6,219 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
     <title>Contact Page</title>
     <style>
-      .required {
-    color: red;
-}
+        .required {
+            color: red;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+        body {
+            font-family: Quicksand, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-.flex-row {
-    display: flex;
-    justify-content: space-between;
-}
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+        }
 
-.flex-row .input-group {
-    flex: 1;
-}
+        .flex-row .input-group {
+            flex: 1;
+        }
 
-.flex-row .input-group:first-child {
-    margin-right: 20px;
-}
+        .flex-row .input-group:first-child {
+            margin-right: 20px;
+        }
 
-.input-group, .textarea-group {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    flex: 1;
-    box-sizing: border-box;
-    margin: 0 10px;
-}
+        .input-group, .textarea-group {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            flex: 1;
+            box-sizing: border-box;
+            margin: 0 10px;
+        }
 
-.input-group label, .textarea-group label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    text-align: left;
-}
+        .input-group label, .textarea-group label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            text-align: left;
+        }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-textarea {
-    height: 100px;
-}
+        textarea {
+            height: 100px;
+        }
 
-.submit-group {
-    text-align: center;
-    margin-top: 20px;
-}
+        .submit-group {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-button {
-    padding: 10px 20px;
-    background-color: #FF5757;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
+        button {
+            padding: 10px 20px;
+            background-color: #FF5757;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-button:hover {
-    background-color: #DD4141;
-}
+        button:hover {
+            background-color: #DD4141;
+        }
 
-.connect-box, .contact-column, .connect-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    text-align: left;
-}
+        .connect-box, .contact-column, .connect-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: left;
+        }
 
-.connect-box {
-    text-align: center;
-}
+        .connect-box {
+            text-align: center;
+        }
 
-.connect-box > h3 {
-    margin-bottom: 20px;
-}
+        .connect-box > h3 {
+            margin-bottom: 20px;
+        }
 
-.logos-container, .logo-group {
-    display: flex;
-    align-items: center;
-}
+        .logos-container, .logo-group {
+            display: flex;
+            align-items: center;
+        }
 
-.logos-container {
-    justify-content: flex-start;
-    margin-top: 10px;
-}
+        .logos-container {
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
 
-.logo-group i {
-    margin-right: 5px;
-}
+        .logo-group i {
+            margin-right: 5px;
+        }
 
-.logos-container .logo-group:first-child {
-    margin-left: 0;
-}
+        .logos-container .logo-group:first-child {
+            margin-left: 0;
+        }
 
-.logo-group {
-    margin-right: 10px;
-}
+        .logo-group {
+            margin-right: 10px;
+        }
 
-.container {
-    width: 40rem;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
+        .container {
+            width: 40rem;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-@media (max-width: 800px), (max-width: 600px) {
-    .flex-row, .connect-box, .contact-column, .connect-column {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+        @media (max-width: 800px), (max-width: 600px) {
+            .flex-row, .connect-box, .contact-column, .connect-column {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
 
-    .input-group, .logo-group, .container {
-        width: 100%;
-    }
+            .input-group, .logo-group, .container {
+                width: 100%;
+            }
 
-    .logos-container {
-        justify-content: center;
-    }
+            .logos-container {
+                justify-content: center;
+            }
 
-    .flex-row .input-group {
-        /* flex: 1; */
-        margin: 0;
-    }
+            .flex-row .input-group {
+                /* flex: 1; */
+                margin: 0;
+            }
 
-    .flex-row .input-group:first-child {
-        margin-right: 0;
-    }
-}
+            .flex-row .input-group:first-child {
+                margin-right: 0;
+            }
+        }
 
     </style>
 </head>
 <body>
-  <div class="container">
-      <!-- <h1>Contact</h1> -->
-      <h2>How can I help you?</h2>
-      <form class="form">
-          <div class="flex-row">
-              <div class="input-group">
-                  <label for="firstName">First Name <span class="required">*</span></label>
-                  <input type="text" id="firstName" name="firstName" required>
-              </div>
-              <div class="input-group">
-                  <label for="lastName">Last Name <span class="required">*</span></label>
-                  <input type="text" id="lastName" name="lastName" required>
-              </div>
-          </div>
-              <div class="input-group">
-                  <label for="email">Email <span class="required">*</span></label>
-                  <input type="text" id="email" name="email" required>
-              </div>
-              <div class="input-group">
-                  <label for="phone">Phone</label>
-                  <input type="text" id="phone" name="phone">
-              </div>
-          <div class="textarea-group">
+<div class="container">
+    <!-- <h1>Contact</h1> -->
+    <h2>How can I help you?</h2>
+    <form class="form" action="https://formspree.io/f/myyqrbne" method="POST">
+        <div class="flex-row">
+            <div class="input-group">
+                <label for="firstName">First Name <span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="input-group">
+                <label for="lastName">Last Name <span class="required">*</span></label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone">
+        </div>
+        <div class="textarea-group">
             <label for="message">Message</span></label>
             <textarea id="message" name="message" required></textarea>
-          </div>
-          <div class="submit-group">
+        </div>
+        <div class="submit-group">
             <button type="submit" id="submit" name="submit">Submit</button>
         </div>
-      </form>
-      <div class="connect-box">
+    </form>
+    <div class="connect-box">
         <h2>Get in Contact</h2>
         <div class="connect-column">
-          <h3>Connect</h3>
-          <div class="logos-container">
-            <div class="logo-group">
-              <i class="fa-brands fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/melissa-atkins03/" target="_blank" class="logo-link">
-                <span>LinkedIn</span>
-              </a>
-          </div>
-          <div class="logo-group">
-            <i class="fa-brands fa-github"></i>
-            <a href="https://github.com/classicatkins" target="_blank" class="logo-link">
-              <span>GitHub</span>
-            </a>
-          </div>
-          <div class="logo-group">
-            <i class="fa-solid fa-globe"></i>
-            <a href="https://www.linkedin.com/in/melissa-atkins03/" target="_blank" class="logo-link">
-              <span>Website</span>
-            </a>
-          </div>
-          </div>
-      </div>
-      <div class="contact-column">
-          <h3>Contact</h3>
-          <p>matkins@duck.com</p>
-      </div>
+            <h3>Connect</h3>
+            <div class="logos-container">
+                <div class="logo-group">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/melissa-atkins03/" target="_blank" class="logo-link">
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+                <div class="logo-group">
+                    <i class="fa-brands fa-github"></i>
+                    <a href="https://github.com/classicatkins" target="_blank" class="logo-link">
+                        <span>GitHub</span>
+                    </a>
+                </div>
+                <div class="logo-group">
+                    <i class="fa-solid fa-globe"></i>
+                    <a href="https://www.linkedin.com/in/melissa-atkins03/" target="_blank" class="logo-link">
+                        <span>Website</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="contact-column">
+            <h3>Contact</h3>
+            <p>matkins@duck.com</p>
+        </div>
     </div>
-  </div>
+</div>
 </body>
 </html>
 
