@@ -29,8 +29,7 @@ router
       }
     })
     .resolve();
-
-// render();
+ //render();
 
 // add menu toggle to bars icon in nav bar
 // document.querySelector(".fa-bars").addEventListener("click", () => {
