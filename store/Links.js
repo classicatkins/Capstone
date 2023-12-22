@@ -1,6 +1,6 @@
 export default [
-    { title: "About", text: "About" },
-    { title: "Settings", text: "Settings" },
-    { title: "Habits", text: "Habits" },
-    { title: "Contact", text: "Contact" }
+  { title: "Home", text: "Home" },
+  { title: "Bio", text: "Bio" },
+  { title: "Order", text: "Submit a Pizza Order" },
+  { title: "Pizza", text: "See all the Pizzas" }
 ];
