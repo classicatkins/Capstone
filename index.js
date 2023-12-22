@@ -104,6 +104,6 @@ router
 //   document.querySelector("nav > ul").classList.toggle("hidden--mobile");
 // });
 
-axios.get(
-  "https://api.openweathermap.org/data/2.5/weather?q=St.%20Louis&APPID=723e0986e0f98b33c0d046e7f38d272c"
-);
+// axios.get(
+//   "https://api.openweathermap.org/data/2.5/weather?q=St.%20Louis&APPID=723e0986e0f98b33c0d046e7f38d272c"
+// );
