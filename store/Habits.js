@@ -1,4 +1,4 @@
 export default {
-    header: "My Habits Page",
-    view: "Habits"
+  header: "My Habits Page",
+  view: "Habits"
 };
