@@ -1,5 +1,7 @@
 import html from "html-literal";
 //import dogPic from "../../assets/img/dog-with-flower.jpg";
+import melissa from "../../assets/img/melissa-circle.png";
+import logo from "../../assets/img/Perpetua Logo.png";
 
 export default () => html`
   <section id="about">
@@ -8,7 +10,7 @@ export default () => html`
         <h2>About Me</h2>
         <img
           class="img-about"
-          src="img/melissa-circle.png"
+          src="${melissa}"
           alt="photo of melissa"
         />
         <p>
@@ -52,7 +54,7 @@ export default () => html`
         <h2>About Perpetua</h2>
         <img
           class="img-habit"
-          src="img/Perpetua Logo.png"
+          src="${logo}"
           alt="Perpetua Logo"
         />
         <p>

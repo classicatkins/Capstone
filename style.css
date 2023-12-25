@@ -35,13 +35,43 @@
   --color-gray-7: #1B1B1B;
 }
 
-nav ul li a .fa-bars {
+.fa-bars {
   display: none;
 }
 
+.fa-bars:before {
+  display: none;
+}
+
+.fa-bars:after {
+  display: none;
+}
+
+.nav-perpetua {
+  color: red;
+}
+
 @media screen and (max-width: 600px) {
-  nav > ul > li:not(.dropdown) {
+  /* nav > ul > li:not(.dropdown) {
       display: none;
+  } */
+
+  .hidden--mobile {
+      display: none;
+  }
+
+  .fa-bars:before {
+    display: block;
+    padding-right: 2rem;
+  }
+
+  .fa-bars:after {
+    display: block;
+    padding-right: 2rem;
+  }
+
+  nav > .fa-gear {
+    display: none;
   }
 
   .dropdown > a .fa-bars {
@@ -92,7 +122,9 @@ nav ul li a .fa-bars {
   display: block;
 }
 
-
+.left {
+  text-align: left;
+}
 
 body, h1, h2, ul, p {
   margin: 0;
@@ -119,13 +151,45 @@ width: 1rem;
 text-align: center;
 }
 
-nav {
-  background-color: var(--color-purple);
-  color: #fff;
+.nav-inline {
+  display: inline-block;
+  /* background-color: #007bff; */
+}
+
+.nav-left {
+  display: inline-block;
+  text-align: left;
+}
+
+.nav-left img,
+.nav-left li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.nav-left li {
+   padding: 0rem;
+   /* margin: .2rem; */
+}
+
+.nav-left img {
+  padding-bottom: 0.1rem;
+  margin-left: 1rem;
+}
+
+.nav-right {
   text-align: right;
+}
+
+nav {
+  background-color: #220C0C;
+  color: #fff;
   padding: 10px 0;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 nav ul {
@@ -156,10 +220,10 @@ main section {
 }
 
 footer {
-  background-color: var(--color-purple);
+  background-color: #220C0C;
   color: #fff;
   text-align: center;
-  padding: 10px 0;
+  padding: 5px 0;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -167,8 +231,12 @@ footer {
 }
 
 /* stats.css */
-.container {
+.stats-container {
   display: flex;
+}
+
+.favicon {
+  height: 1.75rem;
 }
 
 .grid {
@@ -661,7 +729,7 @@ transform: scale(1.05);
   color: red;
 }
 
-body {
+.body-today {
   font-family: Quicksand, sans-serif;
   text-align: center;
   margin: 0;
@@ -823,7 +891,7 @@ h2 {
   color: #333;
 }
 p {
-  color: #666;
+  /* color: #666; */
 }
 
 .img-about {
