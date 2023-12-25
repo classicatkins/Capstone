@@ -16,33 +16,25 @@ function render(state = store.Home) {
 }
 
 router
-    .on({
-      "/": () => render(),
-      ":view": params => {
-        let view = capitalize(params.data.view);
-        if (view in store) {
-          render(store[view]);
-        } else {
-          render(store.Viewnotfound);
-          console.log(`View ${view} not defined`);
-        }
+  .on({
+    "/": () => render(),
+    ":view": params => {
+      let view = capitalize(params.data.view);
+      if (view in store) {
+        render(store[view]);
+      } else {
+        render(store.Viewnotfound);
+        console.log(`View ${view} not defined`);
       }
-    })
-    .resolve();
-
-// render();
+    }
+  })
+  .resolve();
+//render();
 
 // add menu toggle to bars icon in nav bar
 // document.querySelector(".fa-bars").addEventListener("click", () => {
 //   document.querySelector("nav > ul").classList.toggle("hidden--mobile");
 // });
-
-
-
-
-
-
-
 
 // document.addEventListener("DOMContentLoaded", function() {
 //   var hamburgerIcon = document.querySelector(".fa-bars"); // Selects the hamburger icon
