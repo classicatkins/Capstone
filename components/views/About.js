@@ -7,12 +7,8 @@ export default () => html`
   <section id="about">
     <div class="container">
       <div class="box">
-        <h2>About Me</h2>
-        <img
-          class="img-about"
-          src="${melissa}"
-          alt="photo of melissa"
-        />
+        <h2 class="center">About Me</h2>
+        <img class="img-about" src="${melissa}" alt="photo of melissa" />
         <p>
           As a passionate and dedicated Full Stack Developer at Sketch
           Development Services, I specialize in creating innovative software
@@ -51,12 +47,8 @@ export default () => html`
       </div>
 
       <div class="box">
-        <h2>About Perpetua</h2>
-        <img
-          class="img-habit"
-          src="${logo}"
-          alt="Perpetua Logo"
-        />
+        <h2 class="center">About Perpetua</h2>
+        <img class="img-habit" src="${logo}" alt="Perpetua Logo" />
         <p>
           Perpetua is a dynamic web application designed to provide users with a
           platform to create, monitor, and maintain their daily habits. This
