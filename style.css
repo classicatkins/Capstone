@@ -326,7 +326,7 @@ footer {
 
 .hello-display {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 30px;
   align-self: flex-start;
   width: 100%; /* Set the width to 100% of the container */
   text-align: left;
@@ -578,13 +578,13 @@ width: 15px;
 }
 
 .flex-box {
+  background-color: red;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: calc(25% - 20px);
-  margin: 0 10px;
+  margin: 20px 20px 0px;
   padding: 10px;
   text-align: center;
-  background-color: #f4f4f4;
   border-radius: 8px;
   box-sizing: border-box;
 }
@@ -601,6 +601,14 @@ svg {
 
 
 @media (max-width: 800px) {
+
+  .hello-display {
+    font-weight: bold;
+    font-size: 20px;
+    align-self: flex-start;
+    width: 100%; /* Set the width to 100% of the container */
+    text-align: left;
+  }
   .flex-box {
       flex-basis: calc(50% - 20px);
       margin: 10px;
@@ -706,7 +714,7 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 0 20px 20px;
 }
 
 .shared-column {
