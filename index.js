@@ -18,6 +18,12 @@ function render(state = store.Home) {
 }
 
 function afterRender() {
+  document.querySelectorAll(".circle-card").forEach(card => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("active");
+    });
+  });
+
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });

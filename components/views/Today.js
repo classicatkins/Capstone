@@ -151,6 +151,13 @@ export default () => html`
           <!-- More cards... -->
         </div>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
     <script>
       document.querySelectorAll(".circle-card").forEach(card => {
