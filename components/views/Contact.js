@@ -1,30 +1,31 @@
 import html from "html-literal";
 export default () => html`
   <section id="contact">
+
       <div class="container">
           <!-- <h1>Contact</h1> -->
-          <h2>How can I help you?</h2>
+          <h2 class="center">How can I help you?</h2>
           <form class="form" action="https://formspree.io/f/myyqrbne" method="POST">
-              <div class="flex-row">
+              <div class="flex-row-names">
                   <div class="input-group">
                       <label for="firstName">First Name <span class="required">*</span></label>
-                      <input type="text" id="firstName" name="firstName" required>
+                      <input class="names" type="text" id="firstName" name="firstName" required>
                   </div>
                   <div class="input-group">
                       <label for="lastName">Last Name <span class="required">*</span></label>
-                      <input type="text" id="lastName" name="lastName" required>
+                      <input class="names" type="text" id="lastName" name="lastName" required>
                   </div>
               </div>
               <div class="input-group">
                   <label for="email">Email <span class="required">*</span></label>
-                  <input type="text" id="email" name="email" required>
+                  <input class="names" type="text" id="email" name="email" required>
               </div>
               <div class="input-group">
                   <label for="phone">Phone</label>
-                  <input type="text" id="phone" name="phone">
+                  <input class="names" type="text" id="phone" name="phone">
               </div>
               <div class="textarea-group">
-                  <label for="message">Message</span></label>
+                  <label for="message">Message<span class="required">*</span></span></label>
                   <textarea id="message" name="message" required></textarea>
               </div>
               <div class="submit-group">
@@ -62,5 +63,7 @@ export default () => html`
               </div>
           </div>
       </div>
+      <br>
+      <br>
   </section>
 `;
