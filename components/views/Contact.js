@@ -37,9 +37,10 @@ export default () => html`
             </div>
           </form>
           <div class="connect-box">
-              <h2>Get in Contact</h2>
               <div class="connect-column">
-                  <h3>Connect</h3>
+                <div class="connect-opacity">
+                <h2 class="center">Get in Contact</h2>
+                <h3>Connect</h3>
                   <div class="logos-container">
                       <div class="logo-group">
                           <i class="fa-brands fa-linkedin"></i>
@@ -65,6 +66,7 @@ export default () => html`
                   <h3>Contact</h3>
                   <p>matkins@duck.com</p>
               </div>
+                </div>
           </div>
       </div>
       <br>

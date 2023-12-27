@@ -35,6 +35,12 @@
   --color-gray-7: #1B1B1B;
 }
 
+.active {
+  font-weight: bold;
+  color: #0275d8;
+  /* Other styling as needed */
+}
+
 .fa-bars {
   display: none;
 }
@@ -694,12 +700,12 @@ body {
   cursor: pointer;
 }
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #DD4141;
 }
 
 /* habits */
 .column-banner {
-  background-color: #007bff;
+  background-color: #FF5757;
   color: white;
   text-align: center;
   padding: 2.25rem 0;
@@ -938,7 +944,18 @@ button:hover {
   background-color: #DD4141;
 }
 
-.connect-box, .contact-column, .connect-column {
+.connect-box, .contact-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.connect-column {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -948,10 +965,28 @@ button:hover {
   border-radius: 4px;
   box-sizing: border-box;
   text-align: left;
+
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.connect-opacity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 .connect-box {
   text-align: center;
+
+  background-image: url('img/contactImg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .connect-box > h3 {
