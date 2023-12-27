@@ -4,7 +4,7 @@ export default () => html`
   <body class="body-today">
     <div class="flex-row">
       <div class="flex-box">
-        <p>Good Morning Melissa!</p>
+        <p class="hello-display">Good Morning Melissa!</p>
         <div class="calendar-container">
           <div class="month-display">Month</div>
           <div class="week-display">
