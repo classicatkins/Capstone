@@ -54,7 +54,7 @@
 }
 
 .nav-perpetua {
-  color: red;
+  color: gray;
 }
 
 @media screen and (max-width: 600px) {
@@ -408,16 +408,106 @@ width: 15px;
 }
 
 .circle-card.active .circle {
-  background-color: #007bff;
-  border: 2px solid #007bff;
+  background-color:  #FF5757;;
+  border: 2px solid  #FF5757;
 }
 
 .circle-card.active .circle::after {
-  background-color: #007bff;
+  background-color:  #FF5757;;
+}
+
+.column-banner-catagories {
+  /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
+  background-image: url('img/The\ Quiet\ Lake.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  color: white;
+  text-align: center;
+  padding: 2.25rem 0;
+  border-radius: 8px 8px 0 0;
+}
+
+.column-banner-habits {
+  /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
+  background-image: url('img/The\ Quiet\ Lake.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  color: white;
+  text-align: center;
+  padding: 2.25rem 0;
+  border-radius: 8px 8px 0 0;
+}
+
+.column-banner-routines {
+  /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
+  background-image: url('img/The\ Quiet\ Lake.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  color: white;
+  text-align: center;
+  padding: 2.25rem 0;
+  border-radius: 8px 8px 0 0;
+}
+
+.column-banner-today {
+  /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
+  background-image: url('img/The\ Quiet\ Lake.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  color: white;
+  text-align: center;
+  padding: 2.25rem 0;
+  border-radius: 8px 8px 0 0;
+}
+
+
+.column-banner-evening {
+  /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
+  background-image: url('img/Free\ Vector\ _\ Watercolor\ mountain\ landscape.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  color: white;
+  text-align: center;
+  padding: 2.25rem 0;
+  border-radius: 8px 8px 0 0;
+}
+
+.column-banner-morning {
+  /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
+  background-image: url('img/download.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  color: white;
+  text-align: center;
+  padding: 2.25rem 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .column-banner {
-  background-color: #007bff;
+  background-image: url('img/contactImg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
   color: white;
   text-align: center;
   padding: 2.25rem 0;
@@ -584,7 +674,7 @@ width: 15px;
 }
 
 .flex-box {
-  background-color: red;
+  background-color: gray;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: calc(25% - 20px);
@@ -966,7 +1056,7 @@ button:hover {
   box-sizing: border-box;
   text-align: left;
 
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .connect-opacity {

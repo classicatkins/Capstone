@@ -75,7 +75,7 @@ export default () => html`
     <div class="shared-board">
       <!-- Column 1: Categories -->
       <div class="shared-column">
-        <div class="column-banner">
+        <div class="column-banner-morning">
           <!-- Banner -->
           <div class="column-title">Morning Routine</div>
         </div>
@@ -106,7 +106,7 @@ export default () => html`
 
       <!-- Column 2: Habits -->
       <div class="shared-column">
-        <div class="column-banner">
+        <div class="column-banner-today">
           <!-- Banner -->
           <div class="column-title">Today's Habits</div>
         </div>
@@ -123,7 +123,7 @@ export default () => html`
 
       <!-- Column 3: Routines -->
       <div class="shared-column">
-        <div class="column-banner">
+        <div class="column-banner-evening">
           <!-- Banner -->
           <div class="column-title">Evening Routine</div>
         </div>
