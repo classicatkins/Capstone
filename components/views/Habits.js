@@ -16,7 +16,10 @@ export default () => html`
         <div class="shared-column-cards">
           <div class="habit-card">
             <div class="card-content">
-              <input type="checkbox" class="check-box" name="habits" />
+              <label class="custom-checkbox">
+                <input type="checkbox" class="check-box" name="habits" />
+                <span class="checkmark"></span>
+              </label>
               &nbsp&nbspHabit 3
               <div class="menu-icon">
                 <!-- Three dots icon or font-awesome icon -->

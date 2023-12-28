@@ -22,11 +22,10 @@ export default () => html`
               />&nbsp&nbspMenu Item 1.1
             </li>
             <li>
-              <input
-                type="checkbox"
-                class="check-box"
-                name="habits"
-              />&nbsp&nbspMenu Item 1.2
+              <label class="custom-checkbox">
+                <input type="checkbox" class="check-box" name="habits" />
+                <span class="checkmark"></span> </label
+              >&nbsp&nbspMenu Item 1.2
             </li>
             <li>
               <input

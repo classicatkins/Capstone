@@ -115,7 +115,26 @@ export default () => html`
           <button class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">Individual Habit</div>
+          <div class="habit-card">
+            <div class="card-content">
+              <label class="custom-checkbox">
+                <input type="checkbox" class="check-box" name="habits" />
+                <span class="checkmark"></span>
+              </label>
+              &nbsp&nbspHabit 3
+              <div class="menu-icon">
+                <!-- Three dots icon or font-awesome icon -->
+                &nbsp;&nbsp;&#8942;
+              </div>
+            </div>
+            <div class="popup-menu">
+              <ul>
+                <li>Action 1</li>
+                <li>Action 2</li>
+                <li>Action 3</li>
+              </ul>
+            </div>
+          </div>
           <div class="habit-card">Habit</div>
           <!-- More cards... -->
         </div>
