@@ -6,7 +6,10 @@ export default () => html`
       <div class="flex-box">
         <p class="hello-display">Good Morning Melissa!</p>
         <div class="calendar-container">
-          <div class="month-display">Month</div>
+          <div class="month-flex">
+            <div class="month-display">Month Day#</div>
+            <div class="today-display">Today</div>
+          </div>
           <div class="week-display">
             <div class="day">
               <div class="weekday">Sun</div>
@@ -146,6 +149,7 @@ export default () => html`
           <!-- Banner -->
           <div class="column-title">Evening Routine</div>
         </div>
+        //todo: envoke in a temporal literal ${onclick}
         <div class="add-container">
           <div class="add-label">Add Routine</div>
           <button class="circle-button">+</button>

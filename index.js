@@ -8,16 +8,37 @@ import axios from "axios";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
+  function alertShow() {
+    alert();
+  }
   document.querySelector("#root").innerHTML = `
         ${Nav(store.Links, state.name)}
         ${Main(state)}
         ${Footer()}
     `;
   router.updatePageLinks();
-  afterRender();
+  afterRender(state);
 }
+function alertShow() {
+  alert();
+}
+function afterRender(state) {
+  function alertShow() {
+    alert();
+  }
+  //todo: code goes here (javascript)
+  //Todo:
+  if (state.view === "Home") {
+    //todo: logic goes here for today
+  }
 
-function afterRender() {
+  document.getElementById("createUserButton").addEventListener("click", () => alertShow("Create User clicked"));
+  document.getElementById("createGraphButton").addEventListener("click", () => alertShow("Create Graph clicked"));
+  document.getElementById("recordPixelButton").addEventListener("click", () => alertShow("Record Pixel clicked"));
+  document.getElementById("updatePixelButton").addEventListener("click", () => alertShow("Update Pixel clicked"));
+  document.getElementById("deletePixelButton").addEventListener("click", () => alertShow("Delete Pixel clicked"));
+
+
   document.querySelectorAll(".circle-card").forEach(card => {
     card.addEventListener("click", () => {
       card.classList.toggle("active");
@@ -117,3 +138,7 @@ router
 axios.get(
   "https://api.openweathermap.org/data/2.5/weather?q=St.%20Louis&APPID=723e0986e0f98b33c0d046e7f38d272c"
 );
+
+function alertShow() {
+  alert();
+}
