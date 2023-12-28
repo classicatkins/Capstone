@@ -115,7 +115,12 @@ export default () => html`
           <button class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">Individual Habit</div>
+          <div class="habit-card">
+            <label class="custom-checkbox">
+              <input type="checkbox" class="check-box" name="habits" />
+              <span class="checkmark"></span> </label
+            >Individual Habit
+          </div>
           <div class="habit-card">Habit</div>
           <!-- More cards... -->
         </div>

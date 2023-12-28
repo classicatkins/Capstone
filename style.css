@@ -460,7 +460,7 @@ width: 15px;
 
 .column-banner-today {
   /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
-  background-image: url('img/The\ Quiet\ Lake.jpg');
+  background-image: url('img/Lakeside_Morning_1920x1080.jpg ');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -515,6 +515,8 @@ width: 15px;
 }
 
 .column-title {
+  font-weight: 900;
+  /* font-size: 1000px; */
   margin: 0;
 }
 
@@ -570,13 +572,10 @@ width: 15px;
 .card-content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.menu-icon {
-  margin-right: 10px;
-  cursor: pointer;
-  /* You can add styling for the three dots icon, such as font-size or color */
-}
+
 
 .popup-menu {
   display: none;
@@ -794,6 +793,58 @@ body {
 }
 
 /* habits */
+
+.menu-icon {
+  /* border: 2px solid #000; /* Black border, adjust the color as needed */
+  /* padding: 5px 10px; Padding around the icon */
+  /* padding: 0px 0px 5px 0px; Padding around the icon */
+  border-radius: 5px; /* Rounded corners */
+  display: inline-block; /* To treat it like an inline element */
+  vertical-align: middle; /* Align it with adjacent elements */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  font-weight: 900;
+  font-size: 20px;
+}
+
+/* Hide the default checkbox */
+.check-box {
+  display: none;
+}
+
+/* Create a custom checkbox appearance */
+.custom-checkbox .checkmark {
+  height: 17px;
+  width: 17px;
+  background-color: #e9e9e9;
+  /* background-color: #eee; */
+  display: inline-block;
+  border-radius: 5px;
+  position: relative;
+  margin-top: .5rem;
+}
+
+/* When the checkbox is checked, change the background color */
+.custom-checkbox .check-box:checked + .checkmark {
+  background-color: #FF5757;
+}
+
+/* Optional: add a custom indicator for the checked state */
+.custom-checkbox .check-box:checked + .checkmark:after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+
+input[type="checkbox" i] {
+  background-color: #FF5757;
+}
 .column-banner {
   background-color: #FF5757;
   color: white;
@@ -854,7 +905,7 @@ body {
   position: relative; /* Needed for z-index to work */
   z-index: 0;
 
-  width: 40%;
+  width: 100%;
   max-width: 250px;
   text-align: center;
 }
