@@ -9,7 +9,7 @@ const router = new Navigo("/");
 
 function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
-        ${Nav(store.Links)}
+        ${Nav(store.Links, state.name)}
         ${Main(state)}
         ${Footer()}
     `;
@@ -24,8 +24,13 @@ function afterRender() {
     });
   });
 
+  // document.querySelector(".fa-bars").addEventListener("click", () => {
+  //   alert("here");
+  //   document.querySelector("nav > ul").classList.toggle("dropdown");
+  // });
+
   document.querySelector(".fa-bars").addEventListener("click", () => {
-    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+    document.querySelector(".dropdown-content").classList.toggle("show");
   });
 
   setupPixelaEventListeners();
