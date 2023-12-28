@@ -7,8 +7,10 @@ export default state => html`
     <button id="createUserButton">Create User</button>
     <button id="createGraphButton">Create Graph</button>
     <button id="recordPixelButton">Record Pixel</button>
-    <button id="updatePixelButton">Update Pixel</button>
-    <button id="deletePixelButton">Delete Pixel</button>
+    <button id="updatePixelButton" onclick="alertShow()">Update Pixel</button>
+    <button id="deletePixelButton" ${(onclick = "alertShow()")}>
+      Delete Pixel
+    </button>
   </section>
 
   <!-- <section class="masthead">
