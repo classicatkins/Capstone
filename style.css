@@ -460,7 +460,7 @@ width: 15px;
 
 .column-banner-today {
   /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
-  background-image: url('img/Lakeside_Morning_1920x1080.jpg ');
+  background-image: url('img/Lakeside_Morning_1920x1080.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -638,11 +638,23 @@ width: 15px;
   font-size: 16px;
   cursor: pointer;
   outline: none;
+  transition: background-color 0.3s, color 0.3s; /* Transition for color and background */
 }
 
-.circle-button:hover {
+.circle-button .button-content {
+  display: inline-block;
+  transition: transform 0.3s; /* Transition for rotation */
+}
+
+/* .circle-button:hover {
   background-color: #DD4141;
   color: #fff;
+} */
+
+.circle-button:hover .button-content {
+  background-color: #DD4141;
+  color: #fff;
+  transform: rotate(360deg); /* Rotate the content */
 }
 
 .flex-row {
