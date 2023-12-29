@@ -11,6 +11,9 @@ function render(state = store.Home) {
   function alertShow() {
     alert();
   }
+  function addHabit() {
+    alert();
+  }
   document.querySelector("#root").innerHTML = `
         ${Nav(store.Links, state.name)}
         ${Main(state)}
@@ -22,8 +25,14 @@ function render(state = store.Home) {
 function alertShow() {
   alert();
 }
+// function addHabit() {
+//   alert();
+// }
 function afterRender(state) {
   function alertShow() {
+    alert();
+  }
+  function addHabit() {
     alert();
   }
   //todo: code goes here (javascript)
@@ -32,11 +41,12 @@ function afterRender(state) {
     //todo: logic goes here for today
   }
 
-  document.getElementById("createUserButton").addEventListener("click", () => alertShow("Create User clicked"));
-  document.getElementById("createGraphButton").addEventListener("click", () => alertShow("Create Graph clicked"));
-  document.getElementById("recordPixelButton").addEventListener("click", () => alertShow("Record Pixel clicked"));
-  document.getElementById("updatePixelButton").addEventListener("click", () => alertShow("Update Pixel clicked"));
-  document.getElementById("deletePixelButton").addEventListener("click", () => alertShow("Delete Pixel clicked"));
+  // document.getElementById("createUserButton").addEventListener("click", () => alertShow("Create User clicked"));
+  // document.getElementById("createGraphButton").addEventListener("click", () => alertShow("Create Graph clicked"));
+  // document.getElementById("recordPixelButton").addEventListener("click", () => alertShow("Record Pixel clicked"));
+  // document.getElementById("updatePixelButton").addEventListener("click", () => alertShow("Update Pixel clicked"));
+  // document.getElementById("deletePixelButton").addEventListener("click", () => alertShow("Delete Pixel clicked"));
+  document.getElementById("addHabit").addEventListener("click", addHabit);
 
 
   document.querySelectorAll(".circle-card").forEach(card => {

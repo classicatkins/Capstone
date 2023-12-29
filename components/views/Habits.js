@@ -48,7 +48,9 @@ export default () => html`
         </div>
         <div class="add-container">
           <div class="add-label">Add Habit</div>
-          <button class="circle-button">+</button>
+          <button id="addHabit" onclick="addHabit" class="circle-button">
+            +
+          </button>
         </div>
         <div class="shared-column-cards">
           <div class="habit-card">Individual Habit</div>
