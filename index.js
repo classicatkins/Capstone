@@ -15,38 +15,38 @@ function render(state = store.Home) {
     alert();
   }
   document.querySelector("#root").innerHTML = `
-        ${Nav(store.Links, state.name)}
+        ${Nav(store.Links)}
         ${Main(state)}
         ${Footer()}
     `;
   router.updatePageLinks();
-  afterRender(state);
+  afterRender();
 }
 function alertShow() {
   alert();
 }
-// function addHabit() {
-//   alert();
-// }
+function addHabit() {
+  alert();
+}
 function afterRender(state) {
-  function alertShow() {
-    alert();
-  }
-  function addHabit() {
-    alert();
-  }
-  //todo: code goes here (javascript)
-  //Todo:
-  if (state.view === "Home") {
-    //todo: logic goes here for today
-  }
+  // function alertShow() {
+  //   alert();
+  // }
+  // function addHabit() {
+  //   alert();
+  // }
+  // //todo: code goes here (javascript)
+  // //Todo:
+  // // if (state.view === "Home") {
+  // //   //todo: logic goes here for today
+  // // }
 
-  // document.getElementById("createUserButton").addEventListener("click", () => alertShow("Create User clicked"));
-  // document.getElementById("createGraphButton").addEventListener("click", () => alertShow("Create Graph clicked"));
-  // document.getElementById("recordPixelButton").addEventListener("click", () => alertShow("Record Pixel clicked"));
-  // document.getElementById("updatePixelButton").addEventListener("click", () => alertShow("Update Pixel clicked"));
+  // // document.getElementById("createUserButton").addEventListener("click", () => alertShow("Create User clicked"));
+  // // document.getElementById("createGraphButton").addEventListener("click", () => alertShow("Create Graph clicked"));
+  // // document.getElementById("recordPixelButton").addEventListener("click", () => alertShow("Record Pixel clicked"));
+  // // document.getElementById("updatePixelButton").addEventListener("click", () => alertShow("Update Pixel clicked"));
   // document.getElementById("deletePixelButton").addEventListener("click", () => alertShow("Delete Pixel clicked"));
-  document.getElementById("addHabit").addEventListener("click", addHabit);
+  // document.getElementById("addHabit").addEventListener("click", () => addHabit("Delete Pixel clicked"));
 
 
   document.querySelectorAll(".circle-card").forEach(card => {
