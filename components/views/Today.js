@@ -187,89 +187,42 @@ export default () => html`
       <br />
       <br />
     </div>
-    <script>
-      document.querySelectorAll(".circle-card").forEach(card => {
-        card.addEventListener("click", () => {
-          card.classList.toggle("active");
-        });
-      });
-
-      function updateStreakNumber(newNumber) {
-        document.getElementById("streakNumber").textContent = newNumber;
-      }
-
-      updateStreakNumber(5);
-
-      let currentDate = new Date();
-
-      function updateCalendar() {
-        const startOfWeek = getStartOfWeek(currentDate);
-        const options = { month: "long" };
-        const month = startOfWeek.toLocaleDateString("en-US", options);
-        document.querySelector(".month-display").textContent = month;
-
-        const days = document.querySelectorAll(".week-display .day .date");
-        days.forEach((day, index) => {
-          const date = new Date(startOfWeek);
-          date.setDate(date.getDate() + index);
-          day.textContent = date.getDate();
-          day.classList.toggle(
-            "bold",
-            date.getDate() === currentDate.getDate() &&
-              date.getMonth() === currentDate.getMonth()
-          );
-        });
-      }
-
-      function getStartOfWeek(date) {
-        const day = date.getDay();
-        const start = new Date(date);
-        start.setDate(date.getDate() - day);
-        return start;
-      }
-
-      document.getElementById("prevWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() - 7);
-        updateCalendar();
-      });
-
-      document.getElementById("nextWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() + 7);
-        updateCalendar();
-      });
-
-      document.addEventListener("DOMContentLoaded", event => {
-        setupMenuToggle();
-      });
-
-      function setupMenuToggle() {
-        const menuIcons = document.querySelectorAll(".menu-icon");
-
-        // Function to close all menus
-        function closeAllMenus() {
-          document.querySelectorAll(".popup-menu").forEach(menu => {
-            menu.classList.remove("show");
-          });
-        }
-
-        // Toggle menu on icon click
-        menuIcons.forEach(icon => {
-          icon.addEventListener("click", function(event) {
-            closeAllMenus(); // Close all menus
-            this.nextElementSibling.classList.toggle("show");
-            event.stopPropagation(); // Prevent click from immediately propagating to document
-          });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", function(event) {
-          if (!event.target.matches(".menu-icon")) {
-            closeAllMenus();
-          }
-        });
-      }
-
-      updateCalendar();
-    </script>
   </body>
 `;
+
+// function updateStreakNumber(newNumber) {
+//   document.getElementById("streakNumber").textContent = newNumber;
+// }
+
+// updateStreakNumber(5);
+
+// document.addEventListener("DOMContentLoaded", event => {
+//   setupMenuToggle();
+// });
+
+// function setupMenuToggle() {
+//   const menuIcons = document.querySelectorAll(".menu-icon");
+
+//   // Function to close all menus
+//   function closeAllMenus() {
+//     document.querySelectorAll(".popup-menu").forEach(menu => {
+//       menu.classList.remove("show");
+//     });
+//   }
+
+//   // Toggle menu on icon click
+//   menuIcons.forEach(icon => {
+//     icon.addEventListener("click", function(event) {
+//       closeAllMenus(); // Close all menus
+//       this.nextElementSibling.classList.toggle("show");
+//       event.stopPropagation(); // Prevent click from immediately propagating to document
+//     });
+//   });
+
+//   // Close menu when clicking outside
+//   document.addEventListener("click", function(event) {
+//     if (!event.target.matches(".menu-icon")) {
+//       closeAllMenus();
+//     }
+//   });
+// }
