@@ -35,12 +35,6 @@
   --color-gray-7: #1B1B1B;
 }
 
-.active {
-  font-weight: bold;
-  color: #0275d8;
-  /* Other styling as needed */
-}
-
 .fa-bars {
   display: none;
 }
@@ -347,10 +341,12 @@ justify-content: space-between;
   font-weight: bold;
   /* margin-bottom: 10px;
   margin-right: 12.2rem; */
+  margin-right: 5.5rem;
 }
 
 .today-display {
   text-decoration: underline;
+  margin-right: 1rem;
 }
 
 .week-display {
@@ -388,7 +384,7 @@ justify-content: space-between;
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   cursor: pointer;
 }
 
@@ -586,7 +582,7 @@ width: 15px;
 
 
 .popup-menu {
-  display: block;
+  display: none;
   /* position: absolute; */
   background-color: #fff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -893,7 +889,7 @@ input[type="checkbox" i] {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 0 20px 20px;
+  padding: 0 20px 80px;
 }
 
 .shared-column {
