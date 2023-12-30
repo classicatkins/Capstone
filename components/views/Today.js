@@ -28,7 +28,7 @@ export default () => html`
               <div class="date">1</div>
             </div>
             <div class="day">
-              <div class="weekday">Thur</div>
+              <div class="weekday">Thu</div>
               <div class="date">1</div>
             </div>
             <div class="day">
