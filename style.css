@@ -367,10 +367,18 @@ justify-content: space-between;
   margin-bottom: 5px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   .weekday {
     font-size: 0.9em;
     margin-bottom: 5px;
+  }
+
+  .month-display {
+    font-weight: bold;
+    /* margin-bottom: 10px;
+    margin-right: 12.2rem; */
+    margin-right: 10rem;
+    font-size: 1em;
   }
 
   .month-display {
