@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap"');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap');
 
 :root {
   /* --font-family: "Onest", sans-serif;
@@ -33,12 +33,6 @@
   --color-gray-5: #5D5D5D;
   --color-gray-6: #3D3D3D;
   --color-gray-7: #1B1B1B;
-}
-
-.active {
-  font-weight: bold;
-  color: #0275d8;
-  /* Other styling as needed */
 }
 
 .fa-bars {
@@ -303,19 +297,22 @@ footer {
   transform: scale(1.1); /* Enlarge list item on hover */
 }
 
-
 @media (max-width: 600px) {
-  .container {
-        flex-direction: column; /* change to column layout */
-    }
+  .stats-container {
+    flex-direction: column-reverse; /* Stack menu-box above the grid */
+  }
+
   .grid {
-    grid-template-columns: 1fr; /* 1 column, making boxes stack vertically */
-}
-.menu-box {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around; /* Distribute space evenly */
-}
+    grid-template-columns: 1fr; /* Stack boxes vertically */
+    margin-right: 0; /* Reset margin if needed */
+  }
+
+  .menu-box {
+    order: -1; /* Place menu-box at the top */
+    display: flex;
+    flex-direction: column; /* Stack items vertically in menu-box */
+    width: 100%; /* Full width */
+  }
 
 .header-container {
   flex: 1; /* Each container takes equal width */
@@ -347,10 +344,13 @@ justify-content: space-between;
   font-weight: bold;
   /* margin-bottom: 10px;
   margin-right: 12.2rem; */
+  margin-right: 10rem;
+  font-size: 1.2em;
 }
 
 .today-display {
   text-decoration: underline;
+  margin-right: 1rem;
 }
 
 .week-display {
@@ -363,8 +363,30 @@ justify-content: space-between;
 }
 
 .weekday {
-  font-size: 0.9em;
+  font-size: 1.4em;
   margin-bottom: 5px;
+}
+
+@media screen and (max-width: 900px) {
+  .weekday {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+  }
+
+  .month-display {
+    font-weight: bold;
+    /* margin-bottom: 10px;
+    margin-right: 12.2rem; */
+    margin-right: 10rem;
+    font-size: 1em;
+  }
+
+  .month-display {
+    font-weight: bold;
+    /* margin-bottom: 10px;
+    margin-right: 12.2rem; */
+    margin-right: 5.5rem;
+  }
 }
 
 .date {
@@ -382,13 +404,14 @@ justify-content: space-between;
 .week-navigation button {
   margin-right: 5px;
   padding: 5px 10px;
+  /* margin-left: 20px; */
 }
 
 .circle-card {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   cursor: pointer;
 }
 
@@ -585,13 +608,13 @@ width: 15px;
 }
 
 
-
 .popup-menu {
   display: none;
-  position: absolute;
+  /* position: absolute; */
   background-color: #fff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-  padding: 10px;
+  border-radius: 10px;
+  /* padding: 10px; */
 }
 
 .popup-menu ul {
@@ -601,8 +624,19 @@ width: 15px;
 }
 
 .popup-menu li {
-  margin-bottom: 5px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.popup-menu li:last-child {
+  border-bottom: none; /* No border for the last item */
+  margin-bottom: 0px;
+}
+
+.danger {
+  color: red;
 }
 
 .popup-menu.active {
@@ -882,7 +916,7 @@ input[type="checkbox" i] {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 0 20px 20px;
+  padding: 0 20px 80px;
 }
 
 .shared-column {
