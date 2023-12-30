@@ -132,9 +132,15 @@ export default () => html`
             </div>
             <div class="popup-menu">
               <ul>
-                <li>Action 1</li>
-                <li>Action 2</li>
-                <li>Action 3</li>
+                <li>
+                  <i class="fa-solid fa-chart-simple">&nbsp&nbsp</i>View Stats
+                </li>
+                <li>
+                  <i class="fa-solid fa-pen-to-square">&nbsp&nbsp</i>Edit Habit
+                </li>
+                <li class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i>Delete Habit
+                </li>
               </ul>
             </div>
           </div>
@@ -149,7 +155,6 @@ export default () => html`
           <!-- Banner -->
           <div class="column-title">Evening Routine</div>
         </div>
-        //todo: envoke in a temporal literal ${onclick}
         <div class="add-container">
           <div class="add-label">Add Routine</div>
           <button class="circle-button">+</button>
@@ -232,6 +237,37 @@ export default () => html`
         currentDate.setDate(currentDate.getDate() + 7);
         updateCalendar();
       });
+
+      document.addEventListener("DOMContentLoaded", event => {
+        setupMenuToggle();
+      });
+
+      function setupMenuToggle() {
+        const menuIcons = document.querySelectorAll(".menu-icon");
+
+        // Function to close all menus
+        function closeAllMenus() {
+          document.querySelectorAll(".popup-menu").forEach(menu => {
+            menu.classList.remove("show");
+          });
+        }
+
+        // Toggle menu on icon click
+        menuIcons.forEach(icon => {
+          icon.addEventListener("click", function(event) {
+            closeAllMenus(); // Close all menus
+            this.nextElementSibling.classList.toggle("show");
+            event.stopPropagation(); // Prevent click from immediately propagating to document
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function(event) {
+          if (!event.target.matches(".menu-icon")) {
+            closeAllMenus();
+          }
+        });
+      }
 
       updateCalendar();
     </script>

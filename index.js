@@ -64,6 +64,7 @@ function afterRender(state) {
     document.querySelector(".dropdown-content").classList.toggle("show");
   });
 
+
   setupPixelaEventListeners();
 }
 
