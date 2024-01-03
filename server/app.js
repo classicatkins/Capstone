@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import categories from "./routers/categories";
-import habits from "./routers/habits";
-import routines from "./routers/routines";
+import categories from "./routers/categories.js";
+import habits from "./routers/habits.js";
+import routines from "./routers/routines.js";
 
 // Load environment variables from .env file
 dotenv.config();
