@@ -50,6 +50,7 @@ function alertShow() {
 }
 
 function afterRender(state) {
+  //todo: add calls here
   if (state.view === "Home") {
     document
       .getElementById("deletePixelButton")
@@ -134,17 +135,17 @@ function afterRender(state) {
     document.querySelector(".dropdown-content").classList.toggle("show");
   });
 
-  // setupPixelaEventListeners();
+  setupPixelaEventListeners();
 }
 
-// function setupPixelaEventListeners() {
-//   const createUserButton = document.getElementById("createUserButton");
-//   if (createUserButton) {
-//     createUserButton.addEventListener("click", () => {
-//       createUser("classicatkins", "token"); // Replace 'username' and 'token' with actual values
-//     });
-//   }
-//}
+function setupPixelaEventListeners() {
+  const createUserButton = document.getElementById("createUserButton");
+  if (createUserButton) {
+    createUserButton.addEventListener("click", () => {
+      createUser("classicatkins", "token"); // Replace 'username' and 'token' with actual values
+    });
+  }
+}
 
 // function createUser(username, token) {
 //   console.log("Creating user:", username, token);
