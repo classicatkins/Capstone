@@ -26,21 +26,44 @@ function getStartOfWeek(date) {
   return start;
 }
 
+// function updateCalendar() {
+//   const startOfWeek = getStartOfWeek(currentDate);
+//   const options = { month: "long" };
+//   const month = startOfWeek.toLocaleDateString("en-US", options);
+//   document.querySelector(".month-display").textContent = month;
+
+//   const days = document.querySelectorAll(".week-display .day .date");
+//   days.forEach((day, index) => {
+//     const date = new Date(startOfWeek);
+//     date.setDate(date.getDate() + index);
+//     day.textContent = date.getDate();
+//     day.classList.toggle(
+//       "bold",
+//       date.getDate() === currentDate.getDate() &&
+//         date.getMonth() === currentDate.getMonth()
+//     );
+//   });
+// }
+
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
   const options = { month: "long" };
   const month = startOfWeek.toLocaleDateString("en-US", options);
   document.querySelector(".month-display").textContent = month;
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Normalize today to the start of the day
+
   const days = document.querySelectorAll(".week-display .day .date");
   days.forEach((day, index) => {
     const date = new Date(startOfWeek);
     date.setDate(date.getDate() + index);
+    date.setHours(0, 0, 0, 0); // Normalize the date to the start of the day
+
     day.textContent = date.getDate();
     day.classList.toggle(
       "bold",
-      date.getDate() === currentDate.getDate() &&
-        date.getMonth() === currentDate.getMonth()
+      date.getTime() === today.getTime() // Compare the dates
     );
   });
 }
@@ -70,12 +93,12 @@ function afterRender(state) {
       });
 
       document.getElementById("prevWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() - 7);
+        currentDate.setDate(currentDate.getDate() - 1);
         updateCalendar();
       });
 
       document.getElementById("nextWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() + 7);
+        currentDate.setDate(currentDate.getDate() + 1);
         updateCalendar();
       });
     });
