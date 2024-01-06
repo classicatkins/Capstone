@@ -8,7 +8,7 @@ export default () => html`
         <div class="calendar-container">
           <div class="month-flex">
             <div class="month-display">Month Day#</div>
-            <div class="today-display">Today</div>
+            <div class="today-display" id="today">Today</div>
           </div>
           <div class="week-display">
             <div class="day">

@@ -58,6 +58,12 @@ function afterRender(state) {
   }
 
   if (state.view === "Today") {
+    document
+      .getElementById("today")
+      .addEventListener("click", () =>
+        updateCalendar((currentDate = new Date()))
+      );
+
     document.querySelectorAll(".circle-card").forEach(card => {
       card.addEventListener("click", () => {
         card.classList.toggle("active");
@@ -107,21 +113,20 @@ function afterRender(state) {
     updateCalendar();
   }
 
-  // if (state.view === "Habits") {
-  //   function toggleMenu(icon) {
-  //     const popupMenu = icon.nextElementSibling;
-  //     popupMenu.classList.toggle("active");
-  //   }
-
-  //   document.addEventListener("click", function(event) {
-  //     if (!event.target.classList.contains("menu-icon")) {
-  //       const popupMenus = document.querySelectorAll(".popup-menu.active");
-  //       for (const menu of popupMenus) {
-  //         menu.classList.remove("active");
-  //       }
-  //     }
-  //   });
-  // }
+  if (state.view === "Habits") {
+    // function toggleMenu(icon) {
+    //   const popupMenu = icon.nextElementSibling;
+    //   popupMenu.classList.toggle("active");
+    // }
+    // document.addEventListener("click", function(event) {
+    //   if (!event.target.classList.contains("menu-icon")) {
+    //     const popupMenus = document.querySelectorAll(".popup-menu.active");
+    //     for (const menu of popupMenus) {
+    //       menu.classList.remove("active");
+    //     }
+    //   }
+    // });
+  }
 
   // if (state.view === "Stats") {
   //   document.querySelectorAll(".circle-card").forEach(card => {
@@ -135,17 +140,17 @@ function afterRender(state) {
     document.querySelector(".dropdown-content").classList.toggle("show");
   });
 
-  setupPixelaEventListeners();
+  // setupPixelaEventListeners();
 }
 
-function setupPixelaEventListeners() {
-  const createUserButton = document.getElementById("createUserButton");
-  if (createUserButton) {
-    createUserButton.addEventListener("click", () => {
-      createUser("classicatkins", "token"); // Replace 'username' and 'token' with actual values
-    });
-  }
-}
+// function setupPixelaEventListeners() {
+//   const createUserButton = document.getElementById("createUserButton");
+//   if (createUserButton) {
+//     createUserButton.addEventListener("click", () => {
+//       createUser("classicatkins", "token"); // Replace 'username' and 'token' with actual values
+//     });
+//   }
+// }
 
 // function createUser(username, token) {
 //   console.log("Creating user:", username, token);
