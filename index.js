@@ -26,24 +26,60 @@ function getStartOfWeek(date) {
   return start;
 }
 
-// function updateCalendar() {
-//   const startOfWeek = getStartOfWeek(currentDate);
-//   const options = { month: "long" };
-//   const month = startOfWeek.toLocaleDateString("en-US", options);
-//   document.querySelector(".month-display").textContent = month;
+function addHabit() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function addStat() {
+  alert("add stat");
+}
 
-//   const days = document.querySelectorAll(".week-display .day .date");
-//   days.forEach((day, index) => {
-//     const date = new Date(startOfWeek);
-//     date.setDate(date.getDate() + index);
-//     day.textContent = date.getDate();
-//     day.classList.toggle(
-//       "bold",
-//       date.getDate() === currentDate.getDate() &&
-//         date.getMonth() === currentDate.getMonth()
-//     );
-//   });
-// }
+function myFunction() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function clear() {
+  document.getElementById("firstName").value = "";
+  document.getElementById("lastName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("message").value = "";
+}
+
+function menuCat() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function saveHabit() {
+  //    return msg;
+  let x = document.getElementById("firstName").value;
+  let y = document.getElementById("lastName").value;
+
+  alert(x + "   " + y);
+}
+
+function menuRtn() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
 
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
@@ -137,6 +173,15 @@ function afterRender(state) {
   }
 
   if (state.view === "Habits") {
+    document
+      .getElementById("addRtn")
+      .addEventListener("click", () => menuRtn());
+    document
+      .getElementById("addHabit")
+      .addEventListener("click", () => addHabit());
+    document
+      .getElementById("addCat")
+      .addEventListener("click", () => menuCat());
     // function toggleMenu(icon) {
     //   const popupMenu = icon.nextElementSibling;
     //   popupMenu.classList.toggle("active");
