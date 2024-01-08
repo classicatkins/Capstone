@@ -76,32 +76,33 @@ export default () => html`
           <div class="habit-card">Habit</div>
           <!-- More cards... -->
         </div>
-        <div class="ed_test" id="menu_ed">
+  </div>
 
 
-  <div class="flex-row-names">
-        <div class="input-group">
-            <label for="firstName">First Name <span class="required">*</span></label>
-            <input class="names" type="text" id="firstName" name="firstName" required>
-        </div>
-        <div class="input-group">
-            <label for="lastName">Last Name <span class="required">*</span></label>
-            <input class="names" type="text" id="lastName" name="lastName" required>
+
+
+
+  <form class="ed_test" id="menu_rtn">
+  <div>
+  <div class="input-group">
+            <label for="Name">Name<span class="required">*</span></label>
+            <input class="names" type="text" id="name" name="name" required>
         </div>
     </div>
     <div class="flex-row-names-vertical">
     <div class="input-group">
-        <label for="email">Email <span class="required">*</span></label>
-        <input class="names" type="text" id="email" name="email" required>
-    </div>
-    <div class="input-group">
-        <label for="phone">Phone</label>
-        <input class="names" type="text" id="phone" name="phone">
-    </div>
+    <label for="habits">Habits<span class="required">*</span></label>
+    <select class="names" id="habits" name="habits" required>
+        <option value="">Select a habit</option>
+        <option value="habit1">Habit 1</option>
+        <option value="habit2">Habit 2</option>
+        <option value="habit3">Habit 3</option>
+    </select>
+</div>
     </div>
     <div class="textarea-group">
-        <label for="message">Message<span class="required">*</span></span></label>
-        <textarea id="message" name="message"></textarea>
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes"></textarea>
     </div>
     <div class="center">
         <button id="addSavebtn" onclick="addTest" name="save">Save</button>
@@ -109,9 +110,88 @@ export default () => html`
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
-  </div>
       </div>
+</form>
+
+
+
+
+
+
+  <form class="ed_test" id="menu_habit">
+  <div>
+        <div class="input-group">
+            <label for="Name">Name<span class="required">*</span></label>
+            <input class="names" type="text" id="name" name="name" required>
+        </div>
     </div>
+    <div class="flex-row-names-vertical">
+    <div class="input-group">
+    <label>Repeat Days<span class="required">*</span></label>
+    <div class="days">
+        <input type="checkbox" class="custom-checkbox" id="sunday" name="days" value="Sunday" required>
+        <label class="custom-checkbox"for="sunday">Sun</label>
+
+        <input type="checkbox" id="monday" name="days" value="Monday" required>
+        <label for="monday">Mon</label>
+
+        <input type="checkbox" id="tuesday" name="days" value="Tuesday" required>
+        <label for="tuesday">Tue</label>
+
+        <input type="checkbox" id="wednesday" name="days" value="Wednesday" required>
+        <label for="wednesday">Wed</label>
+
+        <input type="checkbox" id="thursday" name="days" value="Thursday" required>
+        <label for="thursday">Thu</label>
+
+        <input type="checkbox" id="friday" name="days" value="Friday" required>
+        <label for="friday">Fri</label>
+
+        <input type="checkbox" id="saturday" name="days" value="Saturday" required>
+        <label for="saturday">Sat</label>
+    </div>
+</div>
+
+    <div class="input-group">
+        <label for="phone">Reminder</label>
+        <input class="names" type="text" id="phone" name="phone">
+    </div>
+    </div>
+    <div class="textarea-group">
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes"></textarea>
+    </div>
+    <div class="center">
+        <button id="addSavebtn" onclick="addTest" name="save">Save</button>
+        <button id="button_close" onclick="myFunction">close</button>
+        <!-- <button id="button_clear" onclick="clear">clear</button> -->
+
+    </div>
+      </div>
+</form>
+
+
+
+
+
+<form class="ed_test" id="menu_cat">
+  <div>
+  <div class="input-group">
+            <label for="Name">Name <span class="required">*</span></label>
+            <input class="names" type="text" id="name" name="name" required>
+        </div>
+    <div class="textarea-group">
+        <label for="notes">Notes</span></label>
+        <textarea id="notes" name="notes"></textarea>
+    </div>
+    <div class="center">
+        <button id="addSavebtn" onclick="addTest" name="save">Save</button>
+        <button id="button_close" onclick="myFunction">close</button>
+        <!-- <button id="button_clear" onclick="clear">clear</button> -->
+
+    </div>
+      </div>
+</form>
     <script>
       function toggleMenu(icon) {
         const popupMenu = icon.nextElementSibling;

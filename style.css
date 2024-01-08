@@ -850,6 +850,17 @@ body {
 
 /* habits */
 
+.days {
+  display: flex;
+  align-items: center;
+}
+
+.days input[type="checkbox"],
+.days label {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
 .menu-icon {
   /* border: 2px solid #000; /* Black border, adjust the color as needed */
   /* padding: 5px 10px; Padding around the icon */
