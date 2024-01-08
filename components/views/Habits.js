@@ -106,7 +106,7 @@ export default () => html`
     <div class="center">
         <button id="addSavebtn" onclick="addTest" name="save">Save</button>
         <button id="button_close" onclick="myFunction">close</button>
-        <button id="button_clear" onclick="clear">clear</button>
+        <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
   </div>

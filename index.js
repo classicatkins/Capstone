@@ -173,6 +173,17 @@ function afterRender(state) {
   }
 
   if (state.view === "Habits") {
+    document.getElementById("addHabit").addEventListener("click", addHabit);
+    document.getElementById("addCat").addEventListener("click", menuCat);
+    document
+      .getElementById("button_close")
+      .addEventListener("click", myFunction);
+    document.getElementById("addRtn").addEventListener("click", menuRtn);
+    document.getElementById("addSavebtn").addEventListener("click", saveHabit);
+
+    document.getElementById("addTest").addEventListener("click", addTest);
+    document.getElementById("button_clear").addEventListener("click", clear);
+
     document
       .getElementById("addRtn")
       .addEventListener("click", () => menuRtn());
@@ -182,6 +193,12 @@ function afterRender(state) {
     document
       .getElementById("addCat")
       .addEventListener("click", () => menuCat());
+    // document
+    //   .getElementById("addSavebtn")
+    //   .addEventListener("click", () => addTest());
+    document
+      .getElementById("button_close")
+      .addEventListener("click", () => myFunction());
     // function toggleMenu(icon) {
     //   const popupMenu = icon.nextElementSibling;
     //   popupMenu.classList.toggle("active");
