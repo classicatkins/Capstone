@@ -27,7 +27,7 @@ function getStartOfWeek(date) {
 }
 
 function addHabit() {
-  var x = document.getElementById("menu_ed");
+  var x = document.getElementById("menu_habit");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -39,7 +39,19 @@ function addStat() {
 }
 
 function myFunction() {
-  var x = document.getElementById("menu_ed");
+  var x = document.getElementById("menu_rtn");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+  var x = document.getElementById("menu_habit");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+  var x = document.getElementById("menu_cat");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -56,7 +68,7 @@ function clear() {
 }
 
 function menuCat() {
-  var x = document.getElementById("menu_ed");
+  var x = document.getElementById("menu_cat");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -73,7 +85,7 @@ function saveHabit() {
 }
 
 function menuRtn() {
-  var x = document.getElementById("menu_ed");
+  var x = document.getElementById("menu_rtn");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
