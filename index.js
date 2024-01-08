@@ -26,21 +26,80 @@ function getStartOfWeek(date) {
   return start;
 }
 
+function addHabit() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function addStat() {
+  alert("add stat");
+}
+
+function myFunction() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function clear() {
+  document.getElementById("firstName").value = "";
+  document.getElementById("lastName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("message").value = "";
+}
+
+function menuCat() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function saveHabit() {
+  //    return msg;
+  let x = document.getElementById("firstName").value;
+  let y = document.getElementById("lastName").value;
+
+  alert(x + "   " + y);
+}
+
+function menuRtn() {
+  var x = document.getElementById("menu_ed");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
   const options = { month: "long" };
   const month = startOfWeek.toLocaleDateString("en-US", options);
   document.querySelector(".month-display").textContent = month;
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Normalize today to the start of the day
+
   const days = document.querySelectorAll(".week-display .day .date");
   days.forEach((day, index) => {
     const date = new Date(startOfWeek);
     date.setDate(date.getDate() + index);
+    date.setHours(0, 0, 0, 0); // Normalize the date to the start of the day
+
     day.textContent = date.getDate();
     day.classList.toggle(
       "bold",
-      date.getDate() === currentDate.getDate() &&
-        date.getMonth() === currentDate.getMonth()
+      date.getTime() === today.getTime() // Compare the dates
     );
   });
 }
@@ -50,6 +109,7 @@ function alertShow() {
 }
 
 function afterRender(state) {
+  //todo: add calls here
   if (state.view === "Home") {
     document
       .getElementById("deletePixelButton")
@@ -57,18 +117,24 @@ function afterRender(state) {
   }
 
   if (state.view === "Today") {
+    document
+      .getElementById("today")
+      .addEventListener("click", () =>
+        updateCalendar((currentDate = new Date()))
+      );
+
     document.querySelectorAll(".circle-card").forEach(card => {
       card.addEventListener("click", () => {
         card.classList.toggle("active");
       });
 
       document.getElementById("prevWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() - 7);
+        currentDate.setDate(currentDate.getDate() - 1);
         updateCalendar();
       });
 
       document.getElementById("nextWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() + 7);
+        currentDate.setDate(currentDate.getDate() + 1);
         updateCalendar();
       });
     });
@@ -106,21 +172,46 @@ function afterRender(state) {
     updateCalendar();
   }
 
-  // if (state.view === "Habits") {
-  //   function toggleMenu(icon) {
-  //     const popupMenu = icon.nextElementSibling;
-  //     popupMenu.classList.toggle("active");
-  //   }
+  if (state.view === "Habits") {
+    document.getElementById("addHabit").addEventListener("click", addHabit);
+    document.getElementById("addCat").addEventListener("click", menuCat);
+    document
+      .getElementById("button_close")
+      .addEventListener("click", myFunction);
+    document.getElementById("addRtn").addEventListener("click", menuRtn);
+    document.getElementById("addSavebtn").addEventListener("click", saveHabit);
 
-  //   document.addEventListener("click", function(event) {
-  //     if (!event.target.classList.contains("menu-icon")) {
-  //       const popupMenus = document.querySelectorAll(".popup-menu.active");
-  //       for (const menu of popupMenus) {
-  //         menu.classList.remove("active");
-  //       }
-  //     }
-  //   });
-  // }
+    document.getElementById("addTest").addEventListener("click", addTest);
+    document.getElementById("button_clear").addEventListener("click", clear);
+
+    document
+      .getElementById("addRtn")
+      .addEventListener("click", () => menuRtn());
+    document
+      .getElementById("addHabit")
+      .addEventListener("click", () => addHabit());
+    document
+      .getElementById("addCat")
+      .addEventListener("click", () => menuCat());
+    // document
+    //   .getElementById("addSavebtn")
+    //   .addEventListener("click", () => addTest());
+    document
+      .getElementById("button_close")
+      .addEventListener("click", () => myFunction());
+    // function toggleMenu(icon) {
+    //   const popupMenu = icon.nextElementSibling;
+    //   popupMenu.classList.toggle("active");
+    // }
+    // document.addEventListener("click", function(event) {
+    //   if (!event.target.classList.contains("menu-icon")) {
+    //     const popupMenus = document.querySelectorAll(".popup-menu.active");
+    //     for (const menu of popupMenus) {
+    //       menu.classList.remove("active");
+    //     }
+    //   }
+    // });
+  }
 
   // if (state.view === "Stats") {
   //   document.querySelectorAll(".circle-card").forEach(card => {
@@ -144,7 +235,7 @@ function afterRender(state) {
 //       createUser("classicatkins", "token"); // Replace 'username' and 'token' with actual values
 //     });
 //   }
-//}
+// }
 
 // function createUser(username, token) {
 //   console.log("Creating user:", username, token);

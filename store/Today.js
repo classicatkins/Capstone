@@ -1,5 +1,4 @@
 export default {
-    header: "Today",
-    view: "Today"
-  };
-  
+  header: "Today",
+  view: "Today"
+};

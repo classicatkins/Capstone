@@ -351,6 +351,7 @@ justify-content: space-between;
 .today-display {
   text-decoration: underline;
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 .week-display {
