@@ -20,7 +20,7 @@ const habitSchema = new mongoose.Schema({
     ]
   },
   reminder: {
-    type: String
+    type: Date
   },
   notes: {
     type: String
