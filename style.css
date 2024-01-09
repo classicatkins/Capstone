@@ -850,6 +850,46 @@ body {
 
 /* habits */
 
+    /* Hide the default checkbox */
+    #sunday, #monday, #tuesday, #wednesday, #thursday, #friday, #saturday {
+      opacity: 0;
+      position: absolute;
+  }
+
+  /* Create a custom checkbox appearance */
+  #sunday + label, #monday + label, #tuesday + label,
+  #wednesday + label, #thursday + label, #friday + label,
+  #saturday + label {
+      background-color: #eee;
+      display: inline-block;
+      padding: 10px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+  }
+
+  /* Change background color when checkbox is checked */
+  #sunday:checked + label {
+      background-color: gray;
+  }
+  #monday:checked + label {
+      background-color: gray;
+  }
+  #tuesday:checked + label {
+    background-color: gray;
+}
+#wednesday:checked + label {
+  background-color: gray;
+}
+#thursday:checked + label {
+  background-color: gray;
+}
+#friday:checked + label {
+  background-color: gray;
+}
+#saturday:checked + label {
+  background-color: gray;
+}
+
 .days {
   display: flex;
   align-items: center;

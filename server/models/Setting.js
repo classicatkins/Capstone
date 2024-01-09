@@ -1,6 +1,17 @@
 import mongoose from "mongoose";
 
-// const routineSchema = new mongoose.Schema({
+const settingSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    validate: /^[A-Za-z0-9 ]*$/
+  },
+  notes: {
+    type: String
+  }
+});
+
+// const categorySchema = new mongoose.Schema({
 //   customer: {
 //     type: String,
 //     required: true,
@@ -23,21 +34,6 @@ import mongoose from "mongoose";
 //   toppings: [String]
 // });
 
-const routineSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    validate: /^[A-Za-z0-9 ]*$/
-  },
-  habits: {
-    type: [String],
-    required: true
-  },
-  notes: {
-    type: String
-  }
-});
+const Category = mongoose.model("Setting", settingSchema);
 
-const Routine = mongoose.model("Routine", routineSchema);
-
-export default Routine;
+export default Category;

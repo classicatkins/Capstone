@@ -48,7 +48,7 @@ export default () => html`
         </div>
         <div class="add-container">
           <div class="add-label">Add Habit</div>
-          <button id="addHabit" onclick="addHabit" class="circle-button">
+          <button id="addHabit" class="circle-button">
             +
           </button>
         </div>
@@ -82,7 +82,7 @@ export default () => html`
 
 
 
-  <form class="ed_test" id="menu_rtn">
+  <form class="ed_test" id="menu_rtn" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -90,7 +90,7 @@ export default () => html`
         </div>
     </div>
     <div class="flex-row-names-vertical">
-    <div class="input-group">
+    <!-- <div class="input-group">
     <label for="habits">Habits<span class="required">*</span></label>
     <select class="names" id="habits" name="habits" required>
         <option value="">Select a habit</option>
@@ -98,14 +98,27 @@ export default () => html`
         <option value="habit2">Habit 2</option>
         <option value="habit3">Habit 3</option>
     </select>
-</div>
+</div> -->
+<div class="input-group">
+        <select class="names" id="habitSelect">
+            <option value="">Select a habit</option>
+            <option value="Habit1">Habit 1</option>
+            <option value="Habit2">Habit 2</option>
+            <option value="Habit3">Habit 3</option>
+            <!-- Add other habits here -->
+        </select>
+        <button type="button" id="addHabitBtn">Add</button>
+    </div>
+    <ul id="selectedHabits"></ul>
+    <!-- <input type="hidden" name="habits" id="habitsInput">
+    <button type="submit">Submit Habits</button> -->
     </div>
     <div class="textarea-group">
         <label for="notes">Notes</label>
         <textarea id="notes" name="notes"></textarea>
     </div>
     <div class="center">
-        <button id="addSavebtn" onclick="addTest" name="save">Save</button>
+        <button id="addSavebtn" name="save">Save</button>
         <button id="button_close" onclick="myFunction">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
@@ -118,7 +131,7 @@ export default () => html`
 
 
 
-  <form class="ed_test" id="menu_habit">
+  <form class="ed_test" id="menu_habit" method="POST" action="">
   <div>
         <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -129,32 +142,33 @@ export default () => html`
     <div class="input-group">
     <label>Repeat Days<span class="required">*</span></label>
     <div class="days">
-        <input type="checkbox" class="custom-checkbox" id="sunday" name="days" value="Sunday" required>
+      <!-- //to do: field set? -->
+        <input type="checkbox" class="custom-checkbox" id="sunday" name="days" value="Sunday">
         <label class="custom-checkbox"for="sunday">Sun</label>
 
-        <input type="checkbox" id="monday" name="days" value="Monday" required>
+        <input type="checkbox" id="monday" name="days" value="Monday">
         <label for="monday">Mon</label>
 
-        <input type="checkbox" id="tuesday" name="days" value="Tuesday" required>
+        <input type="checkbox" id="tuesday" name="days" value="Tuesday">
         <label for="tuesday">Tue</label>
 
-        <input type="checkbox" id="wednesday" name="days" value="Wednesday" required>
+        <input type="checkbox" id="wednesday" name="days" value="Wednesday">
         <label for="wednesday">Wed</label>
 
-        <input type="checkbox" id="thursday" name="days" value="Thursday" required>
+        <input type="checkbox" id="thursday" name="days" value="Thursday">
         <label for="thursday">Thu</label>
 
-        <input type="checkbox" id="friday" name="days" value="Friday" required>
+        <input type="checkbox" id="friday" name="days" value="Friday">
         <label for="friday">Fri</label>
 
-        <input type="checkbox" id="saturday" name="days" value="Saturday" required>
+        <input type="checkbox" id="saturday" name="days" value="Saturday">
         <label for="saturday">Sat</label>
     </div>
 </div>
 
     <div class="input-group">
-        <label for="phone">Reminder</label>
-        <input class="names" type="text" id="phone" name="phone">
+        <label for="reminder">Reminder</label>
+        <input class="names" type="date" id="reminder" name="reminder">
     </div>
     </div>
     <div class="textarea-group">
@@ -162,7 +176,8 @@ export default () => html`
         <textarea id="notes" name="notes"></textarea>
     </div>
     <div class="center">
-        <button id="addSavebtn" onclick="addTest" name="save">Save</button>
+        <!-- <button id="addSaveRtn" name="save">Save</button> -->
+        <input type="submit" name="submit" value="Submit Habit" />
         <button id="button_close" onclick="myFunction">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
@@ -174,7 +189,7 @@ export default () => html`
 
 
 
-<form class="ed_test" id="menu_cat">
+<form class="ed_test" id="menu_cat" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name <span class="required">*</span></label>
@@ -185,7 +200,7 @@ export default () => html`
         <textarea id="notes" name="notes"></textarea>
     </div>
     <div class="center">
-        <button id="addSavebtn" onclick="addTest" name="save">Save</button>
+        <button id="addSaveCat" name="save">Save</button>
         <button id="button_close" onclick="myFunction">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
