@@ -193,8 +193,8 @@ function afterRender(state) {
     document.getElementById("addRtn").addEventListener("click", menuRtn);
     document.getElementById("addSavebtn").addEventListener("click", saveHabit);
 
-    document.getElementById("addTest").addEventListener("click", addTest);
-    document.getElementById("button_clear").addEventListener("click", clear);
+    // document.getElementById("addTest").addEventListener("click", addTest);
+    // document.getElementById("button_clear").addEventListener("click", clear);
 
     document
       .getElementById("addRtn")
@@ -205,24 +205,110 @@ function afterRender(state) {
     document
       .getElementById("addCat")
       .addEventListener("click", () => menuCat());
-    // document
-    //   .getElementById("addSavebtn")
-    //   .addEventListener("click", () => addTest());
     document
       .getElementById("button_close")
       .addEventListener("click", () => myFunction());
-    // function toggleMenu(icon) {
-    //   const popupMenu = icon.nextElementSibling;
-    //   popupMenu.classList.toggle("active");
-    // }
-    // document.addEventListener("click", function(event) {
-    //   if (!event.target.classList.contains("menu-icon")) {
-    //     const popupMenus = document.querySelectorAll(".popup-menu.active");
-    //     for (const menu of popupMenus) {
-    //       menu.classList.remove("active");
-    //     }
-    //   }
-    // });
+    //catagories
+    // Get the form element
+    const inputListCat = event.target.elements;
+    console.log("Input Element List", inputListCat);
+
+    // Create a request body object to send to the API
+    const requestDataCat = {
+      name: inputListCat.name.value,
+      notes: inputListCat.notes.value
+    };
+    // Log the request body to the console
+    console.log("request Body", requestDataCat);
+    axios
+      // Make a POST request to the API to create a new pizza
+      .post(`${process.env.PERPETUA_API_URL}/categories`, requestDataCat)
+      .then(response => {
+        //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
+        store.Pizza.pizzas.push(response.data);
+        router.navigate("/Category");
+      })
+      // If there is an error log it to the console
+      .catch(error => {
+        console.log("It puked", error);
+      });
+
+    //habits
+    // Get the form element
+    const inputListHabit = event.target.elements;
+    console.log("Input Element List", inputListHabit);
+
+    // Create an empty array to hold the toppings
+    const days = [];
+
+    // Iterate over the toppings array
+
+    for (let input of inputListHabit.toppings) {
+      // If the value of the checked attribute is true then add the value to the toppings array
+      if (input.checked) {
+        days.push(input.value);
+      }
+    }
+
+    // Create a request body object to send to the API
+    const requestDataHabit = {
+      name: inputListHabit.name.value,
+      days: days,
+      reminder: inputListHabit.reminder.value,
+      notes: inputListHabit.notes.value
+    };
+    // Log the request body to the console
+    console.log("request Body", requestDataHabit);
+    axios
+      // Make a POST request to the API to create a new pizza
+      .post(`${process.env.PERPETUA_API_URL}/habits`, requestDataHabit)
+      .then(response => {
+        //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
+        store.Pizza.pizzas.push(response.data);
+        router.navigate("/Routine");
+      })
+      // If there is an error log it to the console
+      .catch(error => {
+        console.log("It puked", error);
+      });
+
+    //routines
+    // Get the form element
+    const inputListRtn = event.target.elements;
+    console.log("Input Element List", inputListRtn);
+
+    // Create an empty array to hold the toppings
+    const habits = [];
+
+    // Iterate over the toppings array
+
+    for (let input of inputListRtn.toppings) {
+      // If the value of the checked attribute is true then add the value to the toppings array
+      if (input.checked) {
+        habits.push(input.value);
+      }
+    }
+
+    // Create a request body object to send to the API
+    const requestDataRtn = {
+      name: inputListRtn.name.value,
+      habits: habits,
+      notes: inputListRtn.notes.value
+    };
+    // Log the request body to the console
+    console.log("request Body", requestDataRtn);
+    axios
+      // Make a POST request to the API to create a new pizza
+      .post(`${process.env.PERPETUA_API_URL}/routines`, requestDataRtn)
+      .then(response => {
+        //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
+        store.Pizza.pizzas.push(response.data);
+        router.navigate("/Routine");
+      })
+      // If there is an error log it to the console
+      .catch(error => {
+        console.log("It puked", error);
+      });
   }
 
   // if (state.view === "Stats") {

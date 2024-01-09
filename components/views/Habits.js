@@ -82,7 +82,7 @@ export default () => html`
 
 
 
-  <form class="ed_test" id="menu_rtn">
+  <form class="ed_test" id="menu_rtn" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -118,7 +118,7 @@ export default () => html`
 
 
 
-  <form class="ed_test" id="menu_habit">
+  <form class="ed_test" id="menu_habit" method="POST" action="">
   <div>
         <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -174,7 +174,7 @@ export default () => html`
 
 
 
-<form class="ed_test" id="menu_cat">
+<form class="ed_test" id="menu_cat" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name <span class="required">*</span></label>
