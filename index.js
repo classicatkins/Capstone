@@ -345,7 +345,7 @@ function afterRender(state) {
         .then(response => {
           //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
           store.Habits.habits.push(response.data);
-          router.navigate("/Routine");
+          router.navigate("/Habits");
         })
         // If there is an error log it to the console
         .catch(error => {

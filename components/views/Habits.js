@@ -1,6 +1,6 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <section id="habits">
     <div class="shared-board">
       <!-- Column 1: Categories -->
@@ -71,6 +71,7 @@ export default () => html`
           <button id="addRtn" onclick="menuRtn" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
+  //iterate over state and render state.habits - what I iterate over
           <div class="habit-card">Individual Habit</div>
           <div class="habit-card">Individual Habit</div>
           <div class="habit-card">Habit</div>
