@@ -83,7 +83,7 @@ export default state => html`
 
 
 
-  <form class="ed_test" id="menu_rtn" method="POST" action="">
+  <form class="menu_rtn" id="menu_rtn" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -132,7 +132,7 @@ export default state => html`
 
 
 
-  <form class="ed_test" id="menu_habit" method="POST" action="">
+  <form class="menu_habit" id="menu_habit" method="POST" action="">
   <div>
         <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -190,7 +190,7 @@ export default state => html`
 
 
 
-<form class="ed_test" id="menu_cat" method="POST" action="">
+<form class="menu_cat" id="menu_cat" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name <span class="required">*</span></label>

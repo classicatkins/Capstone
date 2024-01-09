@@ -463,6 +463,42 @@ width: 15px;
   border-radius: 8px 8px 0 0;
 }
 
+.menu_rtn {
+  width:700px;
+  height:470px;
+  position: fixed;
+  display:none;
+  background-color: rgba(255, 255, 255, 0.85);
+  top: 20%;
+  left: 25%;
+  margin-top: -50px;
+  margin-left: -100px;
+  }
+
+  .menu_cat {
+    width:700px;
+    height:470px;
+    position: fixed;
+    display:none;
+    background-color: rgba(255, 255, 255, 0.85);
+    top: 20%;
+    left: 25%;
+    margin-top: -50px;
+    margin-left: -100px;
+    }
+
+.menu_habit {
+  width:700px;
+  height:470px;
+  position: fixed;
+  display:none;
+  background-color: rgba(255, 255, 255, 0.85);
+  top: 20%;
+  left: 25%;
+  margin-top: -50px;
+  margin-left: -100px;
+  }
+
 .column-banner-habits {
   /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
   background-image: url('img/The\ Quiet\ Lake.jpg');
