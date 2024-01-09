@@ -153,8 +153,8 @@ export default () => html`
 </div>
 
     <div class="input-group">
-        <label for="phone">Reminder</label>
-        <input class="names" type="text" id="phone" name="phone">
+        <label for="reminder">Reminder</label>
+        <input class="names" type="date" id="reminder" name="reminder">
     </div>
     </div>
     <div class="textarea-group">
@@ -162,7 +162,7 @@ export default () => html`
         <textarea id="notes" name="notes"></textarea>
     </div>
     <div class="center">
-        <button id="addSavebtn" onclick="addTest" name="save">Save</button>
+        <button id="addSaveRtn" onclick="addTest" name="save">Save</button>
         <button id="button_close" onclick="myFunction">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
@@ -185,7 +185,7 @@ export default () => html`
         <textarea id="notes" name="notes"></textarea>
     </div>
     <div class="center">
-        <button id="addSavebtn" onclick="addTest" name="save">Save</button>
+        <button id="addSaveCat" onclick="addTest" name="save">Save</button>
         <button id="button_close" onclick="myFunction">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 

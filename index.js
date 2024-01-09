@@ -39,6 +39,7 @@ function addStat() {
 }
 
 function myFunction() {
+  alert("here2");
   var x = document.getElementById("menu_rtn");
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -59,14 +60,6 @@ function myFunction() {
   }
 }
 
-function clear() {
-  document.getElementById("firstName").value = "";
-  document.getElementById("lastName").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("phone").value = "";
-  document.getElementById("message").value = "";
-}
-
 function menuCat() {
   var x = document.getElementById("menu_cat");
   if (x.style.display === "none") {
@@ -77,11 +70,24 @@ function menuCat() {
 }
 
 function saveHabit() {
-  //    return msg;
-  let x = document.getElementById("firstName").value;
-  let y = document.getElementById("lastName").value;
+  // document.querySelector("form").addEventListener("submit", event => {
+  //   event.preventDefault();
+  document.getElementById("menu_habit").submit();
+  alert("here");
+}
 
-  alert(x + "   " + y);
+function saveCat() {
+  // document.querySelector("form").addEventListener("submit", event => {
+  //   event.preventDefault();
+  document.getElementById("menu_cat").submit();
+  alert("here");
+}
+
+function saveRtn() {
+  // document.querySelector("form").addEventListener("submit", event => {
+  //   event.preventDefault();
+  document.getElementById("menu_rtn").submit();
+  alert("here");
 }
 
 function menuRtn() {
@@ -121,7 +127,6 @@ function alertShow() {
 }
 
 function afterRender(state) {
-  //todo: add calls here
   if (state.view === "Home") {
     document
       .getElementById("deletePixelButton")
@@ -192,9 +197,8 @@ function afterRender(state) {
       .addEventListener("click", myFunction);
     document.getElementById("addRtn").addEventListener("click", menuRtn);
     document.getElementById("addSavebtn").addEventListener("click", saveHabit);
-
-    // document.getElementById("addTest").addEventListener("click", addTest);
-    // document.getElementById("button_clear").addEventListener("click", clear);
+    document.getElementById("addSaveCat").addEventListener("click", saveCat);
+    document.getElementById("addSaveRtn").addEventListener("click", saveRtn);
 
     document
       .getElementById("addRtn")
@@ -210,6 +214,7 @@ function afterRender(state) {
       .addEventListener("click", () => myFunction());
     //catagories
     // Get the form element
+
     const inputListCat = event.target.elements;
     console.log("Input Element List", inputListCat);
 
@@ -393,12 +398,3 @@ router
     }
   })
   .resolve();
-
-// Example Axios GET request
-// axios.get(
-//   "https://api.openweathermap.org/data/2.5/weather?q=St.%20Louis&APPID=723e0986e0f98b33c0d046e7f38d272c"
-// );
-
-// function alertShow() {
-//   alert();
-// }
