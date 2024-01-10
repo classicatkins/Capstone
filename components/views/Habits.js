@@ -7,20 +7,22 @@ export default state => html`
       <div class="shared-column">
         <div class="column-banner-catagories">
           <!-- Banner -->
-          <div class="column-title">Catagories</div>
+          <div class="column-title">Categories</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Habit</div>
+          <div class="add-label">Add Categories</div>
           <button id="addCat" onclick="menuCat" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">
+          ${state.categories
+            .map(cat => {
+              return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
                 <input type="checkbox" class="check-box" name="habits" />
                 <span class="checkmark"></span>
               </label>
-              &nbsp&nbspHabit 3
+              ${cat.name}
               <div class="menu-icon">
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
@@ -33,10 +35,9 @@ export default state => html`
                 <li>Action 3</li>
               </ul>
             </div>
-          </div>
-
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Habit</div>
+          </div>`;
+            })
+            .join("")}
           <!-- More cards... -->
         </div>
       </div>
@@ -54,8 +55,11 @@ export default state => html`
         </div>
         <div class="shared-column-cards">
           <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Habit</div>
+          ${state.habits
+            .map(habit => {
+              return `<div class="habit-card">${habit.name}</div>`;
+            })
+            .join("")}
           <!-- More cards... -->
         </div>
       </div>
@@ -67,11 +71,10 @@ export default state => html`
           <div class="column-title">Routines</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Habit</div>
+          <div class="add-label">Add Routine</div>
           <button id="addRtn" onclick="menuRtn" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
-  //iterate over state and render state.habits - what I iterate over
           <div class="habit-card">Individual Habit</div>
           <div class="habit-card">Individual Habit</div>
           <div class="habit-card">Habit</div>
