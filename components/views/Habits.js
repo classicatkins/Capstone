@@ -30,9 +30,20 @@ export default state => html`
             </div>
             <div class="popup-menu">
               <ul>
-                <li>Action 1</li>
-                <li>Action 2</li>
-                <li>Action 3</li>
+                <li>
+                  <i id="stats-cat" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
+                </li>
+                <li>
+                  <i id="edit-cat" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Habit
+                </li>
+                <li id="delete-habit" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Habit
+                </li>
               </ul>
             </div>
           </div>`;

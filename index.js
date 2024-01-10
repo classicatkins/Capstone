@@ -101,6 +101,10 @@ function updateCalendar() {
   });
 }
 
+function deleteHabit() {
+  alert("here");
+}
+
 function alertShow() {
   alert("here");
 }
@@ -113,6 +117,9 @@ function afterRender(state) {
   }
 
   if (state.view === "Today") {
+    document
+      .getElementById("delete-habit")
+      .addEventListener("click", deleteHabit);
     document
       .getElementById("today")
       .addEventListener("click", () =>
@@ -169,6 +176,9 @@ function afterRender(state) {
   }
 
   if (state.view === "Habits") {
+    document
+      .getElementById("delete-habit")
+      .addEventListener("click", deleteHabit);
     document
       .getElementById("addHabitBtn")
       .addEventListener("click", function() {
@@ -303,6 +313,38 @@ function afterRender(state) {
           console.log("It puked", error);
         });
     });
+
+    // document.getElementById("delete-habit").addEventListener("click", event => {
+    //   alert("here");
+
+    //   event.preventDefault();
+    //   //catagories
+    //   // Get the form element
+    //   alert("here");
+
+    //   const inputListCat = event.target.elements;
+    //   console.log("Input Element List", inputListCat);
+
+    //   // Create a request body object to send to the API
+    //   const requestDataCat = {
+    //     name: inputListCat.name.value,
+    //     notes: inputListCat.notes.value
+    //   };
+    //   // Log the request body to the console
+    //   console.log("request Body", requestDataCat);
+    //   axios
+    //     // Make a POST request to the API to create a new pizza
+    //     .post(`${process.env.PERPETUA_API_URL}/categories`, requestDataCat)
+    //     .then(response => {
+    //       //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
+    //       store.Pizza.pizzas.push(response.data);
+    //       router.navigate("/Habits");
+    //     })
+    //     // If there is an error log it to the console
+    //     .catch(error => {
+    //       console.log("It puked", error);
+    //     });
+    // });
 
     document
       .getElementById("addRtn")

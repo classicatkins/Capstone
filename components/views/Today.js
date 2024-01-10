@@ -133,12 +133,16 @@ export default () => html`
             <div class="popup-menu">
               <ul>
                 <li>
-                  <i class="fa-solid fa-chart-simple">&nbsp&nbsp</i>View Stats
+                  <i id="stats-habit" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
                 </li>
                 <li>
-                  <i class="fa-solid fa-pen-to-square">&nbsp&nbsp</i>Edit Habit
+                  <i id="edit-habit" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Habit
                 </li>
-                <li class="danger">
+                <li id="delete-habit" class="danger">
                   <i class="fa-solid fa-trash">&nbsp&nbsp</i>Delete Habit
                 </li>
               </ul>
