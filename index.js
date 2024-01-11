@@ -181,6 +181,7 @@ function afterRender(state) {
   }
 
   if (state.view === "Today") {
+    document.getElementById("addHabit").addEventListener("click", addHabit);
     document
       .getElementById("delete-habit")
       .addEventListener("click", deleteHabit);
@@ -316,21 +317,21 @@ function afterRender(state) {
       console.log("Input Element List", inputListRtn);
 
       // Create an empty array to hold the toppings
-      const habits = ["warm up", "exercise", "stretch"];
+      // const habits = ["warm up", "exercise", "stretch"];
 
       // Iterate over the toppings array
 
-      for (let input of inputListRtn.selectedHabits) {
-        // If the value of the checked attribute is true then add the value to the toppings array
-        if (input.checked) {
-          habits.push(input.value);
-        }
-      }
+      // for (let input of inputListRtn.selectedHabits) {
+      //   // If the value of the checked attribute is true then add the value to the toppings array
+      //   if (input.checked) {
+      //     habits.push(input.value);
+      //   }
+      // }
 
       // Create a request body object to send to the API
       const requestDataRtn = {
         name: inputListRtn.name.value,
-        habits: habits,
+        //habits: habits,
         notes: inputListRtn.notes.value
       };
       // Log the request body to the console
@@ -340,7 +341,7 @@ function afterRender(state) {
         .post(`${process.env.PERPETUA_API_URL}/routines`, requestDataRtn)
         .then(response => {
           //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
-          store.Pizza.pizzas.push(response.data);
+          store.Routine.routines.push(response.data);
           router.navigate("/Habits");
         })
         // If there is an error log it to the console

@@ -38,18 +38,17 @@ export default state => html`
                 <li>
                   <i id="edit-cat" onclick="editCat('${cat._id}')" class="fa-solid fa-pen-to-square"
                     >&nbsp&nbsp</i
-                  >Edit Habit
+                  >Edit Category
                 </li>
                 <li id="delete-habit" onclick="deleteCat('${cat._id}')" class="danger">
                   <i class="fa-solid fa-trash">&nbsp&nbsp</i
-                  >Delete Habit
+                  >Delete Category
                 </li>
               </ul>
             </div>
           </div>`;
             })
             .join("")}
-          <!-- More cards... -->
         </div>
       </div>
 
@@ -65,13 +64,42 @@ export default state => html`
           </button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">Individual Habit</div>
+          <!-- <div class="habit-card">Individual Habit</div> -->
           ${state.habits
             .map(habit => {
-              return `<div class="habit-card">${habit.name}</div>`;
+              return `<div class="habit-card">
+            <div class="card-content">
+              <label class="custom-checkbox">
+                <input type="checkbox" class="check-box" name="habits" />
+                <span class="checkmark"></span>
+              </label>
+              ${habit.name}
+              <div class="menu-icon" onclick="togglePopupMenu('${habit._id}')" >
+                <!-- Three dots icon or font-awesome icon -->
+                &nbsp;&nbsp;&#8942;
+              </div>
+            </div>
+            <div class="popup-menu" id="popup-menu-${habit.id}">
+              <ul>
+                <li>
+                  <i id="stats-cat" onclick="viewStatCat('${habit._id}')" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
+                </li>
+                <li>
+                  <i id="edit-cat" onclick="editCat('${habit._id}')" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Habit
+                </li>
+                <li id="delete-habit" onclick="deleteCat('${habit._id}')" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Habit
+                </li>
+              </ul>
+            </div>
+          </div>`;
             })
             .join("")}
-          <!-- More cards... -->
         </div>
       </div>
 
@@ -86,10 +114,41 @@ export default state => html`
           <button id="addRtn" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Habit</div>
-          <!-- More cards... -->
+        ${state.routines
+          .map(rtn => {
+            return `<div class="habit-card">
+            <div class="card-content">
+              <label class="custom-checkbox">
+                <input type="checkbox" class="check-box" name="habits" />
+                <span class="checkmark"></span>
+              </label>
+              ${rtn.name}
+              <div class="menu-icon" onclick="togglePopupMenu('${rtn._id}')" >
+                <!-- Three dots icon or font-awesome icon -->
+                &nbsp;&nbsp;&#8942;
+              </div>
+            </div>
+            <div class="popup-menu" id="popup-menu-${rtn.id}">
+              <ul>
+                <li>
+                  <i id="stats-cat" onclick="viewStatCat('${rtn._id}')" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
+                </li>
+                <li>
+                  <i id="edit-cat" onclick="editCat('${rtn._id}')" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Routine
+                </li>
+                <li id="delete-habit" onclick="deleteCat('${rtn._id}')" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Routine
+                </li>
+              </ul>
+            </div>
+          </div>`;
+          })
+          .join("")}
         </div>
   </div>
 

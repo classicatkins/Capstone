@@ -29,10 +29,10 @@ const routineSchema = new mongoose.Schema({
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  habits: {
-    type: [String],
-    required: true
-  },
+  // habits: {
+  //   type: [String],
+  //   required: true
+  // },
   notes: {
     type: String
   }
