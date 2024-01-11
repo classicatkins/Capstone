@@ -60,14 +60,32 @@ function myFunction() {
   }
 }
 
-function menuCat() {
+window.closeFormRtn = function() {
+  alert("here");
+  var x = document.getElementById("menu_rtn");
+  x.style.display = "none";
+};
+
+window.closeFormHabit = function() {
+  alert("here");
+  var x = document.getElementById("menu_habit");
+  x.style.display = "none";
+};
+
+window.closeFormCat = function() {
+  alert("here");
+  var x = document.getElementById("menu_cat");
+  x.style.display = "none";
+};
+
+window.menuCat = function() {
   var x = document.getElementById("menu_cat");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
     x.style.display = "none";
   }
-}
+};
 
 function menuRtn() {
   var x = document.getElementById("menu_rtn");
@@ -298,11 +316,11 @@ function afterRender(state) {
       console.log("Input Element List", inputListRtn);
 
       // Create an empty array to hold the toppings
-      const habits = [];
+      const habits = ["warm up", "exercise", "stretch"];
 
       // Iterate over the toppings array
 
-      for (let input of inputListRtn.habits) {
+      for (let input of inputListRtn.selectedHabits) {
         // If the value of the checked attribute is true then add the value to the toppings array
         if (input.checked) {
           habits.push(input.value);
@@ -351,7 +369,7 @@ function afterRender(state) {
         .post(`${process.env.PERPETUA_API_URL}/categories`, requestDataCat)
         .then(response => {
           //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
-          store.Pizza.pizzas.push(response.data);
+          store.Category.categories.push(response.data);
           router.navigate("/Habits");
         })
         // If there is an error log it to the console

@@ -83,7 +83,7 @@ export default state => html`
         </div>
         <div class="add-container">
           <div class="add-label">Add Routine</div>
-          <button id="addRtn" onclick="menuRtn" class="circle-button">+</button>
+          <button id="addRtn" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
           <div class="habit-card">Individual Habit</div>
@@ -124,7 +124,7 @@ export default state => html`
         </select>
         <button type="button" id="addHabitBtn">Add</button>
     </div>
-    <ul id="selectedHabits"></ul>
+    <ul for="selectedHabits" id="selectedHabits" name="selectedHabits" ></ul>
     <!-- <input type="hidden" name="habits" id="habitsInput">
     <button type="submit">Submit Habits</button> -->
     </div>
@@ -134,7 +134,7 @@ export default state => html`
     </div>
     <div class="center">
         <button id="addSavebtn" name="save">Save</button>
-        <button id="button_close" onclick="myFunction">close</button>
+        <button id="button_close" onclick="closeFormRtn">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
@@ -193,7 +193,7 @@ export default state => html`
     <div class="center">
         <!-- <button id="addSaveRtn" name="save">Save</button> -->
         <input type="submit" name="submit" value="Submit Habit" />
-        <button id="button_close" onclick="myFunction">close</button>
+        <button id="button_close" onclick="closeFormHabit">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
@@ -216,7 +216,7 @@ export default state => html`
     </div>
     <div class="center">
         <button id="addSaveCat" name="save">Save</button>
-        <button id="button_close" onclick="myFunction">close</button>
+        <button id="button_close" onclick="closeFormCat">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>

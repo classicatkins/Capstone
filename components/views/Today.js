@@ -83,25 +83,31 @@ export default () => html`
           <div class="column-title">Morning Routine</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Catagory</div>
+          <div class="add-label">Add Step</div>
           <button class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">Wake up early</div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Exercise&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Shower&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Eat Breakfast&nbsp&#8202;&#8202;
+            </div>
           </div>
           <!-- More cards... -->
         </div>
@@ -160,25 +166,31 @@ export default () => html`
           <div class="column-title">Evening Routine</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Routine</div>
+          <div class="add-label">Add Step</div>
           <button class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Shower&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Brush Teeth&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&#8202;&#8202;
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Read&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&#8202;&#8202;
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">Go to bed early</div>
           </div>
           <!-- More cards... -->
         </div>
