@@ -109,6 +109,52 @@ function alertShow() {
   alert("here");
 }
 
+window.togglePopupMenu = function(catId) {
+  const popupMenuId = `popup-menu-${catId}`;
+  const popupMenu = document.getElementById(popupMenuId);
+
+  // Debugging log
+  console.log(
+    "Toggling popup menu for ID:",
+    popupMenuId,
+    "; Found element:",
+    popupMenu
+  );
+
+  if (popupMenu) {
+    // Close all open menus
+    document.querySelectorAll(".popup-menu").forEach(menu => {
+      if (menu.id !== popupMenuId) {
+        menu.style.display = "none";
+      }
+    });
+
+    // Toggle the clicked category's menu
+    popupMenu.style.display =
+      popupMenu.style.display === "block" ? "none" : "block";
+  } else {
+    console.error("Popup menu element not found:", popupMenuId);
+  }
+};
+
+window.deleteCat = function(catId) {
+  // Confirm before delete
+  // if (!confirm("Are you sure you want to delete this category?")) {
+  //   return;
+  // }
+
+  axios
+    .delete(`${process.env.PERPETUA_API_URL}/categories/${catId}`)
+    .then(response => {
+      console.log("Category deleted:", response.data);
+      // TODO: Handle successful deletion, e.g., update the UI or state
+    })
+    .catch(error => {
+      console.error("Error deleting category:", error);
+      // TODO: Handle errors here, e.g., show a notification
+    });
+};
+
 function afterRender(state) {
   if (state.view === "Home") {
     document
@@ -345,6 +391,7 @@ function afterRender(state) {
     //       console.log("It puked", error);
     //     });
     // });
+    // setupDynamicEventListeners(state);
 
     document
       .getElementById("addRtn")

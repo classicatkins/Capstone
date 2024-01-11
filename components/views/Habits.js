@@ -23,24 +23,24 @@ export default state => html`
                 <span class="checkmark"></span>
               </label>
               ${cat.name}
-              <div class="menu-icon">
+              <div class="menu-icon" onclick="togglePopupMenu('${cat._id}')" >
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu">
+            <div class="popup-menu" id="popup-menu-${cat.id}">
               <ul>
                 <li>
-                  <i id="stats-cat" class="fa-solid fa-chart-simple"
+                  <i id="stats-cat" onclick="viewStatCat('${cat._id}')" class="fa-solid fa-chart-simple"
                     >&nbsp&nbsp</i
                   >View Stats
                 </li>
                 <li>
-                  <i id="edit-cat" class="fa-solid fa-pen-to-square"
+                  <i id="edit-cat" onclick="editCat('${cat._id}')" class="fa-solid fa-pen-to-square"
                     >&nbsp&nbsp</i
                   >Edit Habit
                 </li>
-                <li id="delete-habit" class="danger">
+                <li id="delete-habit" onclick="deleteCat('${cat._id}')" class="danger">
                   <i class="fa-solid fa-trash">&nbsp&nbsp</i
                   >Delete Habit
                 </li>
