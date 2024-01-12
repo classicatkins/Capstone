@@ -125,6 +125,8 @@ window.moveCalendar = function(days) {
   updateCalendar();
 };
 
+let boldedDate = null;
+
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
   console.log("Start of Week:", startOfWeek); // Debugging statement
@@ -152,9 +154,36 @@ function updateCalendar() {
     day.textContent = date.getDate();
     day.classList.toggle("bold", date.getTime() === today.getTime());
 
+    // day.addEventListener("click", function() {
+    //   days.forEach(d => d.classList.remove("bold"));
+    //   this.classList.add("bold");
+    //   boldedDate = new Date(currentDate);
+    //   boldedDate.setDate(boldedDate.getDate() + index);
+    // });
+    // day.addEventListener("click", function() {
+    //   days.forEach(d => d.classList.remove("bold"));
+    //   this.classList.add("bold");
+    //   boldedDate = new Date(currentDate);
+    //   boldedDate.setDate(boldedDate.getDate() + index);
+
+    //   // Trigger a router navigation with the selected date
+    //   const selectedDayOfWeek = boldedDate.toLocaleString("en-us", {
+    //     weekday: "long"
+    //   });
+    //   router.navigate(`/${selectedDayOfWeek}`);
+    // });
     day.addEventListener("click", function() {
+      // ... existing logic for bold ...
       days.forEach(d => d.classList.remove("bold"));
       this.classList.add("bold");
+      boldedDate = new Date(currentDate);
+      boldedDate.setDate(boldedDate.getDate() + index);
+      // Get the day of the week for the selected date
+      const selectedDayOfWeek = boldedDate.toLocaleString("en-us", {
+        weekday: "long"
+      });
+
+      router.navigate(`/Today?${selectedDayOfWeek}`);
     });
   });
 
@@ -531,6 +560,10 @@ router.hooks({
     let day = new Date().toLocaleString("en-us", { weekday: "long" }); // Get current day of the week
     if (params && params.data && params.data.day) {
       day = params.data.day; // Use specified day if provided
+    }
+    if (boldedDate) {
+      day = boldedDate.toLocaleString("en-us", { weekday: "long" });
+      // Now use dayOfWeek as needed
     }
 
     switch (view) {
