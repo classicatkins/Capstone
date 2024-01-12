@@ -19,7 +19,7 @@ export default state => html`
               return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" name="habits" />
+                <input type="checkbox" class="check-box" onclick="categoryChecked('${cat._id}')" name="habits" />
                 <span class="checkmark"></span>
               </label>
               ${cat.name}

@@ -1,6 +1,6 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <body class="body-today">
     <div class="flex-row">
       <div class="flex-box">
@@ -115,47 +115,53 @@ export default () => html`
 
       <!-- Column 2: Habits -->
       <div class="shared-column">
-        <div class="column-banner-today">
+        <div class="column-banner-habits">
           <!-- Banner -->
-          <div class="column-title">Today's Habits</div>
+          <div class="column-title">Habits</div>
         </div>
         <div class="add-container">
           <div class="add-label">Add Habit</div>
-          <button id="addHabit" class="circle-button">+</button>
+          <button id="addHabit" class="circle-button">
+            +
+          </button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">
+          <!-- <div class="habit-card">Individual Habit</div> -->
+          ${state.habits
+            .map(habit => {
+              return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
                 <input type="checkbox" class="check-box" name="habits" />
                 <span class="checkmark"></span>
               </label>
-              &nbsp&nbspHabit 3
-              <div class="menu-icon">
+              ${habit.name}
+              <div class="menu-icon" onclick="togglePopupMenu('${habit._id}')" >
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu">
+            <div class="popup-menu" id="popup-menu-${habit.id}">
               <ul>
                 <li>
-                  <i id="stats-habit" class="fa-solid fa-chart-simple"
+                  <i id="stats-cat" onclick="viewStatCat('${habit._id}')" class="fa-solid fa-chart-simple"
                     >&nbsp&nbsp</i
                   >View Stats
                 </li>
                 <li>
-                  <i id="edit-habit" class="fa-solid fa-pen-to-square"
+                  <i id="edit-cat" onclick="editCat('${habit._id}')" class="fa-solid fa-pen-to-square"
                     >&nbsp&nbsp</i
                   >Edit Habit
                 </li>
-                <li id="delete-habit" class="danger">
-                  <i class="fa-solid fa-trash">&nbsp&nbsp</i>Delete Habit
+                <li id="delete-habit" onclick="deleteCat('${habit._id}')" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Habit
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="habit-card">Habit</div>
-          <!-- More cards... -->
+          </div>`;
+            })
+            .join("")}
         </div>
       </div>
 

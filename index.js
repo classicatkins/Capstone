@@ -60,6 +60,28 @@ function myFunction() {
   }
 }
 
+window.categoryChecked = function(catId) {
+  // Prepare the update data
+  const updateData = {
+    $inc: { tally: 1 }, // Increment the tally by 1
+    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
+  };
+
+  axios
+    .patch(`${process.env.PERPETUA_API_URL}/categories/${catId}`, updateData)
+    .then(response => {
+      console.log(
+        "Category updated with new tally and recorded date:",
+        response.data
+      );
+      // TODO: Handle successful update, e.g., update the UI or state
+    })
+    .catch(error => {
+      console.error("Error updating category:", error);
+      // TODO: Handle errors here, e.g., show a notification
+    });
+};
+
 window.closeFormRtn = function() {
   alert("here");
   var x = document.getElementById("menu_rtn");
@@ -182,9 +204,9 @@ function afterRender(state) {
 
   if (state.view === "Today") {
     document.getElementById("addHabit").addEventListener("click", addHabit);
-    document
-      .getElementById("delete-habit")
-      .addEventListener("click", deleteHabit);
+    // document
+    //   .getElementById("delete-habit")
+    //   .addEventListener("click", deleteHabit);
     document
       .getElementById("today")
       .addEventListener("click", () =>
@@ -442,6 +464,11 @@ router.hooks({
         ? capitalize(params.data.view)
         : "Home";
 
+    let day = new Date().toLocaleString("en-us", { weekday: "long" }); // Get current day of the week
+    if (params && params.data && params.data.day) {
+      day = params.data.day; // Use specified day if provided
+    }
+
     switch (view) {
       case "Home":
         // Add any specific logic for the Home view
@@ -450,6 +477,19 @@ router.hooks({
       // Implement other cases as needed
       // default:
       //   done();
+      case "Today":
+        // Add any specific logic for the Home view
+        axios
+          .get(`${process.env.PERPETUA_API_URL}/habits?days=${day}`)
+          .then(response => {
+            store.Habits.habits = response.data;
+          })
+          .catch(error => {
+            console.log("It puked", error);
+          });
+        done();
+        break;
+
       case "Habits":
         await axios
           .get(`${process.env.PERPETUA_API_URL}/habits`)
