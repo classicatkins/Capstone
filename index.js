@@ -17,8 +17,6 @@ function render(state = store.Home) {
   afterRender(state);
 }
 
-let currentDate = new Date();
-
 function getStartOfWeek(date) {
   const day = date.getDay();
   const start = new Date(date);
@@ -125,7 +123,11 @@ window.moveCalendar = function(days) {
   updateCalendar();
 };
 
-let boldedDate = null;
+// let boldedDate = null;
+
+let currentDate = new Date();
+let boldedDate = new Date(currentDate); // Set boldedDate to today's date initially
+boldedDate.setHours(0, 0, 0, 0);
 
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
