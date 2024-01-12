@@ -379,39 +379,6 @@ function afterRender(state) {
         });
     });
 
-    // document.getElementById("delete-habit").addEventListener("click", event => {
-    //   alert("here");
-
-    //   event.preventDefault();
-    //   //catagories
-    //   // Get the form element
-    //   alert("here");
-
-    //   const inputListCat = event.target.elements;
-    //   console.log("Input Element List", inputListCat);
-
-    //   // Create a request body object to send to the API
-    //   const requestDataCat = {
-    //     name: inputListCat.name.value,
-    //     notes: inputListCat.notes.value
-    //   };
-    //   // Log the request body to the console
-    //   console.log("request Body", requestDataCat);
-    //   axios
-    //     // Make a POST request to the API to create a new pizza
-    //     .post(`${process.env.PERPETUA_API_URL}/categories`, requestDataCat)
-    //     .then(response => {
-    //       //  Then push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
-    //       store.Pizza.pizzas.push(response.data);
-    //       router.navigate("/Habits");
-    //     })
-    //     // If there is an error log it to the console
-    //     .catch(error => {
-    //       console.log("It puked", error);
-    //     });
-    // });
-    // setupDynamicEventListeners(state);
-
     document
       .getElementById("addRtn")
       .addEventListener("click", () => menuRtn());
@@ -469,7 +436,7 @@ function afterRender(state) {
 // }
 
 router.hooks({
-  before: (done, params) => {
+  before: async (done, params) => {
     const view =
       params && params.data && params.data.view
         ? capitalize(params.data.view)
@@ -484,36 +451,31 @@ router.hooks({
       // default:
       //   done();
       case "Habits":
-        axios
+        await axios
           .get(`${process.env.PERPETUA_API_URL}/habits`)
           .then(response => {
             store.Habits.habits = response.data;
-            done();
           })
           .catch(error => {
             console.log("It puked", error);
-            done();
           });
-        axios
+        await axios
           .get(`${process.env.PERPETUA_API_URL}/categories`)
           .then(response => {
             store.Habits.categories = response.data;
-            done();
           })
           .catch(error => {
             console.log("It puked", error);
-            done();
           });
-        axios
+        await axios
           .get(`${process.env.PERPETUA_API_URL}/routines`)
           .then(response => {
             store.Habits.routines = response.data;
-            done();
           })
           .catch(error => {
             console.log("It puked", error);
-            done();
           });
+        done();
         break;
       default:
         done();
