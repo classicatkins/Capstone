@@ -129,11 +129,11 @@ let boldedDate = null;
 
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
-  console.log("Start of Week:", startOfWeek); // Debugging statement
+  console.log("Start of Week:", startOfWeek);
 
   const options = { month: "long" };
   const month = startOfWeek.toLocaleDateString("en-US", options);
-  console.log("Month:", month); // Debugging statement
+  console.log("Month:", month);
 
   const monthDisplay = document.querySelector(".month-display");
   if (monthDisplay) {
@@ -142,9 +142,6 @@ function updateCalendar() {
     console.error("Month display element not found");
   }
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
   const days = document.querySelectorAll(".week-display .day .date");
   days.forEach((day, index) => {
     const date = new Date(startOfWeek);
@@ -152,37 +149,18 @@ function updateCalendar() {
     date.setHours(0, 0, 0, 0);
 
     day.textContent = date.getDate();
-    day.classList.toggle("bold", date.getTime() === today.getTime());
 
-    // day.addEventListener("click", function() {
-    //   days.forEach(d => d.classList.remove("bold"));
-    //   this.classList.add("bold");
-    //   boldedDate = new Date(currentDate);
-    //   boldedDate.setDate(boldedDate.getDate() + index);
-    // });
-    // day.addEventListener("click", function() {
-    //   days.forEach(d => d.classList.remove("bold"));
-    //   this.classList.add("bold");
-    //   boldedDate = new Date(currentDate);
-    //   boldedDate.setDate(boldedDate.getDate() + index);
+    // Determine if this day is the currently selected day
+    const isSelectedDay = boldedDate && date.getTime() === boldedDate.getTime();
+    day.classList.toggle("bold", isSelectedDay);
 
-    //   // Trigger a router navigation with the selected date
-    //   const selectedDayOfWeek = boldedDate.toLocaleString("en-us", {
-    //     weekday: "long"
-    //   });
-    //   router.navigate(`/${selectedDayOfWeek}`);
-    // });
     day.addEventListener("click", function() {
-      // ... existing logic for bold ...
-      days.forEach(d => d.classList.remove("bold"));
-      this.classList.add("bold");
-      boldedDate = new Date(currentDate);
-      boldedDate.setDate(boldedDate.getDate() + index);
-      // Get the day of the week for the selected date
+      boldedDate = new Date(date); // Update boldedDate to the clicked date
+      updateCalendar(); // Refresh the calendar
+
       const selectedDayOfWeek = boldedDate.toLocaleString("en-us", {
         weekday: "long"
       });
-
       router.navigate(`/Today?${selectedDayOfWeek}`);
     });
   });
