@@ -118,29 +118,68 @@ function menuRtn() {
   }
 }
 
+window.moveCalendar = function(days) {
+  alert(3);
+  currentDate.setDate(currentDate.getDate() + days);
+  updateCalendar();
+};
+
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
+  console.log("Start of Week:", startOfWeek); // Debugging statement
+
   const options = { month: "long" };
   const month = startOfWeek.toLocaleDateString("en-US", options);
-  document.querySelector(".month-display").textContent = month;
+  console.log("Month:", month); // Debugging statement
+
+  const monthDisplay = document.querySelector(".month-display");
+  if (monthDisplay) {
+    monthDisplay.textContent = month;
+  } else {
+    console.error("Month display element not found");
+  }
 
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // Normalize today to the start of the day
+  today.setHours(0, 0, 0, 0);
 
   const days = document.querySelectorAll(".week-display .day .date");
   days.forEach((day, index) => {
     const date = new Date(startOfWeek);
     date.setDate(date.getDate() + index);
-    date.setHours(0, 0, 0, 0); // Normalize the date to the start of the day
+    date.setHours(0, 0, 0, 0);
 
     day.textContent = date.getDate();
-    day.classList.toggle(
-      "bold",
-      date.getTime() === today.getTime() // Compare the dates
-    );
+    day.classList.toggle("bold", date.getTime() === today.getTime());
+
+    day.addEventListener("click", function() {
+      days.forEach(d => d.classList.remove("bold"));
+      this.classList.add("bold");
+    });
   });
+
+  // Add event listener to the "Today" button
+  const todayButton = document.getElementById("today");
+  if (todayButton) {
+    todayButton.addEventListener("click", function() {
+      days.forEach(d => {
+        d.classList.remove("bold");
+        const dayDate = new Date(startOfWeek);
+        dayDate.setDate(
+          dayDate.getDate() + Array.prototype.indexOf.call(days, d)
+        );
+        dayDate.setHours(0, 0, 0, 0);
+
+        if (dayDate.getTime() === today.getTime()) {
+          d.classList.add("bold");
+        }
+      });
+    });
+  }
 }
 
+document.addEventListener("DOMContentLoaded", event => {
+  updateCalendar();
+});
 function deleteHabit() {
   alert("here");
 }
@@ -218,15 +257,26 @@ function afterRender(state) {
         card.classList.toggle("active");
       });
 
-      document.getElementById("prevWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() - 1);
-        updateCalendar();
-      });
+      // document.getElementById("prevWeek").addEventListener("click", function() {
+      //   currentDate.setDate(currentDate.getDate() - 1);
+      //   updateCalendar();
+      // });
 
-      document.getElementById("nextWeek").addEventListener("click", function() {
-        currentDate.setDate(currentDate.getDate() + 1);
-        updateCalendar();
-      });
+      // document.getElementById("nextWeek").addEventListener("click", function() {
+      //   currentDate.setDate(currentDate.getDate() + 1);
+      //   updateCalendar();
+      // });
+
+      // document.getElementById("prevWeek").addEventListener("click", function() {
+      //   alert("here");
+      //   currentDate.setDate(currentDate.getDate() - 7); // Move back by a week
+      //   updateCalendar();
+      // });
+
+      // document.getElementById("nextWeek").addEventListener("click", function() {
+      //   currentDate.setDate(currentDate.getDate() + 7); // Move forward by a week
+      //   updateCalendar();
+      // });
     });
 
     // document.addEventListener("DOMContentLoaded", event => {
