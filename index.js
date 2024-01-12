@@ -119,8 +119,9 @@ function menuRtn() {
 }
 
 window.moveCalendar = function(days) {
-  alert(3);
+  console.log("Before change:", currentDate);
   currentDate.setDate(currentDate.getDate() + days);
+  console.log("After change:", currentDate);
   updateCalendar();
 };
 
@@ -161,16 +162,29 @@ function updateCalendar() {
   const todayButton = document.getElementById("today");
   if (todayButton) {
     todayButton.addEventListener("click", function() {
+      // Set currentDate to today's date
+      currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+
+      // Update the calendar
+      updateCalendar();
+
+      // Apply bold styling to today's date
+      const today = new Date(); // This represents today's date
+      today.setHours(0, 0, 0, 0);
+      const days = document.querySelectorAll(".week-display .day .date");
       days.forEach(d => {
-        d.classList.remove("bold");
-        const dayDate = new Date(startOfWeek);
+        d.classList.remove("bold"); // Remove bold from all dates
+        const dayDate = new Date(currentDate);
         dayDate.setDate(
-          dayDate.getDate() + Array.prototype.indexOf.call(days, d)
+          dayDate.getDate() +
+            Array.prototype.indexOf.call(days, d) -
+            dayDate.getDay()
         );
         dayDate.setHours(0, 0, 0, 0);
 
         if (dayDate.getTime() === today.getTime()) {
-          d.classList.add("bold");
+          d.classList.add("bold"); // Apply bold to today's date
         }
       });
     });

@@ -44,8 +44,8 @@ export default state => html`
             <!-- ... -->
           </div>
           <div class="week-navigation">
-            <button id="prevWeek" onclick="moveCalendar(-1)">Previous Week</button>
-            <button id="nextWeek" onclick="moveCalendar(+1)">Next Week</button>
+            <button id="prevWeek" onclick="moveCalendar(-7)">Previous Week</button>
+            <button id="nextWeek" onclick="moveCalendar(+7)">Next Week</button>
           </div>
         </div>
       </div>
