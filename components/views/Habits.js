@@ -19,8 +19,6 @@ export default state => html`
               return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" onclick="categoryChecked('${cat._id}')" name="habits" />
-                <span class="checkmark"></span>
               </label>
               ${cat.name}
               <div class="menu-icon" onclick="togglePopupMenu('${cat._id}')" >
@@ -70,7 +68,7 @@ export default state => html`
               return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" name="habits" />
+                <input type="checkbox" class="check-box" onclick="handleHabitCheckboxChange(this, '${habit._id}')" name="habits" />
                 <span class="checkmark"></span>
               </label>
               ${habit.name}
@@ -119,7 +117,7 @@ export default state => html`
             return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" name="habits" />
+                <input type="checkbox" class="check-box" onclick="handleRtnCheckboxChange(this, '${rtn._id}')" name="habits" />
                 <span class="checkmark"></span>
               </label>
               ${rtn.name}

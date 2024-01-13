@@ -58,7 +58,7 @@ function myFunction() {
   }
 }
 
-window.categoryChecked = function(catId) {
+function routineChecked(rtnId) {
   // Prepare the update data
   const updateData = {
     $inc: { tally: 1 }, // Increment the tally by 1
@@ -66,7 +66,7 @@ window.categoryChecked = function(catId) {
   };
 
   axios
-    .patch(`${process.env.PERPETUA_API_URL}/categories/${catId}`, updateData)
+    .put(`${process.env.PERPETUA_API_URL}/routines/${rtnId}`, updateData)
     .then(response => {
       console.log(
         "Category updated with new tally and recorded date:",
@@ -78,7 +78,89 @@ window.categoryChecked = function(catId) {
       console.error("Error updating category:", error);
       // TODO: Handle errors here, e.g., show a notification
     });
+}
+
+function routineUnchecked(rtnId) {
+  // Prepare the update data
+  const updateData = {
+    $inc: { tally: 1 }, // Increment the tally by 1
+    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
+  };
+
+  axios
+    .put(`${process.env.PERPETUA_API_URL}/routines/${rtnId}`, updateData)
+    .then(response => {
+      console.log(
+        "Category updated with new tally and recorded date:",
+        response.data
+      );
+      // TODO: Handle successful update, e.g., update the UI or state
+    })
+    .catch(error => {
+      console.error("Error updating category:", error);
+      // TODO: Handle errors here, e.g., show a notification
+    });
+}
+
+window.handleHabitCheckboxChange = function(checkbox, habitId) {
+  if (checkbox.checked) {
+    habitChecked(habitId);
+  } else {
+    habitUnchecked(habitId);
+  }
 };
+
+window.handleRtnCheckboxChange = function(checkbox, routineId) {
+  if (checkbox.checked) {
+    routineChecked(routineId);
+  } else {
+    routineUnchecked(routineId);
+  }
+};
+
+function habitChecked(habitId) {
+  // Prepare the update data
+  const updateData = {
+    $inc: { tally: 1 }, // Increment the tally by 1
+    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
+  };
+
+  axios
+    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
+    .then(response => {
+      console.log(
+        "Category updated with new tally and recorded date:",
+        response.data
+      );
+      // TODO: Handle successful update, e.g., update the UI or state
+    })
+    .catch(error => {
+      console.error("Error updating category:", error);
+      // TODO: Handle errors here, e.g., show a notification
+    });
+}
+
+function habitUnchecked(habitId) {
+  // Prepare the update data
+  const updateData = {
+    $inc: { tally: 1 }, // Increment the tally by 1
+    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
+  };
+
+  axios
+    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
+    .then(response => {
+      console.log(
+        "Category updated with new tally and recorded date:",
+        response.data
+      );
+      // TODO: Handle successful update, e.g., update the UI or state
+    })
+    .catch(error => {
+      console.error("Error updating category:", error);
+      // TODO: Handle errors here, e.g., show a notification
+    });
+}
 
 window.closeFormRtn = function() {
   alert("here");

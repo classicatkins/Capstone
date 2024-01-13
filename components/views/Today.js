@@ -52,6 +52,7 @@ export default state => html`
       <div class="flex-box">Alerts</div>
       <div class="flex-box">
         <div class="today-margin">Streaks</div>
+        <br>
         <svg
           viewBox="0 0 16 16"
           version="1.1"
