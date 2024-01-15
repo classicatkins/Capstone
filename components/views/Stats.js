@@ -4,8 +4,24 @@ export default () => html`
   <body>
     <div class="stats-container">
       <div class="grid">
-        <div class="graph-box">Graph 1 - chart.js - use</div>
-        <div class="graph-box">Graph 2</div>
+        <div class="graph-box">
+          Graph 1 - chart.js - use
+          <div id="graphs">
+            <h3>Radar Chart</h3>
+            <div id="graph-container">
+              <canvas id="graph-chart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="graph-box">
+          Graph 2
+          <div id="graphs">
+            <h3>Pie Chart</h3>
+            <div id="graph-container">
+              <canvas id="graph-chart-pie"></canvas>
+            </div>
+          </div>
+        </div>
         <div class="graph-box">Graph 3</div>
         <div class="graph-box">Graph 4</div>
       </div>

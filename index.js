@@ -4,6 +4,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
+import { Chart } from "chart.js/auto";
 
 const router = new Navigo("/");
 
@@ -16,6 +17,284 @@ function render(state = store.Home) {
   router.updatePageLinks();
   afterRender(state);
 }
+
+const createChart = state => {
+  const labels = ["January", "Febuary", "March"];
+  const data = [5, 4, 2];
+
+  // for (let task of state.tasks) {
+  //   labels.push(task.title);
+
+  //   // Accepts seconds input and calculates out 86400s day
+  //   data.push(Math.round((task.time / 86400) * 100));
+  // }
+
+  // ? When database is implemented, be sure to find a way to populated chartData with data from MongoDB
+  // Tasks Chart
+  const chartData = {
+    labels: labels,
+    data: data
+  };
+
+  const taskChart = document.querySelector("#task-chart");
+  const ul = document.querySelector("#task-details ul");
+
+  new Chart(taskChart, {
+    type: "doughnut",
+    data: {
+      labels: chartData.labels,
+      datasets: [
+        {
+          label: "Tasks",
+          data: chartData.data
+        }
+      ]
+    },
+    options: {
+      borderWidth: 0,
+      borderRadius: 2,
+      hoverBorderWidth: 5,
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+
+  const populateUl = () => {
+    chartData.labels.forEach((l, i) => {
+      let li = document.createElement("li");
+      li.innerHTML = `${l}: <span class='percentage'>${chartData.data[i]}%</span>`;
+      //ul.appendChild(li);
+    });
+  };
+
+  populateUl();
+
+  // Graphs Chart
+  const graphData = {
+    labels: labels,
+    datasets: [
+      {
+        // Have the dataset label represent the current week
+        label: "Jan 1st - Jan 7th",
+        data: data,
+        fill: true,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgb(75, 192, 192)",
+        pointBackgroundColor: "rgb(75, 192, 192)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgb(75, 192, 192)"
+      }
+    ]
+  };
+
+  const graphChart = document.querySelector("#graph-chart");
+
+  new Chart(graphChart, {
+    type: "radar",
+    data: graphData,
+    options: {
+      // Styling for the radar background
+      scales: {
+        r: {
+          angleLines: {
+            color: "rgba(255, 255, 255, 0.3)"
+          },
+          grid: {
+            color: "rgba(255, 255, 255, 0.3)"
+          },
+          pointLabels: {
+            color: "rgb(255, 255, 255)"
+          },
+          ticks: {
+            color: "rgb(255, 255, 255)",
+            backdropColor: "rgb(0, 0, 0)"
+          }
+        }
+      },
+      elements: {
+        line: {
+          borderWidth: 1
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+};
+
+//line chart
+
+const Utils = {
+  // Function to generate random numbers
+  rand: function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
+  // Function to generate an array of random numbers
+  numbers: function(config) {
+    let arr = [];
+    for (let i = 0; i < config.count; i++) {
+      arr.push(this.rand(config.min, config.max));
+    }
+    return arr;
+  },
+
+  // Function to generate a random color
+  namedColor: function(index) {
+    const colors = [
+      "red",
+      "blue",
+      "green",
+      "yellow",
+      "purple",
+      "orange",
+      "grey"
+    ];
+    return colors[index % colors.length];
+  },
+
+  // Function to transparentize a color
+  transparentize: function(color, opacity) {
+    const alpha = opacity === undefined ? 0.5 : 1 - opacity;
+    return color + alpha;
+  },
+
+  // Function to generate months labels
+  months: function(config) {
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July"
+    ];
+    return monthNames.slice(0, config.count);
+  },
+
+  // Predefined chart colors (you can add more colors here)
+  CHART_COLORS: {
+    red: "rgb(255, 99, 132)",
+    blue: "rgb(54, 162, 235)",
+    green: "rgb(75, 192, 192)",
+    yellow: "rgb(255, 205, 86)",
+    purple: "rgb(153, 102, 255)",
+    orange: "rgb(255, 159, 64)",
+    grey: "rgb(201, 203, 207)"
+  }
+};
+
+const DATA_COUNT = 7;
+const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
+
+const labels = Utils.months({ count: 7 });
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: Utils.numbers(NUMBER_CFG),
+      borderColor: Utils.CHART_COLORS.red,
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5)
+    },
+    {
+      label: "Dataset 2",
+      data: Utils.numbers(NUMBER_CFG),
+      borderColor: Utils.CHART_COLORS.blue,
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5)
+    }
+  ]
+};
+
+const config = {
+  type: "line",
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top"
+      },
+      title: {
+        display: true,
+        text: "Chart.js Line Chart"
+      }
+    }
+  }
+};
+
+const actions = [
+  {
+    name: "Randomize",
+    handler(chart) {
+      chart.data.datasets.forEach(dataset => {
+        dataset.data = Utils.numbers({
+          count: chart.data.labels.length,
+          min: -100,
+          max: 100
+        });
+      });
+      chart.update();
+    }
+  },
+  {
+    name: "Add Dataset",
+    handler(chart) {
+      const data = chart.data;
+      const dsColor = Utils.namedColor(chart.data.datasets.length);
+      const newDataset = {
+        label: "Dataset " + (data.datasets.length + 1),
+        backgroundColor: Utils.transparentize(dsColor, 0.5),
+        borderColor: dsColor,
+        data: Utils.numbers({ count: data.labels.length, min: -100, max: 100 })
+      };
+      chart.data.datasets.push(newDataset);
+      chart.update();
+    }
+  },
+  {
+    name: "Add Data",
+    handler(chart) {
+      const data = chart.data;
+      if (data.datasets.length > 0) {
+        data.labels = Utils.months({ count: data.labels.length + 1 });
+
+        for (let index = 0; index < data.datasets.length; ++index) {
+          data.datasets[index].data.push(Utils.rand(-100, 100));
+        }
+
+        chart.update();
+      }
+    }
+  },
+  {
+    name: "Remove Dataset",
+    handler(chart) {
+      chart.data.datasets.pop();
+      chart.update();
+    }
+  },
+  {
+    name: "Remove Data",
+    handler(chart) {
+      chart.data.labels.splice(-1, 1); // remove the label first
+
+      chart.data.datasets.forEach(dataset => {
+        dataset.data.pop();
+      });
+
+      chart.update();
+    }
+  }
+];
 
 function getStartOfWeek(date) {
   const day = date.getDay();
@@ -344,6 +623,12 @@ function afterRender(state) {
     document
       .getElementById("deletePixelButton")
       .addEventListener("click", () => alertShow("Delete Pixel clicked"));
+  }
+
+  if (state.view === "Stats") {
+    createChart(state);
+    var ctx = document.getElementById("graph-chart-pie").getContext("2d");
+    new Chart(ctx, config);
   }
 
   if (state.view === "Today") {
