@@ -47,37 +47,55 @@ export default () => html`
                 type="checkbox"
                 class="check-box"
                 name="habits"
-              />&nbsp&nbspMenu Item 1.1
+              />&nbsp&nbspCompare Stats
             </li>
             <li>
               <label class="custom-checkbox">
                 <input type="checkbox" class="check-box" name="habits" />
                 <span class="checkmark"></span> </label
-              >&nbsp&nbspMenu Item 1.2
+              >&nbsp&nbspAll Habits
             </li>
             <li>
               <input
                 type="checkbox"
                 class="check-box"
                 name="habits"
-              />&nbsp&nbspMenu Item 1.3
+              />&nbsp&nbspLine Chart
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                class="check-box"
+                name="habits"
+              />&nbsp&nbspPie Chart
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                class="check-box"
+                name="habits"
+              />&nbsp&nbspRadar Chart
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                class="check-box"
+                name="habits"
+              />&nbsp&nbspBar Chart
             </li>
           </ul>
         </div>
         <div class="header-container">
-          <h3>Habits</h3>
+          <h3>AI Communication</h3>
           <ul>
-            <li>Menu Item 2.1</li>
-            <li>Menu Item 2.2</li>
+            <li>Q & A</li>
           </ul>
         </div>
         <div class="header-container">
-          <h3>Catagories</h3>
+          <h3>Badges</h3>
           <ul>
-            <li>Menu Item 3.1</li>
-            <li>Menu Item 3.2</li>
-            <li>Menu Item 3.3</li>
-            <li>Menu Item 3.4</li>
+            <li>My Badges</li>
+            <li>Badges to achieve</li>
           </ul>
         </div>
       </div>

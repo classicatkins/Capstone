@@ -146,6 +146,17 @@ const Utils = {
     return arr;
   },
 
+  // Predefined chart colors (you can add more colors here)
+  CHART_COLORS: {
+    red: "rgb(255, 99, 132)",
+    blue: "rgb(54, 162, 235)",
+    green: "rgb(75, 192, 192)",
+    yellow: "rgb(255, 205, 86)",
+    purple: "rgb(153, 102, 255)",
+    orange: "rgb(255, 159, 64)",
+    grey: "rgb(201, 203, 207)"
+  },
+
   // Function to generate a random color
   namedColor: function(index) {
     const colors = [
@@ -161,9 +172,21 @@ const Utils = {
   },
 
   // Function to transparentize a color
+  // transparentize: function(color, opacity) {
+  //   const alpha = opacity === undefined ? 0.5 : 1 - opacity;
+  //   return color + alpha;
+  // },
+
   transparentize: function(color, opacity) {
-    const alpha = opacity === undefined ? 0.5 : 1 - opacity;
-    return color + alpha;
+    // Check if color is a string
+    if (typeof color !== "string") {
+      console.error("Color must be a string in RGB format");
+      return color; // Return the input as-is
+    }
+
+    const alpha = opacity === undefined ? 0.5 : opacity;
+    const rgb = color.match(/\d+/g);
+    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
   },
 
   // Function to generate months labels
@@ -178,18 +201,18 @@ const Utils = {
       "July"
     ];
     return monthNames.slice(0, config.count);
-  },
-
-  // Predefined chart colors (you can add more colors here)
-  CHART_COLORS: {
-    red: "rgb(255, 99, 132)",
-    blue: "rgb(54, 162, 235)",
-    green: "rgb(75, 192, 192)",
-    yellow: "rgb(255, 205, 86)",
-    purple: "rgb(153, 102, 255)",
-    orange: "rgb(255, 159, 64)",
-    grey: "rgb(201, 203, 207)"
   }
+
+  // // Predefined chart colors (you can add more colors here)
+  // CHART_COLORS: {
+  //   red: "rgb(255, 99, 132)",
+  //   blue: "rgb(54, 162, 235)",
+  //   green: "rgb(75, 192, 192)",
+  //   yellow: "rgb(255, 205, 86)",
+  //   purple: "rgb(153, 102, 255)",
+  //   orange: "rgb(255, 159, 64)",
+  //   grey: "rgb(201, 203, 207)"
+  // }
 };
 
 const DATA_COUNT = 7;
@@ -203,25 +226,25 @@ const data = {
       label: "Health",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.red,
-      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5)
     },
     {
       label: "Work",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.blue,
-      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5)
     },
     {
       label: "Personal",
       data: Utils.numbers(NUMBER_CFG),
-      borderColor: Utils.CHART_COLORS.yellow,
-      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
+      borderColor: Utils.CHART_COLORS.orange,
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.orange, 0.5)
     },
     {
       label: "Social",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.purple,
-      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.purple, 0.5)
     }
   ]
 };
