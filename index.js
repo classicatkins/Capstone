@@ -19,7 +19,7 @@ function render(state = store.Home) {
 }
 
 const createChart = state => {
-  const labels = ["January", "Febuary", "March"];
+  const labels = ["Health", "Personal", "Work"];
   const data = [5, 4, 2];
 
   // for (let task of state.tasks) {
@@ -200,16 +200,42 @@ const data = {
   labels: labels,
   datasets: [
     {
-      label: "Dataset 1",
+      label: "Health",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.red,
-      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5)
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
     },
     {
-      label: "Dataset 2",
+      label: "Work",
       data: Utils.numbers(NUMBER_CFG),
       borderColor: Utils.CHART_COLORS.blue,
-      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5)
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
+    },
+    {
+      label: "Personal",
+      data: Utils.numbers(NUMBER_CFG),
+      borderColor: Utils.CHART_COLORS.yellow,
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
+    },
+    {
+      label: "Social",
+      data: Utils.numbers(NUMBER_CFG),
+      borderColor: Utils.CHART_COLORS.purple,
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS, 0.5)
+    }
+  ]
+};
+
+const DATA_COUNT_Pie = 5;
+const NUMBER_CFG_Pie = { count: DATA_COUNT_Pie, min: 0, max: 100 };
+
+const dataPie = {
+  labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: Utils.numbers(NUMBER_CFG_Pie),
+      backgroundColor: Object.values(Utils.CHART_COLORS)
     }
   ]
 };
@@ -225,7 +251,60 @@ const config = {
       },
       title: {
         display: true,
-        text: "Chart.js Line Chart"
+        text: "Line Chart"
+      }
+    }
+  }
+};
+
+const configPie = {
+  type: "pie",
+  data: dataPie,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top"
+      },
+      title: {
+        display: true,
+        text: "Pie Chart"
+      }
+    }
+  }
+};
+
+const configRadar = {
+  type: "radar",
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "Radar Chart"
+      }
+    }
+  }
+};
+
+const configBar = {
+  type: "bar",
+  data: data,
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "Stacked Bar Chart"
+      }
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true
+      },
+      y: {
+        stacked: true
       }
     }
   }
@@ -626,9 +705,17 @@ function afterRender(state) {
   }
 
   if (state.view === "Stats") {
-    createChart(state);
-    var ctx = document.getElementById("graph-chart-pie").getContext("2d");
+    //createChart(state);
+    var ctx = document.getElementById("graph-chart-line").getContext("2d");
     new Chart(ctx, config);
+    var ctxPie = document.getElementById("graph-chart-pie").getContext("2d");
+    new Chart(ctxPie, configPie);
+    var ctxBar = document.getElementById("graph-chart-bar").getContext("2d");
+    new Chart(ctxBar, configBar);
+    var ctxRadar = document
+      .getElementById("graph-chart-radar")
+      .getContext("2d");
+    new Chart(ctxRadar, configRadar);
   }
 
   if (state.view === "Today") {
