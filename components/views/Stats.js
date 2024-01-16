@@ -42,60 +42,105 @@ export default () => html`
           <h3>Graphs</h3>
           <ul>
             <li>
-              <input
-                class="checkbox"
-                type="checkbox"
-                class="check-box"
-                name="habits"
-              />&nbsp&nbspCompare Stats
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspCompare Stats
             </li>
             <li>
-              <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" name="habits" />
-                <span class="checkmark"></span> </label
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
               >&nbsp&nbspAll Habits
             </li>
             <li>
-              <input
-                type="checkbox"
-                class="check-box"
-                name="habits"
-              />&nbsp&nbspLine Chart
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspLine Chart
             </li>
             <li>
-              <input
-                type="checkbox"
-                class="check-box"
-                name="habits"
-              />&nbsp&nbspPie Chart
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspPie Chart
             </li>
             <li>
-              <input
-                type="checkbox"
-                class="check-box"
-                name="habits"
-              />&nbsp&nbspRadar Chart
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspRadar Chart
             </li>
             <li>
-              <input
-                type="checkbox"
-                class="check-box"
-                name="habits"
-              />&nbsp&nbspBar Chart
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspBar Chart
             </li>
           </ul>
         </div>
         <div class="header-container">
           <h3>AI Communication</h3>
           <ul>
-            <li>Q & A</li>
+            <li>
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspQ & A
+            </li>
           </ul>
         </div>
         <div class="header-container">
           <h3>Badges</h3>
           <ul>
-            <li>My Badges</li>
-            <li>Badges to achieve</li>
+            <li>
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspMy Badges
+            </li>
+            <li>
+              <label class="custom-radio">
+                <input
+                  type="radio"
+                  class="radio-button"
+                  name="comparisonOption"
+                />
+                <span class="radio-mark-stat"></span> </label
+              >&nbsp&nbspBadges to Achieve
+            </li>
           </ul>
         </div>
       </div>

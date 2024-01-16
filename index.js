@@ -249,11 +249,11 @@ const data = {
   ]
 };
 
-const DATA_COUNT_Pie = 5;
+const DATA_COUNT_Pie = 4;
 const NUMBER_CFG_Pie = { count: DATA_COUNT_Pie, min: 0, max: 100 };
 
 const dataPie = {
-  labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+  labels: ["Health", "Work", "Personal", "Social"],
   datasets: [
     {
       label: "Dataset 1",
