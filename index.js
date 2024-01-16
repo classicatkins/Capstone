@@ -18,6 +18,22 @@ function render(state = store.Home) {
   afterRender(state);
 }
 
+function updateGreeting() {
+  const now = new Date();
+  const hours = now.getHours();
+  let greeting;
+
+  if (hours < 12) {
+    greeting = "Good Morning";
+  } else if (hours < 18) {
+    greeting = "Good Afternoon";
+  } else {
+    greeting = "Good Evening";
+  }
+
+  document.querySelector(".hello-display").textContent = greeting + " Melissa!";
+}
+
 const createChart = state => {
   const labels = ["Health", "Personal", "Work"];
   const data = [5, 4, 2];
@@ -742,6 +758,7 @@ function afterRender(state) {
   }
 
   if (state.view === "Today") {
+    updateGreeting();
     document.getElementById("addHabit").addEventListener("click", addHabit);
     // document
     //   .getElementById("delete-habit")
