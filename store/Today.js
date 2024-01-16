@@ -1,4 +1,5 @@
 export default {
   header: "Today",
-  view: "Today"
+  view: "Today",
+  habits: []
 };

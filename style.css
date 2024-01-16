@@ -231,6 +231,36 @@ footer {
 }
 
 /* stats.css */
+
+.radio-button {
+  display: none;
+}
+
+.radio-mark-stat {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-color:  white;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-button:checked + .radio-mark-stat::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color:  #FF5757; /* Checked color */
+  border: 2px solid #FF5757;
+
+}
+
 .stats-container {
   display: flex;
 }
@@ -441,12 +471,12 @@ width: 15px;
 }
 
 .circle-card.active .circle {
-  background-color:  #FF5757;;
+  background-color:  #FF5757;
   border: 2px solid  #FF5757;
 }
 
 .circle-card.active .circle::after {
-  background-color:  #FF5757;;
+  background-color:  #FF5757;
 }
 
 .column-banner-catagories {
@@ -462,6 +492,70 @@ width: 15px;
   padding: 2.25rem 0;
   border-radius: 8px 8px 0 0;
 }
+
+.menu_rtn {
+  width: 700px;
+  height: 470px;
+  position: fixed;
+  display: none;
+  background-color: rgba(255, 255, 255);
+  top: 20%;
+  left: 25%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border-radius: 10px;
+  }
+
+  @media (max-width: 800px) {
+    .menu_rtn {
+      width: 90%;
+      height: auto;
+      left: 5%;
+      margin-left: 0;
+      margin-top: 10%;
+    }
+    .menu_cat {
+      width: 90%;
+      height: auto;
+      left: 5%;
+      margin-left: 0;
+      margin-top: 10%;
+    }
+    .menu_habit {
+      width: 90%;
+      height: auto;
+      left: 5%;
+      margin-left: 0;
+      margin-top: 10%;
+    }
+  }
+
+
+  .menu_cat {
+    width:700px;
+    height:470px;
+    position: fixed;
+    display:none;
+    background-color: rgba(255, 255, 255);
+    top: 20%;
+    left: 25%;
+    margin-top: -50px;
+    margin-left: -100px;
+    border-radius: 10px;
+    }
+
+.menu_habit {
+  width:700px;
+  height:470px;
+  position: fixed;
+  display:none;
+  background-color: rgba(255, 255, 255);
+  top: 20%;
+  left: 25%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border-radius: 10px;
+  }
 
 .column-banner-habits {
   /* background-image: url('img/Elk\ in\ the\ mysterious\ forest.jpg'); */
@@ -610,7 +704,7 @@ width: 15px;
 
 
 .popup-menu {
-  display: none;
+  /* display: none; */
   /* position: absolute; */
   background-color: #fff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);

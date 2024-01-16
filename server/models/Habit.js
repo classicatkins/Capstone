@@ -24,7 +24,17 @@ const habitSchema = new mongoose.Schema({
   },
   notes: {
     type: String
-  }
+  },
+  tally: {
+    type: Number,
+    default: 0 // Default tally set to 0, but the field is optional
+  },
+  recordedDates: [
+    {
+      type: Date,
+      default: Date.now // Each entry defaults to the current date and time, but the field is optional
+    }
+  ]
 });
 
 // const habitSchema = new mongoose.Schema({

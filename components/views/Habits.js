@@ -1,43 +1,52 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <section id="habits">
     <div class="shared-board">
       <!-- Column 1: Categories -->
       <div class="shared-column">
         <div class="column-banner-catagories">
           <!-- Banner -->
-          <div class="column-title">Catagories</div>
+          <div class="column-title">Categories</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Habit</div>
+          <div class="add-label">Add Categories</div>
           <button id="addCat" onclick="menuCat" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">
+          ${state.categories
+            .map(cat => {
+              return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" name="habits" />
-                <span class="checkmark"></span>
               </label>
-              &nbsp&nbspHabit 3
-              <div class="menu-icon">
+              ${cat.name}
+              <div class="menu-icon" onclick="togglePopupMenu('${cat._id}')" >
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu">
+            <div class="popup-menu" id="popup-menu-${cat.id}">
               <ul>
-                <li>Action 1</li>
-                <li>Action 2</li>
-                <li>Action 3</li>
+                <li>
+                  <i id="stats-cat" onclick="viewStatCat('${cat._id}')" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
+                </li>
+                <li>
+                  <i id="edit-cat" onclick="editCat('${cat._id}')" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Category
+                </li>
+                <li id="delete-habit" onclick="deleteCat('${cat._id}')" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Category
+                </li>
               </ul>
             </div>
-          </div>
-
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Habit</div>
-          <!-- More cards... -->
+          </div>`;
+            })
+            .join("")}
         </div>
       </div>
 
@@ -53,10 +62,42 @@ export default () => html`
           </button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Habit</div>
-          <!-- More cards... -->
+          <!-- <div class="habit-card">Individual Habit</div> -->
+          ${state.habits
+            .map(habit => {
+              return `<div class="habit-card">
+            <div class="card-content">
+              <label class="custom-checkbox">
+                <input type="checkbox" class="check-box" onclick="handleHabitCheckboxChange(this, '${habit._id}')" name="habits" />
+                <span class="checkmark"></span>
+              </label>
+              ${habit.name}
+              <div class="menu-icon" onclick="togglePopupMenu('${habit._id}')" >
+                <!-- Three dots icon or font-awesome icon -->
+                &nbsp;&nbsp;&#8942;
+              </div>
+            </div>
+            <div class="popup-menu" id="popup-menu-${habit.id}">
+              <ul>
+                <li>
+                  <i id="stats-cat" onclick="viewStatCat('${habit._id}')" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
+                </li>
+                <li>
+                  <i id="edit-cat" onclick="editCat('${habit._id}')" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Habit
+                </li>
+                <li id="delete-habit" onclick="deleteCat('${habit._id}')" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Habit
+                </li>
+              </ul>
+            </div>
+          </div>`;
+            })
+            .join("")}
         </div>
       </div>
 
@@ -67,14 +108,45 @@ export default () => html`
           <div class="column-title">Routines</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Habit</div>
-          <button id="addRtn" onclick="menuRtn" class="circle-button">+</button>
+          <div class="add-label">Add Routine</div>
+          <button id="addRtn" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Individual Habit</div>
-          <div class="habit-card">Habit</div>
-          <!-- More cards... -->
+        ${state.routines
+          .map(rtn => {
+            return `<div class="habit-card">
+            <div class="card-content">
+              <label class="custom-checkbox">
+                <input type="checkbox" class="check-box" onclick="handleRtnCheckboxChange(this, '${rtn._id}')" name="habits" />
+                <span class="checkmark"></span>
+              </label>
+              ${rtn.name}
+              <div class="menu-icon" onclick="togglePopupMenu('${rtn._id}')" >
+                <!-- Three dots icon or font-awesome icon -->
+                &nbsp;&nbsp;&#8942;
+              </div>
+            </div>
+            <div class="popup-menu" id="popup-menu-${rtn.id}">
+              <ul>
+                <li>
+                  <i id="stats-cat" onclick="viewStatCat('${rtn._id}')" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
+                </li>
+                <li>
+                  <i id="edit-cat" onclick="editCat('${rtn._id}')" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Routine
+                </li>
+                <li id="delete-habit" onclick="deleteCat('${rtn._id}')" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Routine
+                </li>
+              </ul>
+            </div>
+          </div>`;
+          })
+          .join("")}
         </div>
   </div>
 
@@ -82,7 +154,7 @@ export default () => html`
 
 
 
-  <form class="ed_test" id="menu_rtn" method="POST" action="">
+  <form class="menu_rtn" id="menu_rtn" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -109,7 +181,7 @@ export default () => html`
         </select>
         <button type="button" id="addHabitBtn">Add</button>
     </div>
-    <ul id="selectedHabits"></ul>
+    <ul for="selectedHabits" id="selectedHabits" name="selectedHabits" ></ul>
     <!-- <input type="hidden" name="habits" id="habitsInput">
     <button type="submit">Submit Habits</button> -->
     </div>
@@ -119,7 +191,7 @@ export default () => html`
     </div>
     <div class="center">
         <button id="addSavebtn" name="save">Save</button>
-        <button id="button_close" onclick="myFunction">close</button>
+        <button id="button_close" onclick="closeFormRtn">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
@@ -131,7 +203,7 @@ export default () => html`
 
 
 
-  <form class="ed_test" id="menu_habit" method="POST" action="">
+  <form class="menu_habit" id="menu_habit" method="POST" action="">
   <div>
         <div class="input-group">
             <label for="Name">Name<span class="required">*</span></label>
@@ -178,7 +250,7 @@ export default () => html`
     <div class="center">
         <!-- <button id="addSaveRtn" name="save">Save</button> -->
         <input type="submit" name="submit" value="Submit Habit" />
-        <button id="button_close" onclick="myFunction">close</button>
+        <button id="button_close" onclick="closeFormHabit">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
@@ -189,7 +261,7 @@ export default () => html`
 
 
 
-<form class="ed_test" id="menu_cat" method="POST" action="">
+<form class="menu_cat" id="menu_cat" method="POST" action="">
   <div>
   <div class="input-group">
             <label for="Name">Name <span class="required">*</span></label>
@@ -201,7 +273,7 @@ export default () => html`
     </div>
     <div class="center">
         <button id="addSaveCat" name="save">Save</button>
-        <button id="button_close" onclick="myFunction">close</button>
+        <button id="button_close" onclick="closeFormCat">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>

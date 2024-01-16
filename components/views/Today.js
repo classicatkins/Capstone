@@ -1,6 +1,6 @@
 import html from "html-literal";
 
-export default () => html`
+export default state => html`
   <body class="body-today">
     <div class="flex-row">
       <div class="flex-box">
@@ -44,14 +44,15 @@ export default () => html`
             <!-- ... -->
           </div>
           <div class="week-navigation">
-            <button id="prevWeek">Previous Week</button>
-            <button id="nextWeek">Next Week</button>
+            <button id="prevWeek" onclick="moveCalendar(-7)">Previous Week</button>
+            <button id="nextWeek" onclick="moveCalendar(+7)">Next Week</button>
           </div>
         </div>
       </div>
       <div class="flex-box">Alerts</div>
       <div class="flex-box">
         <div class="today-margin">Streaks</div>
+        <br>
         <svg
           viewBox="0 0 16 16"
           version="1.1"
@@ -83,25 +84,31 @@ export default () => html`
           <div class="column-title">Morning Routine</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Catagory</div>
+          <div class="add-label">Add Step</div>
           <button class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">Wake up early</div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Exercise&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Shower&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Eat Breakfast&nbsp&#8202;&#8202;
+            </div>
           </div>
           <!-- More cards... -->
         </div>
@@ -109,43 +116,53 @@ export default () => html`
 
       <!-- Column 2: Habits -->
       <div class="shared-column">
-        <div class="column-banner-today">
+        <div class="column-banner-habits">
           <!-- Banner -->
-          <div class="column-title">Today's Habits</div>
+          <div class="column-title">Habits</div>
         </div>
         <div class="add-container">
           <div class="add-label">Add Habit</div>
-          <button class="circle-button">+</button>
+          <button id="addHabit" class="circle-button">
+            +
+          </button>
         </div>
         <div class="shared-column-cards">
-          <div class="habit-card">
+          <!-- <div class="habit-card">Individual Habit</div> -->
+          ${state.habits
+            .map(habit => {
+              return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
                 <input type="checkbox" class="check-box" name="habits" />
                 <span class="checkmark"></span>
               </label>
-              &nbsp&nbspHabit 3
-              <div class="menu-icon">
+              ${habit.name}
+              <div class="menu-icon" onclick="togglePopupMenu('${habit._id}')" >
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu">
+            <div class="popup-menu" id="popup-menu-${habit.id}">
               <ul>
                 <li>
-                  <i class="fa-solid fa-chart-simple">&nbsp&nbsp</i>View Stats
+                  <i id="stats-cat" onclick="viewStatCat('${habit._id}')" class="fa-solid fa-chart-simple"
+                    >&nbsp&nbsp</i
+                  >View Stats
                 </li>
                 <li>
-                  <i class="fa-solid fa-pen-to-square">&nbsp&nbsp</i>Edit Habit
+                  <i id="edit-cat" onclick="editCat('${habit._id}')" class="fa-solid fa-pen-to-square"
+                    >&nbsp&nbsp</i
+                  >Edit Habit
                 </li>
-                <li class="danger">
-                  <i class="fa-solid fa-trash">&nbsp&nbsp</i>Delete Habit
+                <li id="delete-habit" onclick="deleteCat('${habit._id}')" class="danger">
+                  <i class="fa-solid fa-trash">&nbsp&nbsp</i
+                  >Delete Habit
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="habit-card">Habit</div>
-          <!-- More cards... -->
+          </div>`;
+            })
+            .join("")}
         </div>
       </div>
 
@@ -156,25 +173,31 @@ export default () => html`
           <div class="column-title">Evening Routine</div>
         </div>
         <div class="add-container">
-          <div class="add-label">Add Routine</div>
+          <div class="add-label">Add Step</div>
           <button class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Shower&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Brush Teeth&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&#8202;&#8202;
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">
+              Read&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&#8202;&#8202;
+            </div>
           </div>
           <div class="circle-card">
             <div class="circle"></div>
-            <div class="circle-card-text">Category Item 1</div>
+            <div class="circle-card-text">Go to bed early</div>
           </div>
           <!-- More cards... -->
         </div>
@@ -188,6 +211,60 @@ export default () => html`
       <br />
     </div>
   </body>
+  <form class="menu_habit" id="menu_habit" method="POST" action="">
+  <div>
+        <div class="input-group">
+            <label for="Name">Name<span class="required">*</span></label>
+            <input class="names" type="text" id="name" name="name" required>
+        </div>
+    </div>
+    <div class="flex-row-names-vertical">
+    <div class="input-group">
+    <label>Repeat Days<span class="required">*</span></label>
+    <div class="days">
+      <!-- //to do: field set? -->
+        <input type="checkbox" class="custom-checkbox" id="sunday" name="days" value="Sunday">
+        <label class="custom-checkbox"for="sunday">Sun</label>
+
+        <input type="checkbox" id="monday" name="days" value="Monday">
+        <label for="monday">Mon</label>
+
+        <input type="checkbox" id="tuesday" name="days" value="Tuesday">
+        <label for="tuesday">Tue</label>
+
+        <input type="checkbox" id="wednesday" name="days" value="Wednesday">
+        <label for="wednesday">Wed</label>
+
+        <input type="checkbox" id="thursday" name="days" value="Thursday">
+        <label for="thursday">Thu</label>
+
+        <input type="checkbox" id="friday" name="days" value="Friday">
+        <label for="friday">Fri</label>
+
+        <input type="checkbox" id="saturday" name="days" value="Saturday">
+        <label for="saturday">Sat</label>
+    </div>
+</div>
+
+    <div class="input-group">
+        <label for="reminder">Reminder</label>
+        <input class="names" type="date" id="reminder" name="reminder">
+    </div>
+    </div>
+    <div class="textarea-group">
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes"></textarea>
+    </div>
+    <div class="center">
+        <!-- <button id="addSaveRtn" name="save">Save</button> -->
+        <input type="submit" name="submit" value="Submit Habit" />
+        <button id="button_close" onclick="closeFormHabit">close</button>
+        <!-- <button id="button_clear" onclick="clear">clear</button> -->
+
+    </div>
+      </div>
+</form>
+
 `;
 
 // function updateStreakNumber(newNumber) {
