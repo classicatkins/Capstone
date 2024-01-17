@@ -276,6 +276,20 @@ footer {
   margin-right: 10px; /* Space between the grid and the menu */
 }
 
+.grid-pixela {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; /* Adjust the gap between boxes */
+  margin-right: 10px; /* Space between the grid and the menu */
+}
+
+.grid-all-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; /* Adjust the gap between boxes */
+  margin-right: 10px; /* Space between the grid and the menu */
+}
+
 
 .graph-box {
   background-color: #f0f0f0;

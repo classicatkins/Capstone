@@ -3,7 +3,8 @@ import html from "html-literal";
 export default () => html`
   <body>
     <div class="stats-container">
-      <div class="grid">
+      <div class="grid-pixela"></div>
+      <div class="grid-all-stats">
         <div class="graph-box">
           <div id="graphs">
             <div id="graph-container">
