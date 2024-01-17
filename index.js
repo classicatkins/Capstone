@@ -34,116 +34,116 @@ function updateGreeting() {
   document.querySelector(".hello-display").textContent = greeting + " Melissa!";
 }
 
-const createChart = state => {
-  const labels = ["Health", "Personal", "Work"];
-  const data = [5, 4, 2];
+//const createChart = state => {
+//   const labels = ["Health", "Personal", "Work"];
+//   const data = [5, 4, 2];
 
-  // for (let task of state.tasks) {
-  //   labels.push(task.title);
+//   // for (let task of state.tasks) {
+//   //   labels.push(task.title);
 
-  //   // Accepts seconds input and calculates out 86400s day
-  //   data.push(Math.round((task.time / 86400) * 100));
-  // }
+//   //   // Accepts seconds input and calculates out 86400s day
+//   //   data.push(Math.round((task.time / 86400) * 100));
+//   // }
 
-  // ? When database is implemented, be sure to find a way to populated chartData with data from MongoDB
-  // Tasks Chart
-  const chartData = {
-    labels: labels,
-    data: data
-  };
+//   // ? When database is implemented, be sure to find a way to populated chartData with data from MongoDB
+//   // Tasks Chart
+//   const chartData = {
+//     labels: labels,
+//     data: data
+//   };
 
-  const taskChart = document.querySelector("#task-chart");
-  const ul = document.querySelector("#task-details ul");
+//   const taskChart = document.querySelector("#task-chart");
+//   const ul = document.querySelector("#task-details ul");
 
-  new Chart(taskChart, {
-    type: "doughnut",
-    data: {
-      labels: chartData.labels,
-      datasets: [
-        {
-          label: "Tasks",
-          data: chartData.data
-        }
-      ]
-    },
-    options: {
-      borderWidth: 0,
-      borderRadius: 2,
-      hoverBorderWidth: 5,
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-    }
-  });
+//   new Chart(taskChart, {
+//     type: "doughnut",
+//     data: {
+//       labels: chartData.labels,
+//       datasets: [
+//         {
+//           label: "Tasks",
+//           data: chartData.data
+//         }
+//       ]
+//     },
+//     options: {
+//       borderWidth: 0,
+//       borderRadius: 2,
+//       hoverBorderWidth: 5,
+//       plugins: {
+//         legend: {
+//           display: false
+//         }
+//       }
+//     }
+//   });
 
-  const populateUl = () => {
-    chartData.labels.forEach((l, i) => {
-      let li = document.createElement("li");
-      li.innerHTML = `${l}: <span class='percentage'>${chartData.data[i]}%</span>`;
-      //ul.appendChild(li);
-    });
-  };
+//   const populateUl = () => {
+//     chartData.labels.forEach((l, i) => {
+//       let li = document.createElement("li");
+//       li.innerHTML = `${l}: <span class='percentage'>${chartData.data[i]}%</span>`;
+//       //ul.appendChild(li);
+//     });
+//   };
 
-  populateUl();
+//   populateUl();
 
-  // Graphs Chart
-  const graphData = {
-    labels: labels,
-    datasets: [
-      {
-        // Have the dataset label represent the current week
-        label: "Jan 1st - Jan 7th",
-        data: data,
-        fill: true,
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgb(75, 192, 192)",
-        pointBackgroundColor: "rgb(75, 192, 192)",
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgb(75, 192, 192)"
-      }
-    ]
-  };
+//   // Graphs Chart
+//   const graphData = {
+//     labels: labels,
+//     datasets: [
+//       {
+//         // Have the dataset label represent the current week
+//         label: "Jan 1st - Jan 7th",
+//         data: data,
+//         fill: true,
+//         backgroundColor: "rgba(75, 192, 192, 0.2)",
+//         borderColor: "rgb(75, 192, 192)",
+//         pointBackgroundColor: "rgb(75, 192, 192)",
+//         pointBorderColor: "#fff",
+//         pointHoverBackgroundColor: "#fff",
+//         pointHoverBorderColor: "rgb(75, 192, 192)"
+//       }
+//     ]
+//   };
 
-  const graphChart = document.querySelector("#graph-chart");
+//   const graphChart = document.querySelector("#graph-chart");
 
-  new Chart(graphChart, {
-    type: "radar",
-    data: graphData,
-    options: {
-      // Styling for the radar background
-      scales: {
-        r: {
-          angleLines: {
-            color: "rgba(255, 255, 255, 0.3)"
-          },
-          grid: {
-            color: "rgba(255, 255, 255, 0.3)"
-          },
-          pointLabels: {
-            color: "rgb(255, 255, 255)"
-          },
-          ticks: {
-            color: "rgb(255, 255, 255)",
-            backdropColor: "rgb(0, 0, 0)"
-          }
-        }
-      },
-      elements: {
-        line: {
-          borderWidth: 1
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-    }
-  });
-};
+//   new Chart(graphChart, {
+//     type: "radar",
+//     data: graphData,
+//     options: {
+//       // Styling for the radar background
+//       scales: {
+//         r: {
+//           angleLines: {
+//             color: "rgba(255, 255, 255, 0.3)"
+//           },
+//           grid: {
+//             color: "rgba(255, 255, 255, 0.3)"
+//           },
+//           pointLabels: {
+//             color: "rgb(255, 255, 255)"
+//           },
+//           ticks: {
+//             color: "rgb(255, 255, 255)",
+//             backdropColor: "rgb(0, 0, 0)"
+//           }
+//         }
+//       },
+//       elements: {
+//         line: {
+//           borderWidth: 1
+//         }
+//       },
+//       plugins: {
+//         legend: {
+//           display: false
+//         }
+//       }
+//     }
+//   });
+// };
 
 //line chart
 
@@ -265,7 +265,7 @@ const data = {
   ]
 };
 
-const DATA_COUNT_Pie = 4;
+const DATA_COUNT_Pie = 4; //todo: habits categories
 const NUMBER_CFG_Pie = { count: DATA_COUNT_Pie, min: 0, max: 100 };
 
 const dataPie = {
