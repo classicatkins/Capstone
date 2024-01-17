@@ -21,12 +21,12 @@ export default state => html`
               <label class="custom-checkbox">
               </label>
               ${cat.name}
-              <div class="menu-icon" onclick="togglePopupMenu('${cat._id}')" >
+              <div class="menu-icon" class="menu-icon" data-cat-id="${cat._id}">
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu" id="popup-menu-${cat.id}">
+            <div class="popup-menu" id="popup-menu-${cat._id}" style="display: none;">
               <ul>
                 <li>
                   <i id="stats-cat" onclick="viewStatCat('${cat._id}')" class="fa-solid fa-chart-simple"
@@ -65,6 +65,8 @@ export default state => html`
           <!-- <div class="habit-card">Individual Habit</div> -->
           ${state.habits
             .map(habit => {
+              //todo: add css atribute habit. (existingmethod) to ad display none
+              //set up eventlistener
               return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
@@ -72,12 +74,12 @@ export default state => html`
                 <span class="checkmark"></span>
               </label>
               ${habit.name}
-              <div class="menu-icon" onclick="togglePopupMenu('${habit._id}')" >
+              <div class="menu-icon" id="menu-icon" data-habit-id="${habit._id}">
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu" id="popup-menu-${habit.id}">
+            <div class="popup-menu" id="popup-menu-${habit._id}" style="display: none;">
               <ul>
                 <li>
                   <i id="stats-cat" onclick="viewStatCat('${habit._id}')" class="fa-solid fa-chart-simple"
@@ -121,12 +123,12 @@ export default state => html`
                 <span class="checkmark"></span>
               </label>
               ${rtn.name}
-              <div class="menu-icon" onclick="togglePopupMenu('${rtn._id}')" >
+              <div class="menu-icon" class="menu-icon" data-rtn-id="${rtn._id}">
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu" id="popup-menu-${rtn.id}">
+            <div class="popup-menu" id="popup-menu-${rtn._id}" style="display: none;">
               <ul>
                 <li>
                   <i id="stats-cat" onclick="viewStatCat('${rtn._id}')" class="fa-solid fa-chart-simple"
@@ -290,20 +292,5 @@ export default state => html`
     </div>
       </div>
 </form>
-    <script>
-      function toggleMenu(icon) {
-        const popupMenu = icon.nextElementSibling;
-        popupMenu.classList.toggle("active");
-      }
-
-      document.addEventListener("click", function(event) {
-        if (!event.target.classList.contains("menu-icon")) {
-          const popupMenus = document.querySelectorAll(".popup-menu.active");
-          for (const menu of popupMenus) {
-            menu.classList.remove("active");
-          }
-        }
-      });
-    </script>
   </section>
 `;

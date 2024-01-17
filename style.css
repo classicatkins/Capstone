@@ -230,6 +230,57 @@ footer {
   font-family: 'Quicksand', sans-serif;
 }
 
+/* chat.css */
+body {
+  font-family: Arial, sans-serif;
+}
+.chat-container {
+  width: 80%;
+  margin: 0 auto;
+  height: 500px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.chat-container-text-bar {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#message-form {
+  margin-top: 20px;
+}
+#user-input {
+  width: 80%;
+  padding: 10px;
+  /* //margin-left: 1.5rem; */
+}
+#send-button {
+  margin-left: 1rem;
+  width: 15%;
+  padding: 10px;
+  background-color:  #FF5757;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+}
+.ai-message {
+  text-align: left;
+}
+.user-message {
+  text-align: right;
+}
+
 /* stats.css */
 
 .radio-button {
