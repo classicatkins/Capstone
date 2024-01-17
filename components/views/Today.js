@@ -137,12 +137,12 @@ export default state => html`
                 <span class="checkmark"></span>
               </label>
               ${habit.name}
-              <div class="menu-icon" onclick="togglePopupMenu('${habit._id}')" >
+              <div class="menu-icon" class="menu-icon" data-habit-id="${habit._id}">
                 <!-- Three dots icon or font-awesome icon -->
                 &nbsp;&nbsp;&#8942;
               </div>
             </div>
-            <div class="popup-menu" id="popup-menu-${habit.id}">
+            <div class="popup-menu" id="popup-menu-${habit._id}" style="display: none;">
               <ul>
                 <li>
                   <i id="stats-cat" onclick="viewStatCat('${habit._id}')" class="fa-solid fa-chart-simple"
@@ -266,40 +266,3 @@ export default state => html`
 </form>
 
 `;
-
-// function updateStreakNumber(newNumber) {
-//   document.getElementById("streakNumber").textContent = newNumber;
-// }
-
-// updateStreakNumber(5);
-
-// document.addEventListener("DOMContentLoaded", event => {
-//   setupMenuToggle();
-// });
-
-// function setupMenuToggle() {
-//   const menuIcons = document.querySelectorAll(".menu-icon");
-
-//   // Function to close all menus
-//   function closeAllMenus() {
-//     document.querySelectorAll(".popup-menu").forEach(menu => {
-//       menu.classList.remove("show");
-//     });
-//   }
-
-//   // Toggle menu on icon click
-//   menuIcons.forEach(icon => {
-//     icon.addEventListener("click", function(event) {
-//       closeAllMenus(); // Close all menus
-//       this.nextElementSibling.classList.toggle("show");
-//       event.stopPropagation(); // Prevent click from immediately propagating to document
-//     });
-//   });
-
-//   // Close menu when clicking outside
-//   document.addEventListener("click", function(event) {
-//     if (!event.target.matches(".menu-icon")) {
-//       closeAllMenus();
-//     }
-//   });
-// }

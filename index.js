@@ -789,6 +789,16 @@ function afterRender(state) {
 
   if (state.view === "Today") {
     updateGreeting();
+    document.querySelectorAll(".menu-icon").forEach(icon => {
+      icon.addEventListener("click", function(event) {
+        const habitId = event.currentTarget.getAttribute("data-habit-id");
+        const popupMenu = document.getElementById(`popup-menu-${habitId}`);
+        if (popupMenu) {
+          popupMenu.style.display =
+            popupMenu.style.display === "none" ? "block" : "none";
+        }
+      });
+    });
     document.getElementById("addHabit").addEventListener("click", addHabit);
     // document
     //   .getElementById("delete-habit")
@@ -860,6 +870,38 @@ function afterRender(state) {
   }
 
   if (state.view === "Habits") {
+    document.querySelectorAll(".menu-icon").forEach(icon => {
+      icon.addEventListener("click", function(event) {
+        const catId = event.currentTarget.getAttribute("data-cat-id");
+        const popupMenu = document.getElementById(`popup-menu-${catId}`);
+        if (popupMenu) {
+          popupMenu.style.display =
+            popupMenu.style.display === "none" ? "block" : "none";
+        }
+      });
+    });
+
+    document.querySelectorAll(".menu-icon").forEach(icon => {
+      icon.addEventListener("click", function(event) {
+        const rtnId = event.currentTarget.getAttribute("data-rtn-id");
+        const popupMenu = document.getElementById(`popup-menu-${rtnId}`);
+        if (popupMenu) {
+          popupMenu.style.display =
+            popupMenu.style.display === "none" ? "block" : "none";
+        }
+      });
+    });
+
+    document.querySelectorAll(".menu-icon").forEach(icon => {
+      icon.addEventListener("click", function(event) {
+        const habitId = event.currentTarget.getAttribute("data-habit-id");
+        const popupMenu = document.getElementById(`popup-menu-${habitId}`);
+        if (popupMenu) {
+          popupMenu.style.display =
+            popupMenu.style.display === "none" ? "block" : "none";
+        }
+      });
+    });
     document
       .getElementById("delete-habit")
       .addEventListener("click", deleteHabit);
