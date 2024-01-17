@@ -11,7 +11,7 @@ export default links => html`
       <ul class="nav-left">
         <!-- <img src="${favicon}" alt="Favicon" class="favicon"> -->
         <li class="nav-perpetua">
-          <a href="/Home" title="Home" data-navigo>Perpetua</a>
+          <a href="/Today" title="Today" data-navigo>Perpetua</a>
         </li>
       </ul>
     </div>
@@ -24,6 +24,7 @@ export default links => html`
                     <li><a href="today" class="nav-link">Home</a></li>
                     <li><a href="habits" class="nav-link">Habits</a></li>
                     <li><a href="stats" class="nav-link">Stats</a></li>
+                    <li><a href="chat" class="nav-link">Chat</a></li>
                     <li><a href="contact" class="nav-link">Contact</a></li>
                     <li><a href="about" class="nav-link">About</a></li>
                     <li><a href="settings" class="nav-link">Settings</a></li>
