@@ -62,15 +62,12 @@ export default state => html`
           </button>
         </div>
         <div class="shared-column-cards">
-          <!-- <div class="habit-card">Individual Habit</div> -->
           ${state.habits
             .map(habit => {
-              //todo: add css atribute habit. (existingmethod) to ad display none
-              //set up eventlistener
               return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" onclick="handleHabitCheckboxChange(this, '${habit._id}')" name="habits" />
+                <input type="checkbox" class="check-box" onclick="handleHabitCheckboxChange(this, '${habit._id}', '${habit.dates}', '${habit.name}', '${habit.category}', '${habit.reminder}', '${habit.days}')" name="habits" />
                 <span class="checkmark"></span>
               </label>
               ${habit.name}

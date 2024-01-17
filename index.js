@@ -33,118 +33,6 @@ function updateGreeting() {
 
   document.querySelector(".hello-display").textContent = greeting + " Melissa!";
 }
-
-//const createChart = state => {
-//   const labels = ["Health", "Personal", "Work"];
-//   const data = [5, 4, 2];
-
-//   // for (let task of state.tasks) {
-//   //   labels.push(task.title);
-
-//   //   // Accepts seconds input and calculates out 86400s day
-//   //   data.push(Math.round((task.time / 86400) * 100));
-//   // }
-
-//   // ? When database is implemented, be sure to find a way to populated chartData with data from MongoDB
-//   // Tasks Chart
-//   const chartData = {
-//     labels: labels,
-//     data: data
-//   };
-
-//   const taskChart = document.querySelector("#task-chart");
-//   const ul = document.querySelector("#task-details ul");
-
-//   new Chart(taskChart, {
-//     type: "doughnut",
-//     data: {
-//       labels: chartData.labels,
-//       datasets: [
-//         {
-//           label: "Tasks",
-//           data: chartData.data
-//         }
-//       ]
-//     },
-//     options: {
-//       borderWidth: 0,
-//       borderRadius: 2,
-//       hoverBorderWidth: 5,
-//       plugins: {
-//         legend: {
-//           display: false
-//         }
-//       }
-//     }
-//   });
-
-//   const populateUl = () => {
-//     chartData.labels.forEach((l, i) => {
-//       let li = document.createElement("li");
-//       li.innerHTML = `${l}: <span class='percentage'>${chartData.data[i]}%</span>`;
-//       //ul.appendChild(li);
-//     });
-//   };
-
-//   populateUl();
-
-//   // Graphs Chart
-//   const graphData = {
-//     labels: labels,
-//     datasets: [
-//       {
-//         // Have the dataset label represent the current week
-//         label: "Jan 1st - Jan 7th",
-//         data: data,
-//         fill: true,
-//         backgroundColor: "rgba(75, 192, 192, 0.2)",
-//         borderColor: "rgb(75, 192, 192)",
-//         pointBackgroundColor: "rgb(75, 192, 192)",
-//         pointBorderColor: "#fff",
-//         pointHoverBackgroundColor: "#fff",
-//         pointHoverBorderColor: "rgb(75, 192, 192)"
-//       }
-//     ]
-//   };
-
-//   const graphChart = document.querySelector("#graph-chart");
-
-//   new Chart(graphChart, {
-//     type: "radar",
-//     data: graphData,
-//     options: {
-//       // Styling for the radar background
-//       scales: {
-//         r: {
-//           angleLines: {
-//             color: "rgba(255, 255, 255, 0.3)"
-//           },
-//           grid: {
-//             color: "rgba(255, 255, 255, 0.3)"
-//           },
-//           pointLabels: {
-//             color: "rgb(255, 255, 255)"
-//           },
-//           ticks: {
-//             color: "rgb(255, 255, 255)",
-//             backdropColor: "rgb(0, 0, 0)"
-//           }
-//         }
-//       },
-//       elements: {
-//         line: {
-//           borderWidth: 1
-//         }
-//       },
-//       plugins: {
-//         legend: {
-//           display: false
-//         }
-//       }
-//     }
-//   });
-// };
-
 //line chart
 
 const Utils = {
@@ -499,11 +387,33 @@ function routineUnchecked(rtnId) {
     });
 }
 
-window.handleHabitCheckboxChange = function(checkbox, habitId) {
+window.handleHabitCheckboxChange = function(
+  checkbox,
+  habitId,
+  habitDates,
+  habitName,
+  habitCategory,
+  habitReminder,
+  habitDays
+) {
   if (checkbox.checked) {
-    habitChecked(habitId);
+    habitChecked(
+      habitId,
+      habitDates,
+      habitName,
+      habitCategory,
+      habitReminder,
+      habitDays
+    );
   } else {
-    habitUnchecked(habitId);
+    habitUnchecked(
+      habitId,
+      habitDates,
+      habitName,
+      habitCategory,
+      habitReminder,
+      habitDays
+    );
   }
 };
 
@@ -515,12 +425,31 @@ window.handleRtnCheckboxChange = function(checkbox, routineId) {
   }
 };
 
-async function habitChecked(habitId) {
+async function habitChecked(
+  habitId,
+  habitDates,
+  habitName,
+  habitCategory,
+  habitReminder,
+  habitDays
+) {
+  console.log(habitDates);
+  if (!Array.isArray(habitDates)) {
+    habitDates = habitDates ? [habitDates] : [];
+  }
+  // Add the current date to habitDates array
+  habitDates.push(new Date().toISOString());
+
   // Prepare the update data
   const updateData = {
-    $inc: { tally: 1 }, // Increment the tally by 1
-    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
+    name: habitName,
+    category: habitCategory,
+    days: habitDays,
+    dates: habitDates,
+    reminder: habitReminder
   };
+
+  console.log(updateData);
 
   await axios
     .put(
@@ -537,8 +466,36 @@ async function habitChecked(habitId) {
       console.error("Error creating user:", error);
     });
 
-  await axios
-    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
+  // await axios
+  //   .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
+  //   .then(response => {
+  //     console.log(
+  //       "Category updated with new tally and recorded date:",
+  //       response.data
+  //     );
+  //     // TODO: Handle successful update, e.g., update the UI or state
+  //   })
+  //   .catch(error => {
+  //     console.error("Error updating category:", error);
+  //     // TODO: Handle errors here, e.g., show a notification
+  //   });
+
+  console.log({
+    name: updateData.name,
+    category: updateData.category,
+    days: updateData.days,
+    reminder: updateData.reminder,
+    dates: updateData.dates
+  });
+
+  axios
+    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, {
+      name: updateData.name,
+      category: updateData.category,
+      days: updateData.days,
+      reminder: updateData.reminder,
+      dates: updateData.dates
+    })
     .then(response => {
       console.log(
         "Category updated with new tally and recorded date:",
@@ -552,12 +509,12 @@ async function habitChecked(habitId) {
     });
 }
 
-async function habitUnchecked(habitId) {
-  // Prepare the update data
-  const updateData = {
-    $inc: { tally: 1 }, // Increment the tally by 1
-    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
-  };
+async function habitUnchecked(habitId, habitDates) {
+  if (!Array.isArray(habitDates)) {
+    habitDates = [];
+  }
+  // Remove the last date from the habitDates array
+  habitDates.pop();
 
   await axios
     .put(
@@ -589,23 +546,23 @@ async function habitUnchecked(habitId) {
     });
 }
 
-window.closeFormRtn = function() {
-  alert("here");
-  var x = document.getElementById("menu_rtn");
-  x.style.display = "none";
-};
+// window.closeFormRtn = function() {
+//   alert("here");
+//   var x = document.getElementById("menu_rtn");
+//   x.style.display = "none";
+// };
 
-window.closeFormHabit = function() {
-  alert("here");
-  var x = document.getElementById("menu_habit");
-  x.style.display = "none";
-};
+// window.closeFormHabit = function() {
+//   alert("here");
+//   var x = document.getElementById("menu_habit");
+//   x.style.display = "none";
+// };
 
-window.closeFormCat = function() {
-  alert("here");
-  var x = document.getElementById("menu_cat");
-  x.style.display = "none";
-};
+// window.closeFormCat = function() {
+//   alert("here");
+//   var x = document.getElementById("menu_cat");
+//   x.style.display = "none";
+// };
 
 window.menuCat = function() {
   var x = document.getElementById("menu_cat");
@@ -774,7 +731,6 @@ function afterRender(state) {
   }
 
   if (state.view === "Stats") {
-    //createChart(state);
     var ctx = document.getElementById("graph-chart-line").getContext("2d");
     new Chart(ctx, config);
     var ctxPie = document.getElementById("graph-chart-pie").getContext("2d");
@@ -840,32 +796,6 @@ function afterRender(state) {
     //   setupMenuToggle();
     // });
 
-    // function setupMenuToggle() {
-    //   const menuIcons = document.querySelectorAll(".menu-icon");
-
-    //   // Function to close all menus
-    //   function closeAllMenus() {
-    //     document.querySelectorAll(".popup-menu").forEach(menu => {
-    //       menu.classList.remove("show");
-    //     });
-    //   }
-
-    //   // Toggle menu on icon click
-    //   menuIcons.forEach(icon => {
-    //     icon.addEventListener("click", function(event) {
-    //       closeAllMenus(); // Close all menus
-    //       this.nextElementSibling.classList.toggle("show");
-    //       event.stopPropagation(); // Prevent click from immediately propagating to document
-    //     });
-    //   });
-
-    //   // Close menu when clicking outside
-    //   document.addEventListener("click", function(event) {
-    //     if (!event.target.matches(".menu-icon")) {
-    //       closeAllMenus();
-    //     }
-    //   });
-
     updateCalendar();
   }
 
@@ -915,7 +845,6 @@ function afterRender(state) {
           li.setAttribute("data-value", selectedHabit);
           document.getElementById("selectedHabits").appendChild(li);
 
-          // Optional: Remove the selected habit from the dropdown
           document.getElementById("habitSelect").value = "";
         }
       });
@@ -1054,47 +983,10 @@ function afterRender(state) {
       .addEventListener("click", () => myFunction());
   }
 
-  // if (state.view === "Stats") {
-  //   document.querySelectorAll(".circle-card").forEach(card => {
-  //     card.addEventListener("click", () => {
-  //       card.classList.toggle("active");
-  //     });
-  //   });
-  // }
-
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector(".dropdown-content").classList.toggle("show");
   });
-
-  // setupPixelaEventListeners();
 }
-
-// function setupPixelaEventListeners() {
-//   const createUserButton = document.getElementById("createUserButton");
-//   if (createUserButton) {
-//     createUserButton.addEventListener("click", () => {
-//       createUser("classicatkins", "token"); // Replace 'username' and 'token' with actual values
-//     });
-//   }
-// }
-
-// function createUser(username, token) {
-//   console.log("Creating user:", username, token);
-//   // Implement the Axios POST request to create a user
-//   axios
-//     .post("https://pixe.la/v1/users", {
-//       token: token,
-//       username: username,
-//       agreeTermsOfService: "yes",
-//       notMinor: "yes"
-//     })
-//     .then(response => {
-//       console.log("User creation response:", response.data);
-//     })
-//     .catch(error => {
-//       console.error("Error creating user:", error);
-//     });
-// }
 
 router.hooks({
   before: async (done, params) => {
