@@ -276,6 +276,20 @@ footer {
   margin-right: 10px; /* Space between the grid and the menu */
 }
 
+.grid-pixela {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; /* Adjust the gap between boxes */
+  margin-right: 10px; /* Space between the grid and the menu */
+}
+
+.grid-all-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; /* Adjust the gap between boxes */
+  margin-right: 10px; /* Space between the grid and the menu */
+}
+
 
 .graph-box {
   background-color: #f0f0f0;
@@ -494,16 +508,16 @@ width: 15px;
 }
 
 .menu_rtn {
-  width: 700px;
-  height: 470px;
+  width: 70vw;
+  max-height: 60vh;
   position: fixed;
   display: none;
   background-color: rgba(255, 255, 255);
-  top: 20%;
-  left: 25%;
-  margin-top: -50px;
-  margin-left: -100px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 10px;
+  overflow-y: auto;
   }
 
   @media (max-width: 800px) {
@@ -513,6 +527,7 @@ width: 15px;
       left: 5%;
       margin-left: 0;
       margin-top: 10%;
+      overflow: auto;
     }
     .menu_cat {
       width: 90%;
@@ -520,6 +535,7 @@ width: 15px;
       left: 5%;
       margin-left: 0;
       margin-top: 10%;
+      overflow: auto;
     }
     .menu_habit {
       width: 90%;
@@ -527,34 +543,35 @@ width: 15px;
       left: 5%;
       margin-left: 0;
       margin-top: 10%;
+      overflow: auto;
     }
   }
 
 
   .menu_cat {
-    width:700px;
-    height:470px;
+    width: 70vw;
+    max-height: 60vh;
     position: fixed;
-    display:none;
+    display: none;
     background-color: rgba(255, 255, 255);
-    top: 20%;
-    left: 25%;
-    margin-top: -50px;
-    margin-left: -100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 10px;
+    overflow-y: auto;
     }
 
 .menu_habit {
-  width:700px;
-  height:470px;
+  width: 70vw;
+  max-height: 60vh;
   position: fixed;
-  display:none;
+  display: none;
   background-color: rgba(255, 255, 255);
-  top: 20%;
-  left: 25%;
-  margin-top: -50px;
-  margin-left: -100px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 10px;
+  overflow-y: auto;
   }
 
 .column-banner-habits {

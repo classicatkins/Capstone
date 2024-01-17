@@ -1,5 +1,6 @@
 export { default as About } from "./About";
 export { default as Home } from "./Home";
+export { default as Chat } from "./Chat";
 export { default as Contact } from "./Contact";
 export { default as Habits } from "./Habits";
 export { default as Settings } from "./Settings";

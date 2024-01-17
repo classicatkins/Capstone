@@ -6,6 +6,11 @@ const habitSchema = new mongoose.Schema({
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
+  category: {
+    type: String,
+    required: true,
+    validate: /^[A-Za-z0-9 ]*$/
+  },
   days: {
     type: [String],
     required: true,

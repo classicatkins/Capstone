@@ -3,7 +3,17 @@ import html from "html-literal";
 export default () => html`
   <body>
     <div class="stats-container">
-      <div class="grid">
+      <div class="grid-pixela">
+        <div id="graphs-container-pixela">
+          <!-- Graphs will be displayed here -->
+          <h1>My Pixela Habits Graph</h1>
+          <img
+            src="https://pixe.la/v1/users/matkins/graphs/all-habits"
+            alt="Pixela Habits Graph"
+          />
+        </div>
+      </div>
+      <div class="grid-all-stats">
         <div class="graph-box">
           <div id="graphs">
             <div id="graph-container">
@@ -100,21 +110,6 @@ export default () => html`
                 />
                 <span class="radio-mark-stat"></span> </label
               >&nbsp&nbspBar Chart
-            </li>
-          </ul>
-        </div>
-        <div class="header-container">
-          <h3>AI Communication</h3>
-          <ul>
-            <li>
-              <label class="custom-radio">
-                <input
-                  type="radio"
-                  class="radio-button"
-                  name="comparisonOption"
-                />
-                <span class="radio-mark-stat"></span> </label
-              >&nbsp&nbspQ & A
             </li>
           </ul>
         </div>

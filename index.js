@@ -515,14 +515,29 @@ window.handleRtnCheckboxChange = function(checkbox, routineId) {
   }
 };
 
-function habitChecked(habitId) {
+async function habitChecked(habitId) {
   // Prepare the update data
   const updateData = {
     $inc: { tally: 1 }, // Increment the tally by 1
     $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
   };
 
-  axios
+  await axios
+    .put(
+      "https://pixe.la/v1/users/matkins/graphs/all-habits/increment",
+      {},
+      {
+        headers: { "X-USER-TOKEN": 10251025 }
+      }
+    )
+    .then(response => {
+      console.log("User creation response:", response.data);
+    })
+    .catch(error => {
+      console.error("Error creating user:", error);
+    });
+
+  await axios
     .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
     .then(response => {
       console.log(
@@ -537,18 +552,33 @@ function habitChecked(habitId) {
     });
 }
 
-function habitUnchecked(habitId) {
+async function habitUnchecked(habitId) {
   // Prepare the update data
   const updateData = {
     $inc: { tally: 1 }, // Increment the tally by 1
     $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
   };
 
-  axios
+  await axios
+    .put(
+      "https://pixe.la/v1/users/matkins/graphs/all-habits/decrement",
+      {},
+      {
+        headers: { "X-USER-TOKEN": 10251025 }
+      }
+    )
+    .then(response => {
+      console.log("User creation response:", response.data);
+    })
+    .catch(error => {
+      console.error("Error creating user:", error);
+    });
+
+  await axios
     .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
     .then(response => {
       console.log(
-        "Category updated with new tally and recorded date:",
+        "Habit updated with new tally and recorded date:",
         response.data
       );
       // TODO: Handle successful update, e.g., update the UI or state

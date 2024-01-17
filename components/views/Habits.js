@@ -210,6 +210,17 @@ export default state => html`
             <input class="names" type="text" id="name" name="name" required>
         </div>
     </div>
+    <!-- Dropdown Menu -->
+  <div class="input-group">
+    <label for="category">Category<span class="required">*</span></label>
+    <select class="names" id="category" name="category" required>
+      <option value="">--Select a Category--</option>
+      <option value="type1">Health</option>
+      <option value="type2">Personal</option>
+      <option value="type3">Work</option>
+      <option value="type3">Social</option>
+    </select>
+  </div>
     <div class="flex-row-names-vertical">
     <div class="input-group">
     <label>Repeat Days<span class="required">*</span></label>
