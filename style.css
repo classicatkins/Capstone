@@ -352,10 +352,27 @@ body {
 }
 
 .menu-box {
-  flex-grow: 1;
   background-color: #e7e7e7;
   border-radius: 10px;
-  padding: 20px;
+  flex-grow: 1;
+  padding: .5rem 3rem;
+}
+
+.radio-group-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
+  gap: 1rem; /* Space between grid items */
+}
+
+.radio-group {
+  /* Styles for each group, if needed */
+}
+
+/* Media query for mobile view */
+@media (max-width: 600px) {
+  .radio-group-container {
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+  }
 }
 
 .menu-box h3 {

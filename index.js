@@ -1011,10 +1011,10 @@ router.hooks({
     switch (view) {
       case "Home":
         // Add any specific logic for the Home view
-        axios
+        await axios
           .get(`${process.env.PERPETUA_API_URL}/habits?days=${day}`)
           .then(response => {
-            store.Habits.habits = response.data;
+            store.Home.habits = response.data;
           })
           .catch(error => {
             console.log("It puked", error);
