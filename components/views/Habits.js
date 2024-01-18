@@ -67,8 +67,12 @@ export default state => html`
               return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
+<<<<<<< HEAD
               <input type="checkbox" class="check-box" id="habitCheckbox-${habit._id}"  data-habit-id="'${habit._id}'" data-habit-dates="'${habit.dates}'" data-habit-name="'${habit.name}'" data-habit-category="'${habit.category}'" data-habit-reminder="'${habit.reminder}'" data-habit-days="'${habit.days}'" name="habits">
 
+=======
+                <input type="checkbox" class="check-box" onclick="handleHabitCheckboxChange(this, '${habit._id}', '${habit.dates}', '${habit.name}', '${habit.category}', '${habit.reminder}', '${habit.days}')" name="habits" />
+>>>>>>> 7f50eaaedd0727570c2f7379e53f9f6dfd66fe68
                 <span class="checkmark"></span>
               </label>
               ${habit.name}

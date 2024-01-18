@@ -488,7 +488,6 @@ async function habitChecked(
   }
   // Add the current date to habitDates array
   habitDates.push(new Date().toISOString());
-
   // Prepare the update data
   const updateData = {
     name: habitName,
@@ -746,9 +745,7 @@ function afterRender(state) {
       });
     });
     document.getElementById("addHabit").addEventListener("click", addHabit);
-    // document
-    //   .getElementById("delete-habit")
-    //   .addEventListener("click", deleteHabit);
+
     document
       .getElementById("today")
       .addEventListener("click", () =>
