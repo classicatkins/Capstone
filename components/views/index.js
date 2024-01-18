@@ -5,5 +5,5 @@ export { default as Contact } from "./Contact";
 export { default as Habits } from "./Habits";
 export { default as Settings } from "./Settings";
 export { default as Stats } from "./Stats";
-export { default as Today } from "./Today";
+//export { default as Today } from "./Today";
 export { default as Viewnotfound } from "../Viewnotfound";

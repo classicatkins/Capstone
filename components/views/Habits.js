@@ -11,7 +11,7 @@ export default state => html`
         </div>
         <div class="add-container">
           <div class="add-label">Add Categories</div>
-          <button id="addCat" onclick="menuCat" class="circle-button">+</button>
+          <button id="addCat" class="circle-button">+</button>
         </div>
         <div class="shared-column-cards">
           ${state.categories
@@ -62,15 +62,13 @@ export default state => html`
           </button>
         </div>
         <div class="shared-column-cards">
-          <!-- <div class="habit-card">Individual Habit</div> -->
           ${state.habits
             .map(habit => {
-              //todo: add css atribute habit. (existingmethod) to ad display none
-              //set up eventlistener
               return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" onclick="handleHabitCheckboxChange(this, '${habit._id}')" name="habits" />
+              <input type="checkbox" class="check-box" id="habitCheckbox-${habit._id}"  data-habit-id="'${habit._id}'" data-habit-dates="'${habit.dates}'" data-habit-name="'${habit.name}'" data-habit-category="'${habit.category}'" data-habit-reminder="'${habit.reminder}'" data-habit-days="'${habit.days}'" name="habits">
+
                 <span class="checkmark"></span>
               </label>
               ${habit.name}
@@ -119,7 +117,7 @@ export default state => html`
             return `<div class="habit-card">
             <div class="card-content">
               <label class="custom-checkbox">
-                <input type="checkbox" class="check-box" onclick="handleRtnCheckboxChange(this, '${rtn._id}')" name="habits" />
+              <input type="checkbox" id="checkbox-${rtn._id}" class="check-box" data-routine-id="${rtn._id}" name="habits" />
                 <span class="checkmark"></span>
               </label>
               ${rtn.name}
@@ -263,7 +261,7 @@ export default state => html`
     <div class="center">
         <!-- <button id="addSaveRtn" name="save">Save</button> -->
         <input type="submit" name="submit" value="Submit Habit" />
-        <button id="button_close" onclick="closeFormHabit">close</button>
+        <button id="button_close">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
@@ -286,7 +284,7 @@ export default state => html`
     </div>
     <div class="center">
         <button id="addSaveCat" name="save">Save</button>
-        <button id="button_close" onclick="closeFormCat">close</button>
+        <button id="button_close">close</button>
         <!-- <button id="button_clear" onclick="clear">clear</button> -->
 
     </div>
