@@ -18,6 +18,25 @@ function render(state = store.Home) {
   afterRender(state);
 }
 
+function attachCheckboxListeners(state) {
+  state.habits.forEach(habit => {
+    const checkbox = document.getElementById(`habitCheckbox-${habit._id}`);
+    if (checkbox) {
+      checkbox.addEventListener("change", function() {
+        handleHabitCheckboxChange(
+          this,
+          habit._id,
+          habit.dates,
+          habit.name,
+          habit.category,
+          habit.reminder,
+          habit.days
+        );
+      });
+    }
+  });
+}
+
 function updateGreeting() {
   const now = new Date();
   const hours = now.getHours();
@@ -33,118 +52,6 @@ function updateGreeting() {
 
   document.querySelector(".hello-display").textContent = greeting + " Melissa!";
 }
-
-//const createChart = state => {
-//   const labels = ["Health", "Personal", "Work"];
-//   const data = [5, 4, 2];
-
-//   // for (let task of state.tasks) {
-//   //   labels.push(task.title);
-
-//   //   // Accepts seconds input and calculates out 86400s day
-//   //   data.push(Math.round((task.time / 86400) * 100));
-//   // }
-
-//   // ? When database is implemented, be sure to find a way to populated chartData with data from MongoDB
-//   // Tasks Chart
-//   const chartData = {
-//     labels: labels,
-//     data: data
-//   };
-
-//   const taskChart = document.querySelector("#task-chart");
-//   const ul = document.querySelector("#task-details ul");
-
-//   new Chart(taskChart, {
-//     type: "doughnut",
-//     data: {
-//       labels: chartData.labels,
-//       datasets: [
-//         {
-//           label: "Tasks",
-//           data: chartData.data
-//         }
-//       ]
-//     },
-//     options: {
-//       borderWidth: 0,
-//       borderRadius: 2,
-//       hoverBorderWidth: 5,
-//       plugins: {
-//         legend: {
-//           display: false
-//         }
-//       }
-//     }
-//   });
-
-//   const populateUl = () => {
-//     chartData.labels.forEach((l, i) => {
-//       let li = document.createElement("li");
-//       li.innerHTML = `${l}: <span class='percentage'>${chartData.data[i]}%</span>`;
-//       //ul.appendChild(li);
-//     });
-//   };
-
-//   populateUl();
-
-//   // Graphs Chart
-//   const graphData = {
-//     labels: labels,
-//     datasets: [
-//       {
-//         // Have the dataset label represent the current week
-//         label: "Jan 1st - Jan 7th",
-//         data: data,
-//         fill: true,
-//         backgroundColor: "rgba(75, 192, 192, 0.2)",
-//         borderColor: "rgb(75, 192, 192)",
-//         pointBackgroundColor: "rgb(75, 192, 192)",
-//         pointBorderColor: "#fff",
-//         pointHoverBackgroundColor: "#fff",
-//         pointHoverBorderColor: "rgb(75, 192, 192)"
-//       }
-//     ]
-//   };
-
-//   const graphChart = document.querySelector("#graph-chart");
-
-//   new Chart(graphChart, {
-//     type: "radar",
-//     data: graphData,
-//     options: {
-//       // Styling for the radar background
-//       scales: {
-//         r: {
-//           angleLines: {
-//             color: "rgba(255, 255, 255, 0.3)"
-//           },
-//           grid: {
-//             color: "rgba(255, 255, 255, 0.3)"
-//           },
-//           pointLabels: {
-//             color: "rgb(255, 255, 255)"
-//           },
-//           ticks: {
-//             color: "rgb(255, 255, 255)",
-//             backdropColor: "rgb(0, 0, 0)"
-//           }
-//         }
-//       },
-//       elements: {
-//         line: {
-//           borderWidth: 1
-//         }
-//       },
-//       plugins: {
-//         legend: {
-//           display: false
-//         }
-//       }
-//     }
-//   });
-// };
-
 //line chart
 
 const Utils = {
@@ -499,28 +406,98 @@ function routineUnchecked(rtnId) {
     });
 }
 
-window.handleHabitCheckboxChange = function(checkbox, habitId) {
-  if (checkbox.checked) {
-    habitChecked(habitId);
-  } else {
-    habitUnchecked(habitId);
-  }
-};
+function handleHabitCheckboxChange(checkbox) {
+  // Extract all necessary data attributes from the checkbox
+  const habitId = checkbox.dataset.habitId;
+  const habitDates = checkbox.dataset.habitDates; // make sure to parse or process this as needed
+  const habitName = checkbox.dataset.habitName;
+  const habitCategory = checkbox.dataset.habitCategory;
+  const habitReminder = checkbox.dataset.habitReminder;
+  const habitDays = checkbox.dataset.habitDays; // make sure to parse or process this as needed
 
-window.handleRtnCheckboxChange = function(checkbox, routineId) {
+  if (checkbox.checked) {
+    habitChecked(
+      habitId,
+      habitDates,
+      habitName,
+      habitCategory,
+      habitReminder,
+      habitDays
+    );
+  } else {
+    habitUnchecked(
+      habitId,
+      habitDates,
+      habitName,
+      habitCategory,
+      habitReminder,
+      habitDays
+    );
+  }
+}
+
+// window.handleHabitCheckboxChange = function(
+//   checkbox,
+//   habitId,
+//   habitDates,
+//   habitName,
+//   habitCategory,
+//   habitReminder,
+//   habitDays
+// ) {
+//   if (checkbox.checked) {
+//     habitChecked(
+//       habitId,
+//       habitDates,
+//       habitName,
+//       habitCategory,
+//       habitReminder,
+//       habitDays
+//     );
+//   } else {
+//     habitUnchecked(
+//       habitId,
+//       habitDates,
+//       habitName,
+//       habitCategory,
+//       habitReminder,
+//       habitDays
+//     );
+//   }
+// };
+
+function handleRtnCheckboxChange(checkbox, routineId) {
   if (checkbox.checked) {
     routineChecked(routineId);
   } else {
     routineUnchecked(routineId);
   }
-};
+}
 
-async function habitChecked(habitId) {
+async function habitChecked(
+  habitId,
+  habitDates,
+  habitName,
+  habitCategory,
+  habitReminder,
+  habitDays
+) {
+  console.log(habitDates);
+  if (!Array.isArray(habitDates)) {
+    habitDates = habitDates ? [habitDates] : [];
+  }
+  // Add the current date to habitDates array
+  habitDates.push(new Date().toISOString());
   // Prepare the update data
   const updateData = {
-    $inc: { tally: 1 }, // Increment the tally by 1
-    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
+    name: habitName,
+    category: habitCategory,
+    days: habitDays,
+    dates: habitDates,
+    reminder: habitReminder
   };
+
+  console.log(updateData);
 
   await axios
     .put(
@@ -537,8 +514,36 @@ async function habitChecked(habitId) {
       console.error("Error creating user:", error);
     });
 
-  await axios
-    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
+  // await axios
+  //   .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
+  //   .then(response => {
+  //     console.log(
+  //       "Category updated with new tally and recorded date:",
+  //       response.data
+  //     );
+  //     // TODO: Handle successful update, e.g., update the UI or state
+  //   })
+  //   .catch(error => {
+  //     console.error("Error updating category:", error);
+  //     // TODO: Handle errors here, e.g., show a notification
+  //   });
+
+  console.log({
+    name: updateData.name,
+    category: updateData.category,
+    days: updateData.days,
+    reminder: updateData.reminder,
+    dates: updateData.dates
+  });
+
+  axios
+    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, {
+      name: updateData.name,
+      category: updateData.category,
+      days: updateData.days,
+      reminder: updateData.reminder,
+      dates: updateData.dates
+    })
     .then(response => {
       console.log(
         "Category updated with new tally and recorded date:",
@@ -552,12 +557,12 @@ async function habitChecked(habitId) {
     });
 }
 
-async function habitUnchecked(habitId) {
-  // Prepare the update data
-  const updateData = {
-    $inc: { tally: 1 }, // Increment the tally by 1
-    $push: { recordedDates: new Date().toISOString() } // Push the current date to recordedDates array
-  };
+async function habitUnchecked(habitId, habitDates) {
+  if (!Array.isArray(habitDates)) {
+    habitDates = [];
+  }
+  // Remove the last date from the habitDates array
+  habitDates.pop();
 
   await axios
     .put(
@@ -589,32 +594,14 @@ async function habitUnchecked(habitId) {
     });
 }
 
-window.closeFormRtn = function() {
-  alert("here");
-  var x = document.getElementById("menu_rtn");
-  x.style.display = "none";
-};
-
-window.closeFormHabit = function() {
-  alert("here");
-  var x = document.getElementById("menu_habit");
-  x.style.display = "none";
-};
-
-window.closeFormCat = function() {
-  alert("here");
-  var x = document.getElementById("menu_cat");
-  x.style.display = "none";
-};
-
-window.menuCat = function() {
+function menuCat() {
   var x = document.getElementById("menu_cat");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
     x.style.display = "none";
   }
-};
+}
 
 function menuRtn() {
   var x = document.getElementById("menu_rtn");
@@ -625,12 +612,12 @@ function menuRtn() {
   }
 }
 
-window.moveCalendar = function(days) {
+function moveCalendar(days) {
   console.log("Before change:", currentDate);
   currentDate.setDate(currentDate.getDate() + days);
   console.log("After change:", currentDate);
   updateCalendar();
-};
+}
 
 // let boldedDate = null;
 
@@ -640,17 +627,15 @@ boldedDate.setHours(0, 0, 0, 0);
 
 function updateCalendar() {
   const startOfWeek = getStartOfWeek(currentDate);
-  console.log("Start of Week:", startOfWeek);
 
   const options = { month: "long" };
   const month = startOfWeek.toLocaleDateString("en-US", options);
-  console.log("Month:", month);
 
   const monthDisplay = document.querySelector(".month-display");
   if (monthDisplay) {
     monthDisplay.textContent = month;
   } else {
-    console.error("Month display element not found");
+    //console.error("Month display element not found");
   }
 
   const days = document.querySelectorAll(".week-display .day .date");
@@ -672,7 +657,7 @@ function updateCalendar() {
       const selectedDayOfWeek = boldedDate.toLocaleString("en-us", {
         weekday: "long"
       });
-      router.navigate(`/Today?${selectedDayOfWeek}`);
+      router.navigate(`/Home?${selectedDayOfWeek}`);
     });
   });
 
@@ -720,61 +705,33 @@ function alertShow() {
   alert("here");
 }
 
-window.togglePopupMenu = function(catId) {
-  const popupMenuId = `popup-menu-${catId}`;
-  const popupMenu = document.getElementById(popupMenuId);
+function afterRender(state) {
+  if (state.view === "Stats") {
+    var compareStatsRadio = document.getElementById("compareStatsRadio");
+    var allHabitsRadio = document.getElementById("allHabitsRadio");
 
-  // Debugging log
-  console.log(
-    "Toggling popup menu for ID:",
-    popupMenuId,
-    "; Found element:",
-    popupMenu
-  );
+    var allStatsDiv = document.getElementById("allStats");
+    var pixelaGraphsDiv = document.getElementById("pixelaGraphs");
 
-  if (popupMenu) {
-    // Close all open menus
-    document.querySelectorAll(".popup-menu").forEach(menu => {
-      if (menu.id !== popupMenuId) {
-        menu.style.display = "none";
+    compareStatsRadio.addEventListener("change", function() {
+      if (this.checked) {
+        allStatsDiv.style.display = "block";
+        pixelaGraphsDiv.style.display = "none";
       }
     });
 
-    // Toggle the clicked category's menu
-    popupMenu.style.display =
-      popupMenu.style.display === "block" ? "none" : "block";
-  } else {
-    console.error("Popup menu element not found:", popupMenuId);
-  }
-};
+    if (document.getElementById("compareStatsRadio").checked) {
+      allStatsDiv.style.display = "block";
+      pixelaGraphsDiv.style.display = "none";
+    }
 
-window.deleteCat = function(catId) {
-  // Confirm before delete
-  // if (!confirm("Are you sure you want to delete this category?")) {
-  //   return;
-  // }
-
-  axios
-    .delete(`${process.env.PERPETUA_API_URL}/categories/${catId}`)
-    .then(response => {
-      console.log("Category deleted:", response.data);
-      // TODO: Handle successful deletion, e.g., update the UI or state
-    })
-    .catch(error => {
-      console.error("Error deleting category:", error);
-      // TODO: Handle errors here, e.g., show a notification
+    allHabitsRadio.addEventListener("change", function() {
+      if (this.checked) {
+        allStatsDiv.style.display = "none";
+        pixelaGraphsDiv.style.display = "block";
+      }
     });
-};
 
-function afterRender(state) {
-  if (state.view === "Home") {
-    document
-      .getElementById("deletePixelButton")
-      .addEventListener("click", () => alertShow("Delete Pixel clicked"));
-  }
-
-  if (state.view === "Stats") {
-    //createChart(state);
     var ctx = document.getElementById("graph-chart-line").getContext("2d");
     new Chart(ctx, config);
     var ctxPie = document.getElementById("graph-chart-pie").getContext("2d");
@@ -787,8 +744,21 @@ function afterRender(state) {
     new Chart(ctxRadar, configRadar);
   }
 
-  if (state.view === "Today") {
+  if (state.view === "Home") {
     updateGreeting();
+    var prevWeekButton = document.getElementById("prevWeek");
+    if (prevWeekButton) {
+      prevWeekButton.addEventListener("click", function() {
+        moveCalendar(-7);
+      });
+    }
+
+    var nextWeekButton = document.getElementById("nextWeek");
+    if (nextWeekButton) {
+      nextWeekButton.addEventListener("click", function() {
+        moveCalendar(7);
+      });
+    }
     document.querySelectorAll(".menu-icon").forEach(icon => {
       icon.addEventListener("click", function(event) {
         const habitId = event.currentTarget.getAttribute("data-habit-id");
@@ -800,9 +770,7 @@ function afterRender(state) {
       });
     });
     document.getElementById("addHabit").addEventListener("click", addHabit);
-    // document
-    //   .getElementById("delete-habit")
-    //   .addEventListener("click", deleteHabit);
+
     document
       .getElementById("today")
       .addEventListener("click", () =>
@@ -813,63 +781,29 @@ function afterRender(state) {
       card.addEventListener("click", () => {
         card.classList.toggle("active");
       });
-
-      // document.getElementById("prevWeek").addEventListener("click", function() {
-      //   currentDate.setDate(currentDate.getDate() - 1);
-      //   updateCalendar();
-      // });
-
-      // document.getElementById("nextWeek").addEventListener("click", function() {
-      //   currentDate.setDate(currentDate.getDate() + 1);
-      //   updateCalendar();
-      // });
-
-      // document.getElementById("prevWeek").addEventListener("click", function() {
-      //   alert("here");
-      //   currentDate.setDate(currentDate.getDate() - 7); // Move back by a week
-      //   updateCalendar();
-      // });
-
-      // document.getElementById("nextWeek").addEventListener("click", function() {
-      //   currentDate.setDate(currentDate.getDate() + 7); // Move forward by a week
-      //   updateCalendar();
-      // });
     });
-
-    // document.addEventListener("DOMContentLoaded", event => {
-    //   setupMenuToggle();
-    // });
-
-    // function setupMenuToggle() {
-    //   const menuIcons = document.querySelectorAll(".menu-icon");
-
-    //   // Function to close all menus
-    //   function closeAllMenus() {
-    //     document.querySelectorAll(".popup-menu").forEach(menu => {
-    //       menu.classList.remove("show");
-    //     });
-    //   }
-
-    //   // Toggle menu on icon click
-    //   menuIcons.forEach(icon => {
-    //     icon.addEventListener("click", function(event) {
-    //       closeAllMenus(); // Close all menus
-    //       this.nextElementSibling.classList.toggle("show");
-    //       event.stopPropagation(); // Prevent click from immediately propagating to document
-    //     });
-    //   });
-
-    //   // Close menu when clicking outside
-    //   document.addEventListener("click", function(event) {
-    //     if (!event.target.matches(".menu-icon")) {
-    //       closeAllMenus();
-    //     }
-    //   });
 
     updateCalendar();
   }
 
   if (state.view === "Habits") {
+    attachCheckboxListeners(state);
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var addButton = document.getElementById("addCat");
+      if (addButton) {
+        addButton.addEventListener("click", menuCat);
+      }
+    });
+
+    const checkboxes = document.querySelectorAll(".check-box");
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener("click", function() {
+        const routineId = this.getAttribute("data-routine-id");
+        handleRtnCheckboxChange(this, routineId);
+      });
+    });
+
     document.querySelectorAll(".menu-icon").forEach(icon => {
       icon.addEventListener("click", function(event) {
         const catId = event.currentTarget.getAttribute("data-cat-id");
@@ -915,7 +849,6 @@ function afterRender(state) {
           li.setAttribute("data-value", selectedHabit);
           document.getElementById("selectedHabits").appendChild(li);
 
-          // Optional: Remove the selected habit from the dropdown
           document.getElementById("habitSelect").value = "";
         }
       });
@@ -1054,47 +987,10 @@ function afterRender(state) {
       .addEventListener("click", () => myFunction());
   }
 
-  // if (state.view === "Stats") {
-  //   document.querySelectorAll(".circle-card").forEach(card => {
-  //     card.addEventListener("click", () => {
-  //       card.classList.toggle("active");
-  //     });
-  //   });
-  // }
-
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector(".dropdown-content").classList.toggle("show");
   });
-
-  // setupPixelaEventListeners();
 }
-
-// function setupPixelaEventListeners() {
-//   const createUserButton = document.getElementById("createUserButton");
-//   if (createUserButton) {
-//     createUserButton.addEventListener("click", () => {
-//       createUser("classicatkins", "token"); // Replace 'username' and 'token' with actual values
-//     });
-//   }
-// }
-
-// function createUser(username, token) {
-//   console.log("Creating user:", username, token);
-//   // Implement the Axios POST request to create a user
-//   axios
-//     .post("https://pixe.la/v1/users", {
-//       token: token,
-//       username: username,
-//       agreeTermsOfService: "yes",
-//       notMinor: "yes"
-//     })
-//     .then(response => {
-//       console.log("User creation response:", response.data);
-//     })
-//     .catch(error => {
-//       console.error("Error creating user:", error);
-//     });
-// }
 
 router.hooks({
   before: async (done, params) => {
@@ -1114,13 +1010,6 @@ router.hooks({
 
     switch (view) {
       case "Home":
-        // Add any specific logic for the Home view
-        done();
-        break;
-      // Implement other cases as needed
-      // default:
-      //   done();
-      case "Today":
         // Add any specific logic for the Home view
         axios
           .get(`${process.env.PERPETUA_API_URL}/habits?days=${day}`)

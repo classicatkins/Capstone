@@ -68,7 +68,26 @@ router.delete("/:id", async (request, response) => {
   }
 });
 
-// Update a single pizza by ID
+// router.put("/:id", async (request, response) => {
+//   try {
+//     const { name, category, days, reminder, dates } = request.body;
+
+//     const data = await Habit.findByIdAndUpdate(
+//       request.params.id,
+//       { $set: { name, category, days, reminder, dates } },
+//       { new: true }
+//     );
+
+//     response.json(data);
+//   } catch (error) {
+//     console.log(error);
+//     if ("name" in error && error.name === "ValidationError")
+//       return response.status(400).json(error.errors);
+//     return response.status(500).json(error);
+//   }
+// });
+
+//Update a single pizza by ID
 router.put("/:id", async (request, response) => {
   try {
     const body = request.body;
@@ -77,10 +96,12 @@ router.put("/:id", async (request, response) => {
       request.params.id,
       {
         $set: {
-          crust: body.crust,
-          cheese: body.cheese,
-          sauce: body.sauce,
-          toppings: body.toppings
+          $set: {
+            name: body.name,
+            category: body.category,
+            days: body.days,
+            reminder: body.reminder
+          }
         }
       },
       {
