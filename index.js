@@ -707,6 +707,31 @@ function alertShow() {
 
 function afterRender(state) {
   if (state.view === "Stats") {
+    var compareStatsRadio = document.getElementById("compareStatsRadio");
+    var allHabitsRadio = document.getElementById("allHabitsRadio");
+
+    var allStatsDiv = document.getElementById("allStats");
+    var pixelaGraphsDiv = document.getElementById("pixelaGraphs");
+
+    compareStatsRadio.addEventListener("change", function() {
+      if (this.checked) {
+        allStatsDiv.style.display = "block";
+        pixelaGraphsDiv.style.display = "none";
+      }
+    });
+
+    if (document.getElementById("compareStatsRadio").checked) {
+      allStatsDiv.style.display = "block";
+      pixelaGraphsDiv.style.display = "none";
+    }
+
+    allHabitsRadio.addEventListener("change", function() {
+      if (this.checked) {
+        allStatsDiv.style.display = "none";
+        pixelaGraphsDiv.style.display = "block";
+      }
+    });
+
     var ctx = document.getElementById("graph-chart-line").getContext("2d");
     new Chart(ctx, config);
     var ctxPie = document.getElementById("graph-chart-pie").getContext("2d");

@@ -3,7 +3,7 @@ import html from "html-literal";
 export default () => html`
   <body>
     <div class="stats-container">
-      <div class="grid-pixela">
+      <div class="grid-pixela" id="pixelaGraphs">
         <div id="graphs-container-pixela">
           <!-- Graphs will be displayed here -->
           <h1>My Pixela Habits Graph</h1>
@@ -13,7 +13,7 @@ export default () => html`
           />
         </div>
       </div>
-      <div class="grid-all-stats">
+      <div class="grid-all-stats" id="allStats">
         <div class="graph-box">
           <div id="graphs">
             <div id="graph-container">
@@ -57,6 +57,8 @@ export default () => html`
                   type="radio"
                   class="radio-button"
                   name="comparisonOption"
+                  id="compareStatsRadio"
+                  checked
                 />
                 <span class="radio-mark-stat"></span> </label
               >&nbsp&nbspCompare Stats
@@ -67,6 +69,7 @@ export default () => html`
                   type="radio"
                   class="radio-button"
                   name="comparisonOption"
+                  id="allHabitsRadio"
                 />
                 <span class="radio-mark-stat"></span> </label
               >&nbsp&nbspAll Habits
