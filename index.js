@@ -732,15 +732,13 @@ function afterRender(state) {
       }
     });
 
-    var ctx = document.getElementById("graph-chart-line").getContext("2d");
+    var ctx = document.getElementById("graph-chart-line");
     new Chart(ctx, config);
-    var ctxPie = document.getElementById("graph-chart-pie").getContext("2d");
+    var ctxPie = document.getElementById("graph-chart-pie");
     new Chart(ctxPie, configPie);
-    var ctxBar = document.getElementById("graph-chart-bar").getContext("2d");
+    var ctxBar = document.getElementById("graph-chart-bar");
     new Chart(ctxBar, configBar);
-    var ctxRadar = document
-      .getElementById("graph-chart-radar")
-      .getContext("2d");
+    var ctxRadar = document.getElementById("graph-chart-radar");
     new Chart(ctxRadar, configRadar);
   }
 
