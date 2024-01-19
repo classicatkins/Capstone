@@ -4,7 +4,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
-import { Chart } from "chart.js/auto";
+import Chart from "chart.js/auto";
 
 const router = new Navigo("/");
 
