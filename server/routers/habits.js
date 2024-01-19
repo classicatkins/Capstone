@@ -96,12 +96,11 @@ router.put("/:id", async (request, response) => {
       request.params.id,
       {
         $set: {
-          $set: {
-            name: body.name,
-            category: body.category,
-            days: body.days,
-            reminder: body.reminder
-          }
+          name: body.name,
+          category: body.category,
+          days: body.days,
+          reminder: body.reminder,
+          dates: body.dates
         }
       },
       {
