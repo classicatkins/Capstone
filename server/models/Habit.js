@@ -31,7 +31,7 @@ const habitSchema = new mongoose.Schema({
     type: String
   },
   dates: {
-    type: Array
+    type: [String]
   }
 });
 
