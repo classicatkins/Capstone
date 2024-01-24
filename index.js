@@ -5,6 +5,7 @@ import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
 import Chart from "chart.js/auto";
+import OpenAI from "openai";
 
 const router = new Navigo("/");
 
@@ -16,6 +17,29 @@ function render(state = store.Home) {
     `;
   router.updatePageLinks();
   afterRender(state);
+}
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  organization: "org-Sw56bLlkxqYCxFgGXGekYM04",
+  dangerouslyAllowBrowser: true
+});
+
+async function getChatCompletion() {
+  try {
+    // const openai = new OpenAI({
+    //   apiKey: process.env.OPENAI_API_KEY,
+    //   dangerouslyAllowBrowser: true
+    // });
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "system", content: "You are a helpful assistant." }],
+      model: "gpt-3.5-turbo"
+    });
+
+    console.log(completion.choices[0].message.content);
+  } catch (error) {
+    console.error("Error in getChatCompletion:", error);
+  }
 }
 
 function attachCheckboxListeners(state) {
@@ -580,7 +604,7 @@ async function habitUnchecked(habitId, habitDates) {
     });
 
   await axios
-    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`, updateData)
+    .put(`${process.env.PERPETUA_API_URL}/habits/${habitId}`)
     .then(response => {
       console.log(
         "Habit updated with new tally and recorded date:",
@@ -748,6 +772,7 @@ function afterRender(state) {
     if (prevWeekButton) {
       prevWeekButton.addEventListener("click", function() {
         moveCalendar(-7);
+        getChatCompletion();
       });
     }
 
