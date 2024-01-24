@@ -21,29 +21,6 @@ export default state => html`
     <br>
 
     <script>
-        document.getElementById('message-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const userInput = document.getElementById('user-input');
-            const message = userInput.value.trim();
-
-            if (message) {
-                addMessageToChat('user', message);
-                userInput.value = '';
-
-                // Here you would typically send the message to the AI and get a response
-                // For now, we will just echo the message
-                setTimeout(() => addMessageToChat('ai', 'Echo: ' + message), 500);
-            }
-        });
-
-        function addMessageToChat(sender, message) {
-            const chatContainer = document.getElementById('chat-container');
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', sender === 'ai' ? 'ai-message' : 'user-message');
-            messageDiv.textContent = message;
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
-        }
     </script>
 </body>
 </html>

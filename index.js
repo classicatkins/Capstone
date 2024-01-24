@@ -25,21 +25,94 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
-async function getChatCompletion() {
+// const express = require("express");
+// // const OpenAI = require('openai');
+// const bodyParser = require("body-parser");
+
+// const app = express();
+// app.use(bodyParser.json());
+
+// app.post("/chat-message", async (req, res) => {
+//   try {
+//     const userMessage = req.body.message;
+
+//     const completion = await openai.chat.completions.create({
+//       messages: [{ role: "user", content: userMessage }],
+//       model: "gpt-3.5-turbo"
+//     });
+
+//     const aiMessage = completion.choices[0].message.content;
+//     res.json({ message: aiMessage });
+//   } catch (error) {
+//     console.error("Error:", error);
+//     res.status(500).send("Error processing your message");
+//   }
+// });
+
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+// function displayMessage(sender, message) {
+//   const messageDiv = document.createElement("div");
+//   messageDiv.textContent = `${sender}: ${message}`;
+//   chatContainer.appendChild(messageDiv);
+// }
+
+// async function sendMessageToServer(message) {
+//   try {
+//     const response = await fetch("/chat-message", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({ message: message })
+//     });
+
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok");
+//     }
+
+//     return response.json();
+//   } catch (error) {
+//     console.error("Error in sendMessageToServer:", error);
+//     throw error;
+//   }
+// }
+
+// async function getChatCompletion() {
+//   try {
+//     const completion = await openai.chat.completions.create({
+//       messages: [{ role: "system", content: "You are a helpful assistant." }],
+//       model: "gpt-3.5-turbo"
+//     });
+
+//     console.log(completion.choices[0].message.content);
+//   } catch (error) {
+//     console.error("Error in getChatCompletion:", error);
+//   }
+// }
+
+async function getChatCompletion(userMessage) {
   try {
-    // const openai = new OpenAI({
-    //   apiKey: process.env.OPENAI_API_KEY,
-    //   dangerouslyAllowBrowser: true
-    // });
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "system", content: "You are a helpful assistant." }],
+      messages: [{ role: "user", content: userMessage }],
       model: "gpt-3.5-turbo"
     });
 
-    console.log(completion.choices[0].message.content);
+    return completion.choices[0].message.content;
   } catch (error) {
     console.error("Error in getChatCompletion:", error);
+    throw error; // Re-throw the error to handle it in the caller function
   }
+}
+
+function displayMessage(sender, message) {
+  const chatContainer = document.getElementById("chat-container");
+  const messageDiv = document.createElement("div");
+  messageDiv.textContent = `${sender}: ${message}`;
+  chatContainer.appendChild(messageDiv);
 }
 
 function attachCheckboxListeners(state) {
@@ -764,6 +837,80 @@ function afterRender(state) {
     new Chart(ctxBar, configBar);
     var ctxRadar = document.getElementById("graph-chart-radar");
     new Chart(ctxRadar, configRadar);
+  }
+
+  if (state.view === "Chat") {
+    // const form = document.getElementById("message-form");
+    // const chatContainer = document.getElementById("chat-container");
+    // const userInput = document.getElementById("user-input");
+
+    // form.addEventListener("submit", function(event) {
+    //   event.preventDefault();
+
+    //   const userMessage = userInput.value;
+    //   displayMessage("User", userMessage);
+
+    //   sendMessageToServer(userMessage)
+    //     .then(response => {
+    //       displayMessage("AI", response.message);
+    //     })
+    //     .catch(error => {
+    //       console.error("Error:", error);
+    //     });
+
+    //   userInput.value = ""; // Clear input field after sending
+    // });
+
+    // document
+    //   .getElementById("chat-form")
+    //   .addEventListener("submit", async function(event) {
+    //     event.preventDefault();
+    //     const userInputField = document.getElementById("user-input");
+    //     const userMessage = userInputField.value;
+
+    //     // Display user message
+    //     displayMessage("User", userMessage);
+
+    //     // Get AI response
+    //     try {
+    //       const completion = await getChatCompletion(userMessage);
+    //       displayMessage("AI", completion);
+    //     } catch (error) {
+    //       console.error("Error:", error);
+    //       displayMessage("AI", "Sorry, there was an error.");
+    //     }
+
+    //     userInputField.value = ""; // Clear input field
+    //   });
+
+    document
+      .getElementById("chat-form")
+      .addEventListener("submit", async function(event) {
+        alert("here");
+        event.preventDefault(); // Prevents the default form submission behavior
+
+        const userInputField = document.getElementById("user-input");
+        const userMessage = userInputField.value;
+
+        if (userMessage.trim() === "") {
+          alert("Please enter a message.");
+          return;
+        }
+
+        // Display user message in the chat
+        displayMessage("User", userMessage);
+
+        // Send the message to the OpenAI API and handle the response
+        try {
+          const completion = await getChatCompletion(userMessage);
+          displayMessage("AI", completion);
+        } catch (error) {
+          console.error("Error:", error);
+          displayMessage("AI", "Sorry, there was an error.");
+        }
+
+        userInputField.value = ""; // Clear the input field after sending
+      });
   }
 
   if (state.view === "Home") {
