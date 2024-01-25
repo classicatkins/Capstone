@@ -964,7 +964,15 @@ function afterRender(state) {
         chatContainer.appendChild(messageDiv);
 
         // Create an assistant
-        const assistant = await openai.createAssistant({
+        // const assistant = await openai.createAssistant({
+        //   name: "Perpetua",
+        //   instructions:
+        //     "You analyze my habits and give me feedback to perpetually do my habits.",
+        //   tools: [{ type: "code_interpreter" }, { type: "retrieval" }],
+        //   model: "gpt-3.5-turbo-1106"
+        // });
+
+        const assistant = await openai.beta.assistants.create({
           name: "Perpetua",
           instructions:
             "You analyze my habits and give me feedback to perpetually do my habits.",
