@@ -94,14 +94,42 @@ const openai = new OpenAI({
 //   }
 // }
 
-async function getChatCompletion(userMessage) {
+// async function getChatCompletion(userMessage) {
+//   try {
+//     const completion = await openai.chat.completions.create({
+//       messages: [{ role: "user", content: userMessage }],
+//       model: "gpt-3.5-turbo"
+//     });
+
+//     return completion.choices[0].message.content;
+//   } catch (error) {
+//     console.error("Error in getChatCompletion:", error);
+//     throw error; // Re-throw the error to handle it in the caller function
+//   }
+// }
+
+async function getChatCompletion(userMessage, threadId, assistantId) {
   try {
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: userMessage }],
-      model: "gpt-3.5-turbo"
+    // Step 3: Add the user's message to the thread
+    await openai.createMessage(threadId, {
+      role: "user",
+      content: userMessage
     });
 
-    return completion.choices[0].message.content;
+    // Step 4: Run the Assistant on the thread
+    const run = await openai.createRun(threadId, {
+      assistant_id: assistantId
+    });
+
+    // Step 5: Retrieve the Run's status and get the response
+    // Assuming synchronous handling for simplicity. In a real-world use, you might need to poll the status.
+    const messages = await openai.listMessages(threadId);
+
+    // Assuming the last message in the thread is the assistant's response
+    const assistantResponse =
+      messages.data[messages.data.length - 1].content.text.value;
+
+    return assistantResponse;
   } catch (error) {
     console.error("Error in getChatCompletion:", error);
     throw error; // Re-throw the error to handle it in the caller function
@@ -840,49 +868,6 @@ function afterRender(state) {
   }
 
   if (state.view === "Chat") {
-    // const form = document.getElementById("message-form");
-    // const chatContainer = document.getElementById("chat-container");
-    // const userInput = document.getElementById("user-input");
-
-    // form.addEventListener("submit", function(event) {
-    //   event.preventDefault();
-
-    //   const userMessage = userInput.value;
-    //   displayMessage("User", userMessage);
-
-    //   sendMessageToServer(userMessage)
-    //     .then(response => {
-    //       displayMessage("AI", response.message);
-    //     })
-    //     .catch(error => {
-    //       console.error("Error:", error);
-    //     });
-
-    //   userInput.value = ""; // Clear input field after sending
-    // });
-
-    // document
-    //   .getElementById("chat-form")
-    //   .addEventListener("submit", async function(event) {
-    //     event.preventDefault();
-    //     const userInputField = document.getElementById("user-input");
-    //     const userMessage = userInputField.value;
-
-    //     // Display user message
-    //     displayMessage("User", userMessage);
-
-    //     // Get AI response
-    //     try {
-    //       const completion = await getChatCompletion(userMessage);
-    //       displayMessage("AI", completion);
-    //     } catch (error) {
-    //       console.error("Error:", error);
-    //       displayMessage("AI", "Sorry, there was an error.");
-    //     }
-
-    //     userInputField.value = ""; // Clear input field
-    //   });
-
     document
       .getElementById("message-form")
       .addEventListener("submit", async function(event) {
@@ -896,23 +881,132 @@ function afterRender(state) {
           return;
         }
 
-        alert(userMessage);
-
-        // Display user message in the chat
-        //displayMessage("User", userMessage);
+        const habitData = [
+          {
+            _id: "ObjectId('65a74bd0725a457fa8f76b2b')",
+            name: "Brush Teeth",
+            days: [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            reminder: "2024-01-24T00:00:00.000+00:00",
+            notes: "",
+            __v: 0
+          },
+          {
+            _id: "ObjectId('65aebcb83c491b7671f5a0e9')",
+            name: "Exercise",
+            category: "Health",
+            days: ["Monday", "Wednesday", "Friday"],
+            reminder: "2024-01-20T07:00:00.000+00:00",
+            notes: "Morning workout for 30 minutes.",
+            dates: [
+              {
+                date: "2024-02-06",
+                times: ["08:00:00", "11:30:00", "15:45:00"]
+              },
+              {
+                date: "2024-02-07",
+                times: ["09:00:00", "12:00:00", "17:30:00"]
+              },
+              {
+                date: "2024-02-08",
+                times: ["08:15:00", "13:45:00", "18:00:00"]
+              },
+              {
+                date: "2024-02-09",
+                times: ["07:30:00", "12:30:00", "16:15:00"]
+              },
+              {
+                date: "2024-02-10",
+                times: ["10:00:00", "14:00:00", "19:00:00"]
+              },
+              {
+                date: "2024-02-11",
+                times: ["08:45:00", "13:00:00", "17:15:00"]
+              },
+              {
+                date: "2024-02-12",
+                times: ["09:30:00", "14:30:00", "18:45:00"]
+              }
+            ],
+            __v: 0
+          },
+          {
+            _id: "ObjectId('65afecb83c491b7671f5a0f1')",
+            name: "Read a Book",
+            category: "Education",
+            days: ["Tuesday", "Thursday", "Saturday"],
+            reminder: "2024-01-21T20:00:00.000+00:00",
+            notes: "Read at least 30 pages.",
+            dates: [],
+            __v: 0
+          },
+          {
+            _id: "ObjectId('65b01dc83d492b7671f6a1e2')",
+            name: "Meditation",
+            category: "Wellness",
+            days: ["Monday", "Wednesday", "Friday"],
+            reminder: "2024-01-22T06:30:00.000+00:00",
+            notes: "15 minutes morning meditation.",
+            dates: [],
+            __v: 0
+          }
+        ];
         const chatContainer = document.getElementById("chat-container");
         const messageDiv = document.createElement("div");
         messageDiv.textContent = `${"User"}: ${userMessage}`;
         chatContainer.appendChild(messageDiv);
 
-        // Send the message to the OpenAI API and handle the response
-        try {
-          const completion = await getChatCompletion(userMessage);
-          displayMessage("Perpetua", completion);
-        } catch (error) {
-          console.error("Error:", error);
-          displayMessage("AI", "Sorry, there was an error.");
-        }
+        // Create an assistant
+        const assistant = await openai.createAssistant({
+          name: "Perpetua",
+          instructions:
+            "You analyze my habits and give me feedback to perpetually do my habits.",
+          tools: [{ type: "code_interpreter" }, { type: "retrieval" }],
+          model: "gpt-3.5-turbo-1106"
+        });
+
+        // Create a thread
+        const thread = await openai.createThread({
+          // Thread settings...
+        });
+
+        const instruction =
+          "Each object is a habit. Dates in the habit data represent when the user performed the habit. If there is no date for the day the habit is assigned, it means the user did not do the habit that day.";
+
+        // Combine user message with habit data and instructions
+        const fullMessage = `${instruction}\n\n${JSON.stringify(
+          habitData,
+          null,
+          2
+        )}\n\nUser Message: ${userMessage}`;
+
+        alert(fullMessage);
+
+        // Add a message to the thread
+        await openai.createMessage(thread.data.id, {
+          role: "user",
+          content: fullMessage
+        });
+
+        // Run the Assistant on the thread
+        const run = await openai.createRun(thread.data.id, {
+          assistant_id: assistant.data.id
+        });
+
+        // Check the Run status and get the response
+        const messages = await openai.listMessages(thread.data.id);
+        const assistantResponse =
+          messages.data[messages.data.length - 1].content.text.value;
+
+        // Display the assistant's message in the chat
+        displayMessage("Perpetua", assistantResponse);
 
         userInputField.value = ""; // Clear the input field after sending
       });
