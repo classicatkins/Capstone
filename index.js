@@ -884,9 +884,8 @@ function afterRender(state) {
     //   });
 
     document
-      .getElementById("chat-form")
+      .getElementById("message-form")
       .addEventListener("submit", async function(event) {
-        alert("here");
         event.preventDefault(); // Prevents the default form submission behavior
 
         const userInputField = document.getElementById("user-input");
@@ -897,13 +896,19 @@ function afterRender(state) {
           return;
         }
 
+        alert(userMessage);
+
         // Display user message in the chat
-        displayMessage("User", userMessage);
+        //displayMessage("User", userMessage);
+        const chatContainer = document.getElementById("chat-container");
+        const messageDiv = document.createElement("div");
+        messageDiv.textContent = `${"User"}: ${userMessage}`;
+        chatContainer.appendChild(messageDiv);
 
         // Send the message to the OpenAI API and handle the response
         try {
           const completion = await getChatCompletion(userMessage);
-          displayMessage("AI", completion);
+          displayMessage("Perpetua", completion);
         } catch (error) {
           console.error("Error:", error);
           displayMessage("AI", "Sorry, there was an error.");
